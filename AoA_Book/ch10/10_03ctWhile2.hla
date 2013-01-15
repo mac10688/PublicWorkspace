@@ -1,0 +1,15 @@
+program ctWhile;
+#include( "stdlib.hhf" )
+
+static
+    ary: uns32[5] := [ 2, 3, 5, 8, 13 ];
+    
+begin ctWhile;
+
+    stdout.put( "array[ ", 0, " ] = ", ary[0*4], nl );
+    stdout.put( "array[ ", 1, " ] = ", ary[1*4], nl );
+    stdout.put( "array[ ", 2, " ] = ", ary[2*4], nl );
+    stdout.put( "array[ ", 3, " ] = ", ary[3*4], nl );
+    stdout.put( "array[ ", 4, " ] = ", ary[4*4], nl );
+                
+end ctWhile;

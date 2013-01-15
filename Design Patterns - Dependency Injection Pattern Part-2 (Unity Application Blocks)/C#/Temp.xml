@@ -1,0 +1,44 @@
+﻿<UnityBlockConfiguration>
+  <containers>
+
+    <container name="ContainerOne">
+      <types>
+
+        <!-- Default (un-named) mapping for IMyInterface to MyRealObject-->
+        <type type="IMyInterface" mapTo="MyRealObject"/>
+
+        <!-- Default (un-named) mapping for ILogger to MyLogger -->
+        <type type="ILogger" mapTo="MyFastLogger">
+          <lifetime type="singleton"/>
+        </type>
+
+        <!-- Named mapping for ILogger to StandardLogger-->
+        <type type="ILogger" mapTo="MyLogger" name="StandardLogger">
+          <lifetime type="singleton"/>
+        </type>
+
+        <!-- Named mapping for ILogger to SuperFastLogger-->
+        <type type="ILogger" mapTo="MyFastLogger" name="SuperFastLogger">
+          <lifetime type="external"/>
+        </type>
+
+      </types>
+    </container>
+  </containers>
+  <typeAliases>
+
+    <!-- Lifetime manager types -->
+    <typeAlias alias="SingletonType" type="Microsoft.Practices.Unity.ContainerControlledLifetimeManager,              Microsoft.Practices.Unity"/>
+    <typeAlias alias="ExternalType" type="Microsoft.Practices.Unity.ExternallyControlledLifetimeManager,              Microsoft.Practices.Unity"/>
+
+    <!-- Custom object types -->
+    <typeAlias alias="IMyInterface" type="EnterpriseLibraryUnityBlockDemo.IMyInterface, EnterpriseLibraryUnityBlockDemo"/>
+    <typeAlias alias="MyRealObject" type="EnterpriseLibraryUnityBlockDemo.MyRealObject, EnterpriseLibraryUnityBlockDemo"/>
+    <typeAlias alias="MyOtherObject" type="EnterpriseLibraryUnityBlockDemo.MyOtherObject, EnterpriseLibraryUnityBlockDemo"/>
+    <typeAlias alias="ILogger" type="EnterpriseLibraryUnityBlockDemo.ILogger, EnterpriseLibraryUnityBlockDemo"/>
+    <typeAlias alias="MyLogger" type="EnterpriseLibraryUnityBlockDemo.MyLogger, EnterpriseLibraryUnityBlockDemo"/>
+    <typeAlias alias="MyFastLogger" type="EnterpriseLibraryUnityBlockDemo.MyFastLogger, EnterpriseLibraryUnityBlockDemo"/>
+
+  </typeAliases>
+
+</UnityBlockConfiguration>

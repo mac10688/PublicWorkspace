@@ -1,0 +1,84 @@
+// Puti.hla
+//
+// This program demonstrates procedure overloading via macros.
+//
+// It defines a "puti" macro that calls stdout.puti8, stdout.puti16, 
+// stdout.puti32, or stdout.puti64 depending on the size of the operand.
+
+
+program putiDemo;
+#include( "stdlib.hhf" )
+
+
+// puti-
+//
+// Automatically decides whether we have a 64, 32, 16, or 8-bit
+// operand and calls the appropriate stdout.putiX routine to
+// output this value.
+
+#macro puti( operand );
+
+    // If we have an eight-byte operand, call puti64:
+    
+    #if( @size( operand ) = 8 )
+    
+        stdout.puti64( operand );
+        
+        
+    // If we have a four-byte operand, call puti32:
+    
+    #elseif( @size( operand ) = 4 )
+    
+        stdout.puti32( operand );
+    
+    
+    // If we have a two-byte operand, call puti16:
+        
+    #elseif( @size( operand ) = 2 )
+    
+        stdout.puti16( operand );
+        
+    
+    // If we have a one-byte operand, call puti8:
+    
+    #elseif( @size( operand ) = 1 )
+    
+        stdout.puti8( operand );
+    
+    
+    // If it's not an eight, four, two, or one-byte operand,
+    // then print an error message:
+        
+    #else
+    
+        #error( "Expected a 64, 32, 16, or 8-bit operand" )
+        
+    #endif
+    
+#endmacro;
+
+
+// Some sample variable declarations so we can test the macro above.
+
+static
+    i8:     int8    := -8;
+    i16:    int16   := -16;
+    i32:    int32   := -32;
+    i64:    qword;
+    
+
+begin putiDemo;
+
+    // Initialize i64 since we can't do this in the static section.
+    
+    mov( -64, (type dword i64 ));
+    mov( $FFFF_FFFF, (type dword i64[4]));
+    
+    // Demo the puti macro:
+    
+    puti( i8  );  stdout.newln();
+    puti( i16 );  stdout.newln();
+    puti( i32 );  stdout.newln();
+    puti( i64 );  stdout.newln();
+                
+end putiDemo;

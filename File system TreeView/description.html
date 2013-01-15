@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>File system TreeView</title>
+        <link href="description/Galleries.css" type="text/css" rel="Stylesheet" /><link href="description/Layout.css" type="text/css" rel="Stylesheet" /><link href="description/Brand.css" type="text/css" rel="Stylesheet" />
+        <link href="description/iframedescription.css" rel="Stylesheet" type="text/css" />
+        <script src="description/offline.js" type="text/javascript"></script>
+        <style type="text/css">
+            #projectInfo {
+                overflow: auto;
+            }
+            #longDesc {
+                clear:both;
+                margin: 25px 0 10px 0;
+            }
+
+            #SampleIndexList{
+                margin-left: 15px;
+            }
+        </style>
+    </head>
+<body>
+    <div id="offlineDescription">
+        <h1>File system TreeView</h1>
+        <br/>
+        <div id="projectInfo">
+            <div class="section">
+                    <div class="itemBarLong tagsContainer">
+                        <label for="Technologies">Technologies</label>
+                        <div id="Technologies">
+                            WPF
+                        </div>
+                    </div>
+                    <div class="itemBarLong tagsContainer">
+                        <label for="Topics">Topics</label>
+                        <div id="Topics">
+                            Controls
+                        </div>
+                    </div>
+                <div class="itemBarLong">
+                    <label for="Platforms">Platforms</label>
+                    <div id="Platforms">
+                        Desktop
+                    </div>
+                </div>
+                <div class="itemBarLong">
+                    <label for="Requirements">Requirements</label>
+                    <div id="Requirements">
+                        
+                    </div>
+                </div>
+                <div class="itemBar">
+                    <label for="LastUpdated">Primary Language</label>
+                    <div id="LastUpdated">en-US</div>
+                </div>
+                <div class="itemBar">
+                    <label for="LastUpdated">Last Updated</label>
+                    <div id="LastUpdated">4/25/2011</div>
+                </div>
+                <div class="itemBarLong">
+                    <label for="License">License</label>
+                    <div id="License">
+                        <a href="license.rtf">Apache License, Version 2.0</a></div>
+                </div>
+                <div class="itemBar">
+                    <div class="viewonlinecont">
+                        <a data-link="online" href="http://code.msdn.microsoft.com/File-system-TreeView-72549a6f">View this sample online</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+                   
+<script type="text/javascript">
+    function initializePage() {
+        var otherTabClass = 'otherTab';
+        var hiddenPreClass = 'hidden';
+
+        var htmlDecode = function(encodedData) {
+            var decodedData = "";
+            if (encodedData) {
+                var div = document.createElement('div');
+                div.innerHTML = encodedData;
+                decodedData = div.firstChild.nodeValue.replace( /\\r\\n/ig , '\r\n');
+            }
+            return decodedData;
+        };
+                
+        Galleries.iterateElem(Galleries.findElem(null, 'div', 'scriptcode'), function (index, scriptBlock) {
+            var titleElem = Galleries.findElem(scriptBlock, 'div', 'title')[0];
+            var labelElems = Galleries.findElem(titleElem, 'span');
+            if (labelElems.length == 0) {
+                labelElems = titleElem;
+            }
+            var languageSpans = Galleries.findElem(scriptBlock, 'span', 'hidden');
+            var pres = Galleries.findElem(scriptBlock, 'pre');
+            if (languageSpans.length > 0 && pres.length > 1) {
+                Galleries.iterateElem(labelElems, function(index, elem) {
+                    var codePre = pres[index];
+                    var labelSpan = elem;
+                    var languageSpan = languageSpans[index];
+                            
+                    elem.code = codePre.innerHTML.replace( /(\r(\n)?)|((\r)?\n)/ig , '\\r\\n');
+                            
+                    codePre.className = codePre.className.replace(hiddenPreClass, '');
+                            
+                    languageSpan.parentNode.removeChild(languageSpan);
+                });
+
+                pres = Galleries.findElem(scriptBlock, 'pre');
+                Galleries.iterateElem(labelElems, function(index, elem) {
+                    var codePre = pres[index];
+                    var labelSpan = elem;
+                    if (index == 0) {
+                        scriptBlock.activeTab = 0;
+                    }
+                    else {
+                        labelSpan.className += otherTabClass;
+                        codePre.className += hiddenPreClass;
+                    }
+                    Galleries.attachEventHandler(labelSpan, 'click', function(e) {
+                        var activeTab = scriptBlock.activeTab;
+                        labelElems[activeTab].className += otherTabClass;
+                        pres[activeTab].className += hiddenPreClass;
+
+                        codePre.className = codePre.className.replace(hiddenPreClass, '');
+                        labelSpan.className = labelSpan.className.replace(otherTabClass, '');
+                        scriptBlock.activeTab = index;
+                    });
+                });
+
+                var preview = Galleries.findElem(scriptBlock, 'div', 'preview');
+                if (preview.length == 0) {
+                    preview.push(pres[pres.length - 1]);
+                }
+                Galleries.iterateElem(preview, function(index, elem) {
+                    elem.parentNode.removeChild(elem);
+                });
+
+                if (window.clipboardData && clipboardData.setData) {
+                    var copyLink = document.createElement('a');
+                    copyLink.href = 'javascript:void(0);';
+                    copyLink.className = 'copyCode';
+                    copyLink.innerHTML = 'Copy Code';
+                    Galleries.attachEventHandler(copyLink, 'click', function (e) {
+                        clipboardData.setData("Text", htmlDecode(labelElems[scriptBlock.activeTab].code));
+                        return false;
+                    });
+                    scriptBlock.insertBefore(copyLink, scriptBlock.childNodes[0]);
+                }
+            }
+        });
+    }
+
+    Galleries.onWindowLoad(function(){
+        initializePage();
+    });
+
+</script>
+<div id="longDesc">
+    
+<div><span style="font-size:medium"><strong><img src="description/Screenshot.png" alt="" width="233" height="244" style="float:right">Problem</strong></span></div>
+<div><span>In .NET no direct support for File system tree like Windows Explorer. Another problem is to track changes of inserting or removing CDroms, USB drives etc.</span></div>
+<div><span style="font-size:medium"><strong>Solution</strong></span></div>
+<div>This example show how to build TreeView control for file system's folders.</div>
+<div>First of all, create drives folders</div>
+<div style="clear:right"></div>
+<div>
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>C#</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">csharp</span>
+<pre class="hidden">TreeViewItem computer = new TreeViewItem();
+foreach (var drive in DriveInfo.GetDrives())
+{
+	TreeViewItem driveItem = new TreeViewItem();
+	if (drive.IsReady)
+		driveItem.Header = String.Format(&quot;{0} ({1}:)&quot;, drive.VolumeLabel, drive.Name[0]);
+	else
+		driveItem.Header = String.Format(&quot;{0} ({1}:)&quot;, drive.DriveType, drive.Name[0]);
+	computer.Items.Add(driveItem);
+}</pre>
+<div class="preview">
+<pre class="csharp">TreeViewItem computer = <span class="cs__keyword">new</span> TreeViewItem(); 
+<span class="cs__keyword">foreach</span> (var drive <span class="cs__keyword">in</span> DriveInfo.GetDrives()) 
+{ 
+    TreeViewItem driveItem = <span class="cs__keyword">new</span> TreeViewItem(); 
+    <span class="cs__keyword">if</span> (drive.IsReady) 
+        driveItem.Header = String.Format(<span class="cs__string">&quot;{0} ({1}:)&quot;</span>, drive.VolumeLabel, drive.Name[<span class="cs__number">0</span>]); 
+    <span class="cs__keyword">else</span> 
+        driveItem.Header = String.Format(<span class="cs__string">&quot;{0} ({1}:)&quot;</span>, drive.DriveType, drive.Name[<span class="cs__number">0</span>]); 
+    computer.Items.Add(driveItem); 
+} 
+ 
+</pre>
+</div>
+</div>
+</div>
+<div class="endscriptcode">Then, every 5 seconds DispatcherTimer is run, which creates new tree using information about which nodes have been already opened. There are 2 functions: TreeView_Update for creating root drives, and TreeView_AddDirectoryItems()
+ for creating folders.</div>
+<div class="endscriptcode">The next important thing is expanding the node:</div>
+<div class="endscriptcode">
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>C#</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">csharp</span>
+<pre class="hidden">if (rootItem.Items.Count == 1 &amp;&amp; rootItem.Items[0] == null)
+{
+	rootItem.Items.Clear();
+
+	string[] dirs;
+	try
+	{
+		dirs = Directory.GetDirectories((string)rootItem.Tag);
+	}
+	catch { return; }
+
+	foreach (var dir in dirs)
+	{
+		TreeViewItem subItem = new TreeViewItem();
+		subItem.Header = new DirectoryInfo(dir).Name;
+		subItem.Tag = dir;
+		try
+		{
+			if (Directory.GetDirectories(dir).Length &gt; 0)
+				subItem.Items.Add(null);
+		}
+		catch { }
+		subItem.Expanded &#43;= TreeViewItem_Expanded;
+		rootItem.Items.Add(subItem);
+	}
+}</pre>
+<div class="preview">
+<pre class="js"><span class="js__statement">if</span> (rootItem.Items.Count == <span class="js__num">1</span> &amp;&amp; rootItem.Items[<span class="js__num">0</span>] == null) 
+<span class="js__brace">{</span> 
+    rootItem.Items.Clear(); 
+ 
+    string[] dirs; 
+    <span class="js__statement">try</span> 
+    <span class="js__brace">{</span> 
+        dirs = Directory.GetDirectories((string)rootItem.Tag); 
+    <span class="js__brace">}</span> 
+    <span class="js__statement">catch</span> <span class="js__brace">{</span> <span class="js__statement">return</span>; <span class="js__brace">}</span> 
+ 
+    foreach (<span class="js__statement">var</span> dir <span class="js__operator">in</span> dirs) 
+    <span class="js__brace">{</span> 
+        TreeViewItem subItem = <span class="js__operator">new</span> TreeViewItem(); 
+        subItem.Header = <span class="js__operator">new</span> DirectoryInfo(dir).Name; 
+        subItem.Tag = dir; 
+        <span class="js__statement">try</span> 
+        <span class="js__brace">{</span> 
+            <span class="js__statement">if</span> (Directory.GetDirectories(dir).Length &gt; <span class="js__num">0</span>) 
+                subItem.Items.Add(null); 
+        <span class="js__brace">}</span> 
+        <span class="js__statement">catch</span> <span class="js__brace">{</span> <span class="js__brace">}</span> 
+        subItem.Expanded &#43;= TreeViewItem_Expanded; 
+        rootItem.Items.Add(subItem); 
+    <span class="js__brace">}</span> 
+<span class="js__brace">}</span> 
+ 
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>&nbsp;Also, I save current directory as Tag for node, because node have only title but we need a full path.</div>
+<div>Another problem wat to copy WPF TreeView. For that purpose I use next function:</div>
+<div>
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>C#</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">csharp</span>
+<pre class="hidden">object CloneUsingXaml(object obj)
+{
+	string xaml = XamlWriter.Save(obj);
+	return XamlReader.Load(new XmlTextReader(new StringReader(xaml)));
+}</pre>
+<div class="preview">
+<pre class="csharp"><span class="cs__keyword">object</span>&nbsp;CloneUsingXaml(<span class="cs__keyword">object</span>&nbsp;obj)&nbsp;
+{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">string</span>&nbsp;xaml&nbsp;=&nbsp;XamlWriter.Save(obj);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">return</span>&nbsp;XamlReader.Load(<span class="cs__keyword">new</span>&nbsp;XmlTextReader(<span class="cs__keyword">new</span>&nbsp;StringReader(xaml)));&nbsp;
+}&nbsp;
+&nbsp;
+</pre>
+</div>
+</div>
+</div>
+<div class="endscriptcode">&nbsp;Some folders have no subfolders so we need not to show expander icon for it. But if folder has subfolders, I add as NULL as node element. So expander icon is shown. When node is expanding NULL removing and showing all subfolders.</div>
+<div class="endscriptcode">You can use this example to build more complex file manager. However, it's better to use C&#43;&#43; and native OS support. Because of multiplatform nature of .NET you can't use benefitions of Windows API in .NET.</div>
+</div>
+
+</div>
+
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+program testBadInput2;
+#include( "stdlib.hhf" );
+
+static
+    u:      uns16;
+    
+begin testBadInput2;
+
+    try
+    
+        try
+    
+            stdout.put( "Enter an unsigned integer:" );
+            stdin.get( u );
+            stdout.put( "You entered: ", u, nl );
+            
+          exception( ex.ConversionError )
+          
+            stdout.put( "Your input contained illegal characters" nl );
+            
+        endtry;
+        
+        stdout.put( "Input did not fail due to a value out of range" nl );
+        
+        
+      exception( ex.ValueOutOfRange )
+      
+        stdout.put( "The value was too large" nl );
+        
+    endtry;
+
+end testBadInput2;

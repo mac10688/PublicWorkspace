@@ -1,0 +1,102 @@
+program GenerateSines;
+#include( "stdlib.hhf" );
+
+var
+    outFile: dword;
+    angle:   int32;
+    r:       int32;
+    
+readonly
+    RoundMode: uns16 := $23f;
+
+    
+        
+begin GenerateSines; 
+
+    // Open the file:
+    
+    mov( fileio.openNew( "sines.hla" ), outFile );
+    
+    // Emit the initial part of the declaration to the output file:
+    
+    fileio.put
+    ( 
+        outFile, 
+        stdio.tab, 
+        "sines: int32[360] := " nl,
+        stdio.tab, stdio.tab, stdio.tab, "[" nl );
+    
+    // Enable rounding control (round to the nearest integer).
+    
+    fldcw( RoundMode );
+    
+    // Emit the sines table:
+    
+    for( mov( 0, angle); angle < 359; inc( angle )) do
+    
+        // Convert angle in degrees to an angle in radians
+        // using "radians := angle * 2.0 * pi / 360.0;"
+        
+        fild( angle );
+        fld( 2.0 );
+        fmul();
+        fldpi();
+        fmul();
+        fld( 360.0 );
+        fdiv();
+        
+        // Okay, compute the sine of ST0
+        
+        fsin();
+        
+        // Multiply by 1000 and store the rounded result into 
+        // the integer variable r.
+        
+        fld( 1000.0 );
+        fmul();
+        fistp( r );
+        
+        // Write out the integers eight per line to the source file:
+        // Note: if (angle AND %111) is zero, then angle is evenly
+        // divisible by eight and we should output a newline first.
+        
+        test( %111, angle );
+        if( @z ) then
+        
+            fileio.put
+            ( 
+                outFile, 
+                nl, 
+                stdio.tab, 
+                stdio.tab, 
+                stdio.tab,
+                stdio.tab,
+                r:5,  
+                ',' 
+            );
+            
+        else
+        
+            fileio.put( outFile, r:5, ',' );
+            
+        endif;
+        
+    endfor;
+    
+    // Output sine(359) as a special case (no comma following it).
+    // Note: this value was computed manually with a calculator.
+    
+    fileio.put
+    ( 
+        outFile, 
+        "  -17",
+        nl,
+        stdio.tab, 
+        stdio.tab, 
+        stdio.tab,
+        "];",
+        nl
+    );
+    fileio.close( outFile );
+        
+end GenerateSines;

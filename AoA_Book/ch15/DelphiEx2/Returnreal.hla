@@ -1,0 +1,20 @@
+// ReturnRealUnit-
+//
+//  Provides the ReturnReal function for the DelphiEx2 program.
+
+unit  ReturnRealUnit;
+
+procedure ReturnReal; external;
+procedure ReturnReal;  nodisplay; noalignstk; noframe;
+static
+    realData: real80 := 1.234567890;
+
+begin ReturnReal;
+
+    fld( realData );
+    ret();
+
+end ReturnReal;
+
+
+end ReturnRealUnit;

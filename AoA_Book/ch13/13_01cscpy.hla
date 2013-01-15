@@ -1,0 +1,18 @@
+procedure cs.cpy( src:cset; var dest:cset ); nodisplay;
+begin cpy;
+
+    push( eax );
+    push( ebx );
+    mov( dest, ebx );
+    mov( (type dword src), eax );
+    mov( eax, [ebx] );
+    mov( (type dword src[4]), eax );
+    mov( eax, [ebx+4] );
+    mov( (type dword src[8]), eax );
+    mov( eax, [ebx+8] );
+    mov( (type dword src[12]), eax );
+    mov( eax, [ebx+12] );
+    pop( ebx );
+    pop( eax );
+    
+end cpy;

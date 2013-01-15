@@ -1,0 +1,11 @@
+program main;
+#include( "stdlib.hhf" );
+
+begin main;
+
+    mov( 2, Var2 );
+    mov( 3, Var1 );
+    Add1and2();
+    stdout.put( "Var1=", Var1, nl );
+
+end main;

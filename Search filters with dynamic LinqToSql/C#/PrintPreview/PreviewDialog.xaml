@@ -1,0 +1,26 @@
+﻿<Window x:Class="PrintPreview.PreviewDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="PreviewDialog" Height="650" Width="1092" WindowState="Maximized" WindowStartupLocation="CenterScreen" Loaded="PreviewDialog_Loaded">
+    <Grid Name="dgvPreviewDialog">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="30" >
+            <Button Width="70" Name="FirstButton" Content="Primo" Click="FirstButton_Click" />
+            <Button Width="70" Name="PreviousButton" Content="Precedente" Click="PreviousButton_Click" />
+            <TextBox Width="70" HorizontalContentAlignment="Center" VerticalAlignment="Center" Name="PageTextBox" Text="1/1" IsReadOnly="True" />
+            <Button Width="70" Name="NextButton" Content="Successivo" Click="NextButton_Click" />
+            <Button Width="70" Name="LastButton" Content="Ultimo" Click="LastButton_Click" />
+            <Label Width="110"  HorizontalContentAlignment="Center" Content="Vai a" />
+            <TextBox Width="70" HorizontalContentAlignment="Center" VerticalAlignment="Center" Name="GotoTextBox" Text="" TextChanged="GotoTextBox_TextChanged" IsReadOnly="True" />
+            <Button Width="70" Name="PrintButton" Content="Stampa" Click="PrintButton_Click" />
+            <TextBlock Width="70"/>
+            <Label Width="110"  HorizontalContentAlignment="Center" Content="Trova" />
+            <TextBox Width="200" HorizontalContentAlignment="Center" VerticalAlignment="Center" Name="SearchTextBox" Text="" TextChanged="SearchTextBox_TextChanged" />
+            <Button Width="70" Name="SearchButton" Content="Trova" Click="SearchButton_Click" />
+        </StackPanel>
+        <ListBox Height="550" HorizontalAlignment="Left" Margin="12,48,0,0" Name="ListBoxPreviewDialog" VerticalAlignment="Top" Width="389" FontFamily="DFKai-SB" FontSize="8"/>
+        <TextBlock Height="20" HorizontalAlignment="Left" Margin="648,124,0,0" Text="Da Pagina: " VerticalAlignment="Top" Width="65" />
+        <TextBlock Height="20" HorizontalAlignment="Left" Margin="648,170,0,0" Text="a Pagina: " VerticalAlignment="Top" Width="65" />
+        <TextBox Height="20" HorizontalAlignment="Left" Margin="720,124,0,0" Name="FromPageTextBox" Text="1"  VerticalAlignment="Top" Width="164" />
+        <TextBox Height="20" HorizontalAlignment="Left" Margin="720,170,0,0" Name="ToPageTextBox" Text="1" VerticalAlignment="Top" Width="164" />
+    </Grid>
+</Window>

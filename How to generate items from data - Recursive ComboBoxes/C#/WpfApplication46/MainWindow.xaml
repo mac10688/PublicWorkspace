@@ -1,0 +1,32 @@
+﻿<Window x:Class="WpfApplication46.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+    	<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <Style TargetType="{x:Type ComboBox}">
+        	<Setter Property="ItemTemplate" Value="{DynamicResource ComboBoxTemplate}" /> 
+            <Setter Property="Margin" Value="10"/>
+		</Style>
+    	<DataTemplate x:Key="ComboBoxTemplate">
+    		<StackPanel Orientation="Horizontal">
+    			<TextBlock Text="{Binding Name}" VerticalAlignment="Center" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+    			<ComboBox ItemsSource="{Binding Fields}" Visibility="{Binding HasChildren, Converter={StaticResource BooleanToVisibilityConverter}}" />
+			</StackPanel>
+    	</DataTemplate>
+        
+    </Window.Resources>
+
+    <Grid>
+        <ItemsControl ItemsSource="{Binding Types}" ItemTemplate="{DynamicResource ComboBoxTemplate}" VerticalAlignment="Center" HorizontalAlignment="Center">
+        		<ItemsControl.ItemsPanel>
+        			<ItemsPanelTemplate>
+        				<StackPanel Orientation="Horizontal" IsItemsHost="True"/>
+					</ItemsPanelTemplate>
+        		</ItemsControl.ItemsPanel>
+        </ItemsControl>
+        
+        <TextBlock x:Name="txtResult" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+    </Grid>
+    
+</Window>

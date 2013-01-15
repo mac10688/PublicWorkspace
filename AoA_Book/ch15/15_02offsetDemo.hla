@@ -1,0 +1,16 @@
+program offsetDemo;
+#include( "stdlib.hhf" )
+
+var
+    i:int32;
+
+begin offsetDemo;
+
+    mov( -255, i );
+    ?stmt := "mov eax, [ebp+(" + string( @offset( i )) + ")]";
+    #print( "Emitting '", stmt, "'" )
+    #emit( stmt );
+    stdout.put( "eax = ", (type int32 eax), nl );
+
+end offsetDemo;
+            

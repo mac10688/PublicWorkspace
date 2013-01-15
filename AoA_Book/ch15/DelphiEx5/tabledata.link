@@ -1,0 +1,5 @@
+/section:.text,ER
+/section:.data,RW
+/section:.data,RW
+/section:.data,RW
+/section:_INITDATA_,RW

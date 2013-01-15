@@ -1,0 +1,183 @@
+program testDiv128b;
+#include( "stdlib.hhf" )
+
+type
+    t128:dword[4];
+    
+
+
+// div128-
+//
+// This procedure does a general 128/128 division operation
+// using the following algorithm:
+// (all variables are assumed to be 128 bit objects)
+//
+// Quotient := Dividend;
+// Remainder := 0;
+// for i:= 1 to NumberBits do
+// 
+//  Remainder:Quotient := Remainder:Quotient SHL 1;
+//  if Remainder >= Divisor then
+// 
+//      Remainder := Remainder - Divisor;
+//      Quotient := Quotient + 1;
+// 
+//  endif
+// endfor
+// 
+
+procedure div128
+( 
+        Dividend:   t128; 
+        Divisor:    t128; 
+    var QuotAdrs:   t128; 
+    var RmndrAdrs:  t128 
+);  @nodisplay;
+
+const
+    Quotient: text := "Dividend";   // Use the Dividend as the Quotient.
+
+var
+    Remainder: t128;
+
+begin div128;
+
+    push( eax );
+    push( ecx );
+    push( edi );
+    
+    mov( 0, eax );              // Set the remainder to zero.
+    mov( eax, Remainder[0] );
+    mov( eax, Remainder[4] );
+    mov( eax, Remainder[8] );
+    mov( eax, Remainder[12]);
+
+    mov( 128, ecx );            // Count off 128 bits in ECX.
+    repeat
+
+        // Compute Remainder:Quotient := Remainder:Quotient SHL 1:
+
+        shl( 1, Dividend[0] );  // See the section on extended
+        rcl( 1, Dividend[4] );  // precision shifts to see how
+        rcl( 1, Dividend[8] );  // this code shifts 256 bits to
+        rcl( 1, Dividend[12]);  // the left by one bit.
+        rcl( 1, Remainder[0] );
+        rcl( 1, Remainder[4] );
+        rcl( 1, Remainder[8] );
+        rcl( 1, Remainder[12]);
+
+        // Do a 128-bit comparison to see if the remainder
+        // is greater than or equal to the divisor.
+
+        if
+        ( #{
+            mov( Remainder[12], eax );
+            cmp( eax, Divisor[12] );
+            ja true;
+            jb false;
+
+            mov( Remainder[8], eax );
+            cmp( eax, Divisor[8] );
+            ja true;
+            jb false;
+
+            mov( Remainder[4], eax );
+            cmp( eax, Divisor[4] );
+            ja true;
+            jb false;
+
+            mov( Remainder[0], eax );
+            cmp( eax, Divisor[0] );
+            jb false;
+        }# ) then
+
+            // Remainder := Remainder - Divisor
+
+            mov( Divisor[0], eax );
+            sub( eax, Remainder[0] );
+
+            mov( Divisor[4], eax );
+            sbb( eax, Remainder[4] );
+
+            mov( Divisor[8], eax );
+            sbb( eax, Remainder[8] );
+
+            mov( Divisor[12], eax );
+            sbb( eax, Remainder[12] );
+
+            // Quotient := Quotient + 1;
+
+            add( 1, Quotient[0] );
+            adc( 0, Quotient[4] );
+            adc( 0, Quotient[8] );
+            adc( 0, Quotient[12] );
+
+        endif;
+        dec( ecx );
+
+    until( @z );
+
+
+    // Okay, copy the quotient (left in the Dividend variable)
+    // and the remainder to their return locations.
+    
+    mov( QuotAdrs, edi );
+    mov( Quotient[0], eax );
+    mov( eax, [edi] );
+    mov( Quotient[4], eax );
+    mov( eax, [edi+4] );
+    mov( Quotient[8], eax );
+    mov( eax, [edi+8] );
+    mov( Quotient[12], eax );
+    mov( eax, [edi+12] );
+    
+    mov( RmndrAdrs, edi );
+    mov( Remainder[0], eax );
+    mov( eax, [edi] );
+    mov( Remainder[4], eax );
+    mov( eax, [edi+4] );
+    mov( Remainder[8], eax );
+    mov( eax, [edi+8] );
+    mov( Remainder[12], eax );
+    mov( eax, [edi+12] );
+        
+         
+    pop( edi );
+    pop( ecx );
+    pop( eax );
+            
+end div128;
+
+
+
+// Some simple code to test out the division operation:
+
+static
+    op1:    t128    := [$2222_2221, $4444_4444, $6666_6666, $8888_8888];
+    op2:    t128    := [2, 0, 0, 0];
+    quo:    t128;
+    rmndr:  t128;
+
+
+begin testDiv128b;
+
+    div128( op1, op2, quo, rmndr );
+    
+    stdout.put
+    ( 
+        nl
+        nl
+        "After the division: " nl
+        nl
+        "Quotient = $",
+        quo[12], "_",
+        quo[8], "_",
+        quo[4], "_",
+        quo[0], nl
+        
+        "Remainder = ", (type uns32 rmndr )
+    );
+        
+end testDiv128b;
+
+

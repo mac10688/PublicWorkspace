@@ -1,0 +1,24 @@
+program AccessingValueParameters;
+#include( "stdlib.hhf" )
+
+    procedure ValueParm( theParameter: uns32 ); @nodisplay;
+    begin ValueParm;
+
+        mov( theParameter, eax );
+        add( 2, eax );
+        stdout.put
+        ( 
+            "theParameter + 2 = ", 
+            (type uns32 eax), 
+            nl 
+        );
+
+    end ValueParm;
+
+
+begin AccessingValueParameters;
+
+    ValueParm( 10 );
+    ValueParm( 135 );
+
+end AccessingValueParameters;

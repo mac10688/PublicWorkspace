@@ -1,0 +1,43 @@
+// UsesRegisterUnit-
+//
+//  Provides the UsesRegister function for the DelphiEx4 program.
+
+unit  UsesRegisterUnit;
+
+// Tell HLA that UsesRegister is a public symbol:
+
+procedure UsesRegister
+( 
+    parm1:int32 in eax; 
+    parm2:int32 in edx; 
+    parm3:int32 in ecx;
+    parm4:int32 
+);  external;
+
+// Demonstration of a function that uses the REGISTER calling convention.
+// This function simply computes (parm1+parm2-parm3)*parm4 and returns the
+// result in EAX.  Note that this function does not have the
+// "NOFRAME" option because it needs to build the activation record
+// (stack frame) in order to access the fourth parameter.  Furthermore, this
+// code must clean up the fourth parameter upon return (another chore handled
+// automatically by HLA if the "NOFRAME" option is not present).
+
+procedure UsesRegister
+( 
+    parm1:int32 in eax; 
+    parm2:int32 in edx; 
+    parm3:int32 in ecx;
+    parm4:int32 
+);  nodisplay; noalignstk;
+
+begin UsesRegister;
+
+    mov( parm1, eax );
+    add( parm2, eax );
+    sub( parm3, eax );
+    intmul( parm4, eax );
+
+end UsesRegister;
+
+
+end UsesRegisterUnit;

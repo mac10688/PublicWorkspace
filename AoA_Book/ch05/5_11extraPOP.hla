@@ -1,0 +1,44 @@
+program extraPop;
+#include( "stdlib.hhf" );
+
+    
+    // Note that the following procedure pops
+    // excess data off the stack (in this case,
+    // it pops messedUpToo's return address).
+    
+    procedure messedUpToo; @noframe; @nodisplay;
+    begin messedUpToo;
+    
+        stdout.put( "Entered messedUpToo" nl );
+        pop( eax );
+        ret();
+                
+    end messedUpToo;
+    
+    
+    
+    procedure callsMU2; @noframe; @nodisplay;
+    begin callsMU2;
+    
+        stdout.put( "calling messedUpToo" nl );
+        messedUpToo();
+        
+        // Because messedUpToo pops extra data
+        // off the stack, the following code
+        // never executes (since the data popped
+        // off the stack is the return address that
+        // points at the following code.
+        
+        stdout.put( "Returned from messedUpToo" nl );
+        ret();
+        
+    end callsMU2;
+    
+    
+begin extraPop;
+
+    stdout.put( "Calling callsMU2" nl );
+    callsMU2();
+    stdout.put( "Returned from callsMU2" nl );
+    
+end extraPop;

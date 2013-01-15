@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyScheduleAppWP7v1", "MyScheduleAppWP7v1\MyScheduleAppWP7v1.csproj", "{210081D4-1071-4530-86D0-5A012E8108E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{210081D4-1071-4530-86D0-5A012E8108E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{210081D4-1071-4530-86D0-5A012E8108E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{210081D4-1071-4530-86D0-5A012E8108E1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{210081D4-1071-4530-86D0-5A012E8108E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{210081D4-1071-4530-86D0-5A012E8108E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{210081D4-1071-4530-86D0-5A012E8108E1}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

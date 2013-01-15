@@ -1,0 +1,380 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Calendar of Events</title>
+        <link href="description/Galleries.css" type="text/css" rel="Stylesheet" /><link href="description/Layout.css" type="text/css" rel="Stylesheet" /><link href="description/Brand.css" type="text/css" rel="Stylesheet" />
+        <link href="description/iframedescription.css" rel="Stylesheet" type="text/css" />
+        <script src="description/offline.js" type="text/javascript"></script>
+        <style type="text/css">
+            #projectInfo {
+                overflow: auto;
+            }
+            #longDesc {
+                clear:both;
+                margin: 25px 0 10px 0;
+            }
+
+            #SampleIndexList{
+                margin-left: 15px;
+            }
+        </style>
+    </head>
+<body>
+    <div id="offlineDescription">
+        <h1>Calendar of Events</h1>
+        <br/>
+        <div id="projectInfo">
+            <div class="section">
+                    <div class="itemBarLong tagsContainer">
+                        <label for="Technologies">Technologies</label>
+                        <div id="Technologies">
+                            Silverlight, LINQ to SQL, WPF, Windows Phone 7
+                        </div>
+                    </div>
+                    <div class="itemBarLong tagsContainer">
+                        <label for="Topics">Topics</label>
+                        <div id="Topics">
+                            Calendar, schedule
+                        </div>
+                    </div>
+                <div class="itemBarLong">
+                    <label for="Platforms">Platforms</label>
+                    <div id="Platforms">
+                        Phone
+                    </div>
+                </div>
+                <div class="itemBarLong">
+                    <label for="Requirements">Requirements</label>
+                    <div id="Requirements">
+                        
+                    </div>
+                </div>
+                <div class="itemBar">
+                    <label for="LastUpdated">Primary Language</label>
+                    <div id="LastUpdated">en-US</div>
+                </div>
+                <div class="itemBar">
+                    <label for="LastUpdated">Last Updated</label>
+                    <div id="LastUpdated">9/11/2012</div>
+                </div>
+                <div class="itemBarLong">
+                    <label for="License">License</label>
+                    <div id="License">
+                        <a href="license.rtf">Apache License, Version 2.0</a></div>
+                </div>
+                <div class="itemBar">
+                    <div class="viewonlinecont">
+                        <a data-link="online" href="http://code.msdn.microsoft.com/Calendar-of-Events-7ad87359">View this sample online</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+                   
+<script type="text/javascript">
+    function initializePage() {
+        var otherTabClass = 'otherTab';
+        var hiddenPreClass = 'hidden';
+
+        var htmlDecode = function(encodedData) {
+            var decodedData = "";
+            if (encodedData) {
+                var div = document.createElement('div');
+                div.innerHTML = encodedData;
+                decodedData = div.firstChild.nodeValue.replace( /\\r\\n/ig , '\r\n');
+            }
+            return decodedData;
+        };
+                
+        Galleries.iterateElem(Galleries.findElem(null, 'div', 'scriptcode'), function (index, scriptBlock) {
+            var titleElem = Galleries.findElem(scriptBlock, 'div', 'title')[0];
+            var labelElems = Galleries.findElem(titleElem, 'span');
+            if (labelElems.length == 0) {
+                labelElems = titleElem;
+            }
+            var languageSpans = Galleries.findElem(scriptBlock, 'span', 'hidden');
+            var pres = Galleries.findElem(scriptBlock, 'pre');
+            if (languageSpans.length > 0 && pres.length > 1) {
+                Galleries.iterateElem(labelElems, function(index, elem) {
+                    var codePre = pres[index];
+                    var labelSpan = elem;
+                    var languageSpan = languageSpans[index];
+                            
+                    elem.code = codePre.innerHTML.replace( /(\r(\n)?)|((\r)?\n)/ig , '\\r\\n');
+                            
+                    codePre.className = codePre.className.replace(hiddenPreClass, '');
+                            
+                    languageSpan.parentNode.removeChild(languageSpan);
+                });
+
+                pres = Galleries.findElem(scriptBlock, 'pre');
+                Galleries.iterateElem(labelElems, function(index, elem) {
+                    var codePre = pres[index];
+                    var labelSpan = elem;
+                    if (index == 0) {
+                        scriptBlock.activeTab = 0;
+                    }
+                    else {
+                        labelSpan.className += otherTabClass;
+                        codePre.className += hiddenPreClass;
+                    }
+                    Galleries.attachEventHandler(labelSpan, 'click', function(e) {
+                        var activeTab = scriptBlock.activeTab;
+                        labelElems[activeTab].className += otherTabClass;
+                        pres[activeTab].className += hiddenPreClass;
+
+                        codePre.className = codePre.className.replace(hiddenPreClass, '');
+                        labelSpan.className = labelSpan.className.replace(otherTabClass, '');
+                        scriptBlock.activeTab = index;
+                    });
+                });
+
+                var preview = Galleries.findElem(scriptBlock, 'div', 'preview');
+                if (preview.length == 0) {
+                    preview.push(pres[pres.length - 1]);
+                }
+                Galleries.iterateElem(preview, function(index, elem) {
+                    elem.parentNode.removeChild(elem);
+                });
+
+                if (window.clipboardData && clipboardData.setData) {
+                    var copyLink = document.createElement('a');
+                    copyLink.href = 'javascript:void(0);';
+                    copyLink.className = 'copyCode';
+                    copyLink.innerHTML = 'Copy Code';
+                    Galleries.attachEventHandler(copyLink, 'click', function (e) {
+                        clipboardData.setData("Text", htmlDecode(labelElems[scriptBlock.activeTab].code));
+                        return false;
+                    });
+                    scriptBlock.insertBefore(copyLink, scriptBlock.childNodes[0]);
+                }
+            }
+        });
+    }
+
+    Galleries.onWindowLoad(function(){
+        initializePage();
+    });
+
+</script>
+<div id="longDesc">
+    
+<h1>Introduction</h1>
+<p><em>You have always busy days with a lot of meetings and a lot of work to do, and you just have to don't forget any of them? Then you are in the place to get a solution. My application allows you to save all your events in your Windows Phone. With the powerful
+ features like adding, editing and removing them simply, this app is all you need.</em></p>
+<p><em>Technically talking, this application uses LINQ to SQL as a technology to store data in database. It creates a database, fill it with some data that I typed just for the demo. Then, you could manage all your events as you want.</em></p>
+<h1><span>Building the Sample</span></h1>
+<p><em>Are there special requirements or instructions for building the sample?</em></p>
+<p><em>As it is a Windows Phone Application, you will need to have Visual Studio for Windows Phone Express installed or Visual Studio 2010, which you can download them from</em></p>
+<p><em><a href="http://code.msdn.microsoft.com/Calendar-of-Events-7ad87359/https://dev.windowsphone.com/en-us/downloadsdk">http://code.msdn.microsoft.com/Calendar-of-Events-7ad87359/https://dev.windowsphone.com/en-us/downloadsdk</a>&nbsp;and&nbsp;<a href="http://www.microsoft.com/visualstudio/en-us/try">http://www.microsoft.com/visualstudio/en-us/try</a>.</em></p>
+<p><em>When installed, all you need is to open the .sln file with visual studio and press F5 to run.</em></p>
+<p><em><br>
+</em></p>
+<p><span style="font-size:20px; font-weight:bold">Description</span></p>
+<p><em>The following is a screenshot of the main page of the application:</em></p>
+<p><em><br>
+</em></p>
+<p><em><img id="65280" src="description/houssem dellai a1.jpg" alt="" width="494" height="400" style="display:block; margin-left:auto; margin-right:auto"><br>
+</em></p>
+<p>&nbsp;</p>
+<p><em>To add or edit an event, you will have a page like this one:</em></p>
+<p>&nbsp;</p>
+<p><em><img id="65281" src="description/houssem dellai a2.jpg" alt="" width="494" height="404" style="display:block; margin-left:auto; margin-right:auto"><br>
+<br>
+</em></p>
+<p>&nbsp;</p>
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>C#</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">csharp</span>
+<pre class="hidden">private void ShowEvents()
+        {
+            IList&lt;Event&gt; eventsList = databaseClass.GetEventsList();
+
+            //eventsListPerDay = TransformToEventsListPerDay(eventsList);
+            IEnumerable&lt;Event&gt; queryeventsListPerDay = eventsList.OrderBy(evt =&gt; evt.DateFrom);
+            eventsListPerDay = queryeventsListPerDay.ToList();
+
+            string[] Month = { &quot;Jan&quot;, &quot;Fev&quot;, &quot;Mar&quot;, &quot;Avr&quot;, &quot;May&quot;, &quot;Jun&quot;, &quot;Jul&quot;, &quot;Aug&quot;, &quot;Sep&quot;, &quot;Oct&quot;, &quot;Nov&quot;, &quot;Dec&quot; };
+
+            DateTime ThisDay = eventsListPerDay[0].DateFrom;
+
+            //create panoramaItem and the ListBox
+            List&lt;ListBox&gt; Listlistbox = new List&lt;ListBox&gt;();
+            Listlistbox.Add(new ListBox());
+
+            List&lt;PivotItem&gt; Listpivotitem = new List&lt;PivotItem&gt;();
+            Listpivotitem.Add(new PivotItem());
+            Listpivotitem[0].Header = ThisDay.DayOfWeek.ToString().Substring(0, 3)
+                                          &#43; &quot;,&quot; &#43; Month[ThisDay.Month - 1]
+                                          &#43; &quot; &quot; &#43; ThisDay.Day.ToString();
+
+            Listpivotitem[0].Content = Listlistbox[0];
+            pivotControl.Items.Add(Listpivotitem[0]);
+
+            int listboxindex = 0;
+
+            for (int i = 0; i &lt; eventsListPerDay.Count; i&#43;&#43;)// Event evnt in eventsListPerDay)
+            {
+                //look for events of today from EventsList
+                Event evnt = eventsListPerDay[i];
+
+                TextBlock textBlockHour = new TextBlock();
+                textBlockHour.Text = evnt.DateFrom.Hour.ToString()
+                                     &#43; &quot;:&quot; &#43; evnt.DateFrom.Minute.ToString()
+                                     &#43; &quot; to &quot; &#43; evnt.DateTo.Hour.ToString()
+                                     &#43; &quot;:&quot; &#43; evnt.DateTo.Minute.ToString();
+                textBlockHour.Foreground = new SolidColorBrush(Colors.Magenta);
+                textBlockHour.FontSize = 20;
+
+                TextBlock textBlockNameAndPlace = new TextBlock();
+                textBlockNameAndPlace.Text = evnt.EventName.ToString() &#43; &quot;\n &quot; &#43; evnt.EventPlace.ToString();
+                textBlockNameAndPlace.Foreground = new SolidColorBrush(Colors.White);
+                textBlockNameAndPlace.FontSize = 20;
+
+                StackPanel stackPanel1 = new StackPanel();
+                stackPanel1.Width = 311;
+                stackPanel1.Children.Add(textBlockHour);
+                stackPanel1.Children.Add(textBlockNameAndPlace);
+
+                Button button = new Button();
+                button.Background = new SolidColorBrush(Colors.Red);
+                button.Height = 100;
+                button.Width = 90;
+                button.BorderThickness = new Thickness(0, 0, 0, 0);
+                button.Margin = new Thickness(0, 0, 9, 0);
+                button.Name = eventsListPerDay[i].EventID.ToString();
+                button.Click &#43;= new RoutedEventHandler(button_Click);
+
+                StackPanel stackPanel2 = new StackPanel();
+                stackPanel2.Orientation = System.Windows.Controls.Orientation.Horizontal;
+                stackPanel2.Children.Add(button);
+                stackPanel2.Children.Add(stackPanel1);
+
+                if (evnt.DateFrom.Day == ThisDay.Day)
+                {
+                    Listlistbox[listboxindex].Items.Add(stackPanel2);
+                }
+
+                else
+                {
+                    listboxindex&#43;&#43;;
+                    ThisDay = eventsListPerDay[i].DateFrom;
+                    i--;
+
+                    Listpivotitem.Add(new PivotItem());
+                    Listpivotitem[listboxindex].Header = ThisDay.DayOfWeek.ToString().Substring(0, 3)
+                                          &#43; &quot;,&quot; &#43; Month[ThisDay.Month - 1]
+                                          &#43; &quot; &quot; &#43; ThisDay.Day.ToString();
+                    Listlistbox.Add(new ListBox());
+                    Listpivotitem[listboxindex].Content = Listlistbox[listboxindex];
+
+                    pivotControl.Items.Add(Listpivotitem[listboxindex]);
+                }
+            }
+        }</pre>
+<div class="preview">
+<pre class="csharp"><span class="cs__keyword">private</span>&nbsp;<span class="cs__keyword">void</span>&nbsp;ShowEvents()&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IList&lt;Event&gt;&nbsp;eventsList&nbsp;=&nbsp;databaseClass.GetEventsList();&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">//eventsListPerDay&nbsp;=&nbsp;TransformToEventsListPerDay(eventsList);</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IEnumerable&lt;Event&gt;&nbsp;queryeventsListPerDay&nbsp;=&nbsp;eventsList.OrderBy(evt&nbsp;=&gt;&nbsp;evt.DateFrom);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eventsListPerDay&nbsp;=&nbsp;queryeventsListPerDay.ToList();&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">string</span>[]&nbsp;Month&nbsp;=&nbsp;{&nbsp;<span class="cs__string">&quot;Jan&quot;</span>,&nbsp;<span class="cs__string">&quot;Fev&quot;</span>,&nbsp;<span class="cs__string">&quot;Mar&quot;</span>,&nbsp;<span class="cs__string">&quot;Avr&quot;</span>,&nbsp;<span class="cs__string">&quot;May&quot;</span>,&nbsp;<span class="cs__string">&quot;Jun&quot;</span>,&nbsp;<span class="cs__string">&quot;Jul&quot;</span>,&nbsp;<span class="cs__string">&quot;Aug&quot;</span>,&nbsp;<span class="cs__string">&quot;Sep&quot;</span>,&nbsp;<span class="cs__string">&quot;Oct&quot;</span>,&nbsp;<span class="cs__string">&quot;Nov&quot;</span>,&nbsp;<span class="cs__string">&quot;Dec&quot;</span>&nbsp;};&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DateTime&nbsp;ThisDay&nbsp;=&nbsp;eventsListPerDay[<span class="cs__number">0</span>].DateFrom;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">//create&nbsp;panoramaItem&nbsp;and&nbsp;the&nbsp;ListBox</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List&lt;ListBox&gt;&nbsp;Listlistbox&nbsp;=&nbsp;<span class="cs__keyword">new</span>&nbsp;List&lt;ListBox&gt;();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Listlistbox.Add(<span class="cs__keyword">new</span>&nbsp;ListBox());&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List&lt;PivotItem&gt;&nbsp;Listpivotitem&nbsp;=&nbsp;<span class="cs__keyword">new</span>&nbsp;List&lt;PivotItem&gt;();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Listpivotitem.Add(<span class="cs__keyword">new</span>&nbsp;PivotItem());&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Listpivotitem[<span class="cs__number">0</span>].Header&nbsp;=&nbsp;ThisDay.DayOfWeek.ToString().Substring(<span class="cs__number">0</span>,&nbsp;<span class="cs__number">3</span>)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#43;&nbsp;<span class="cs__string">&quot;,&quot;</span>&nbsp;&#43;&nbsp;Month[ThisDay.Month&nbsp;-&nbsp;<span class="cs__number">1</span>]&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#43;&nbsp;<span class="cs__string">&quot;&nbsp;&quot;</span>&nbsp;&#43;&nbsp;ThisDay.Day.ToString();&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Listpivotitem[<span class="cs__number">0</span>].Content&nbsp;=&nbsp;Listlistbox[<span class="cs__number">0</span>];&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pivotControl.Items.Add(Listpivotitem[<span class="cs__number">0</span>]);&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">int</span>&nbsp;listboxindex&nbsp;=&nbsp;<span class="cs__number">0</span>;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">for</span>&nbsp;(<span class="cs__keyword">int</span>&nbsp;i&nbsp;=&nbsp;<span class="cs__number">0</span>;&nbsp;i&nbsp;&lt;&nbsp;eventsListPerDay.Count;&nbsp;i&#43;&#43;)<span class="cs__com">//&nbsp;Event&nbsp;evnt&nbsp;in&nbsp;eventsListPerDay)</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">//look&nbsp;for&nbsp;events&nbsp;of&nbsp;today&nbsp;from&nbsp;EventsList</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Event&nbsp;evnt&nbsp;=&nbsp;eventsListPerDay[i];&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TextBlock&nbsp;textBlockHour&nbsp;=&nbsp;<span class="cs__keyword">new</span>&nbsp;TextBlock();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textBlockHour.Text&nbsp;=&nbsp;evnt.DateFrom.Hour.ToString()&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#43;&nbsp;<span class="cs__string">&quot;:&quot;</span>&nbsp;&#43;&nbsp;evnt.DateFrom.Minute.ToString()&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#43;&nbsp;<span class="cs__string">&quot;&nbsp;to&nbsp;&quot;</span>&nbsp;&#43;&nbsp;evnt.DateTo.Hour.ToString()&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#43;&nbsp;<span class="cs__string">&quot;:&quot;</span>&nbsp;&#43;&nbsp;evnt.DateTo.Minute.ToString();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textBlockHour.Foreground&nbsp;=&nbsp;<span class="cs__keyword">new</span>&nbsp;SolidColorBrush(Colors.Magenta);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textBlockHour.FontSize&nbsp;=&nbsp;<span class="cs__number">20</span>;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TextBlock&nbsp;textBlockNameAndPlace&nbsp;=&nbsp;<span class="cs__keyword">new</span>&nbsp;TextBlock();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textBlockNameAndPlace.Text&nbsp;=&nbsp;evnt.EventName.ToString()&nbsp;&#43;&nbsp;<span class="cs__string">&quot;\n&nbsp;&quot;</span>&nbsp;&#43;&nbsp;evnt.EventPlace.ToString();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textBlockNameAndPlace.Foreground&nbsp;=&nbsp;<span class="cs__keyword">new</span>&nbsp;SolidColorBrush(Colors.White);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textBlockNameAndPlace.FontSize&nbsp;=&nbsp;<span class="cs__number">20</span>;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StackPanel&nbsp;stackPanel1&nbsp;=&nbsp;<span class="cs__keyword">new</span>&nbsp;StackPanel();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stackPanel1.Width&nbsp;=&nbsp;<span class="cs__number">311</span>;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stackPanel1.Children.Add(textBlockHour);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stackPanel1.Children.Add(textBlockNameAndPlace);&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Button&nbsp;button&nbsp;=&nbsp;<span class="cs__keyword">new</span>&nbsp;Button();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button.Background&nbsp;=&nbsp;<span class="cs__keyword">new</span>&nbsp;SolidColorBrush(Colors.Red);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button.Height&nbsp;=&nbsp;<span class="cs__number">100</span>;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button.Width&nbsp;=&nbsp;<span class="cs__number">90</span>;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button.BorderThickness&nbsp;=&nbsp;<span class="cs__keyword">new</span>&nbsp;Thickness(<span class="cs__number">0</span>,&nbsp;<span class="cs__number">0</span>,&nbsp;<span class="cs__number">0</span>,&nbsp;<span class="cs__number">0</span>);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button.Margin&nbsp;=&nbsp;<span class="cs__keyword">new</span>&nbsp;Thickness(<span class="cs__number">0</span>,&nbsp;<span class="cs__number">0</span>,&nbsp;<span class="cs__number">9</span>,&nbsp;<span class="cs__number">0</span>);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button.Name&nbsp;=&nbsp;eventsListPerDay[i].EventID.ToString();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button.Click&nbsp;&#43;=&nbsp;<span class="cs__keyword">new</span>&nbsp;RoutedEventHandler(button_Click);&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StackPanel&nbsp;stackPanel2&nbsp;=&nbsp;<span class="cs__keyword">new</span>&nbsp;StackPanel();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stackPanel2.Orientation&nbsp;=&nbsp;System.Windows.Controls.Orientation.Horizontal;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stackPanel2.Children.Add(button);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stackPanel2.Children.Add(stackPanel1);&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">if</span>&nbsp;(evnt.DateFrom.Day&nbsp;==&nbsp;ThisDay.Day)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Listlistbox[listboxindex].Items.Add(stackPanel2);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">else</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;listboxindex&#43;&#43;;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ThisDay&nbsp;=&nbsp;eventsListPerDay[i].DateFrom;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i--;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Listpivotitem.Add(<span class="cs__keyword">new</span>&nbsp;PivotItem());&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Listpivotitem[listboxindex].Header&nbsp;=&nbsp;ThisDay.DayOfWeek.ToString().Substring(<span class="cs__number">0</span>,&nbsp;<span class="cs__number">3</span>)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#43;&nbsp;<span class="cs__string">&quot;,&quot;</span>&nbsp;&#43;&nbsp;Month[ThisDay.Month&nbsp;-&nbsp;<span class="cs__number">1</span>]&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#43;&nbsp;<span class="cs__string">&quot;&nbsp;&quot;</span>&nbsp;&#43;&nbsp;ThisDay.Day.ToString();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Listlistbox.Add(<span class="cs__keyword">new</span>&nbsp;ListBox());&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Listpivotitem[listboxindex].Content&nbsp;=&nbsp;Listlistbox[listboxindex];&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pivotControl.Items.Add(Listpivotitem[listboxindex]);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</pre>
+</div>
+</div>
+</div>
+<h1><span>Source Code Files</span></h1>
+<ul>
+<li><em>PivotPage1.xaml - the main page.<br>
+</em></li><li><em>EditEventPage.xaml - to edit the choosed event.</em> </li><li><em><em>AddEventPage.xaml - to add an event.</em></em> </li></ul>
+<h1>More Information</h1>
+<p><em><em>For more information, y<em>ou can post on the Q&amp;A area or contact me on: houssem.dellai@ieee.org.</em></em></em></p>
+
+</div>
+
+
+    </div>
+</body>
+</html>

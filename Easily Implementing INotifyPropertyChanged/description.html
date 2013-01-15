@@ -1,0 +1,438 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Easily Implementing INotifyPropertyChanged</title>
+        <link href="description/Galleries.css" type="text/css" rel="Stylesheet" /><link href="description/Layout.css" type="text/css" rel="Stylesheet" /><link href="description/Brand.css" type="text/css" rel="Stylesheet" />
+        <link href="description/iframedescription.css" rel="Stylesheet" type="text/css" />
+        <script src="description/offline.js" type="text/javascript"></script>
+        <style type="text/css">
+            #projectInfo {
+                overflow: auto;
+            }
+            #longDesc {
+                clear:both;
+                margin: 25px 0 10px 0;
+            }
+
+            #SampleIndexList{
+                margin-left: 15px;
+            }
+        </style>
+    </head>
+<body>
+    <div id="offlineDescription">
+        <h1>Easily Implementing INotifyPropertyChanged</h1>
+        <br/>
+        <div id="projectInfo">
+            <div class="section">
+                    <div class="itemBarLong tagsContainer">
+                        <label for="Technologies">Technologies</label>
+                        <div id="Technologies">
+                            Windows Forms, WPF, WPF Silverlight XAML
+                        </div>
+                    </div>
+                    <div class="itemBarLong tagsContainer">
+                        <label for="Topics">Topics</label>
+                        <div id="Topics">
+                            Data Binding, Generics, WPF Data Binding, Generic C# resuable code, Interface
+                        </div>
+                    </div>
+                <div class="itemBarLong">
+                    <label for="Platforms">Platforms</label>
+                    <div id="Platforms">
+                        Desktop, Data
+                    </div>
+                </div>
+                <div class="itemBarLong">
+                    <label for="Requirements">Requirements</label>
+                    <div id="Requirements">
+                        
+                    </div>
+                </div>
+                <div class="itemBar">
+                    <label for="LastUpdated">Primary Language</label>
+                    <div id="LastUpdated">en-US</div>
+                </div>
+                <div class="itemBar">
+                    <label for="LastUpdated">Last Updated</label>
+                    <div id="LastUpdated">8/12/2012</div>
+                </div>
+                <div class="itemBarLong">
+                    <label for="License">License</label>
+                    <div id="License">
+                        <a href="license.rtf">Apache License, Version 2.0</a></div>
+                </div>
+                <div class="itemBar">
+                    <div class="viewonlinecont">
+                        <a data-link="online" href="http://code.msdn.microsoft.com/Easily-Implementing-bf4bee52">View this sample online</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+                   
+<script type="text/javascript">
+    function initializePage() {
+        var otherTabClass = 'otherTab';
+        var hiddenPreClass = 'hidden';
+
+        var htmlDecode = function(encodedData) {
+            var decodedData = "";
+            if (encodedData) {
+                var div = document.createElement('div');
+                div.innerHTML = encodedData;
+                decodedData = div.firstChild.nodeValue.replace( /\\r\\n/ig , '\r\n');
+            }
+            return decodedData;
+        };
+                
+        Galleries.iterateElem(Galleries.findElem(null, 'div', 'scriptcode'), function (index, scriptBlock) {
+            var titleElem = Galleries.findElem(scriptBlock, 'div', 'title')[0];
+            var labelElems = Galleries.findElem(titleElem, 'span');
+            if (labelElems.length == 0) {
+                labelElems = titleElem;
+            }
+            var languageSpans = Galleries.findElem(scriptBlock, 'span', 'hidden');
+            var pres = Galleries.findElem(scriptBlock, 'pre');
+            if (languageSpans.length > 0 && pres.length > 1) {
+                Galleries.iterateElem(labelElems, function(index, elem) {
+                    var codePre = pres[index];
+                    var labelSpan = elem;
+                    var languageSpan = languageSpans[index];
+                            
+                    elem.code = codePre.innerHTML.replace( /(\r(\n)?)|((\r)?\n)/ig , '\\r\\n');
+                            
+                    codePre.className = codePre.className.replace(hiddenPreClass, '');
+                            
+                    languageSpan.parentNode.removeChild(languageSpan);
+                });
+
+                pres = Galleries.findElem(scriptBlock, 'pre');
+                Galleries.iterateElem(labelElems, function(index, elem) {
+                    var codePre = pres[index];
+                    var labelSpan = elem;
+                    if (index == 0) {
+                        scriptBlock.activeTab = 0;
+                    }
+                    else {
+                        labelSpan.className += otherTabClass;
+                        codePre.className += hiddenPreClass;
+                    }
+                    Galleries.attachEventHandler(labelSpan, 'click', function(e) {
+                        var activeTab = scriptBlock.activeTab;
+                        labelElems[activeTab].className += otherTabClass;
+                        pres[activeTab].className += hiddenPreClass;
+
+                        codePre.className = codePre.className.replace(hiddenPreClass, '');
+                        labelSpan.className = labelSpan.className.replace(otherTabClass, '');
+                        scriptBlock.activeTab = index;
+                    });
+                });
+
+                var preview = Galleries.findElem(scriptBlock, 'div', 'preview');
+                if (preview.length == 0) {
+                    preview.push(pres[pres.length - 1]);
+                }
+                Galleries.iterateElem(preview, function(index, elem) {
+                    elem.parentNode.removeChild(elem);
+                });
+
+                if (window.clipboardData && clipboardData.setData) {
+                    var copyLink = document.createElement('a');
+                    copyLink.href = 'javascript:void(0);';
+                    copyLink.className = 'copyCode';
+                    copyLink.innerHTML = 'Copy Code';
+                    Galleries.attachEventHandler(copyLink, 'click', function (e) {
+                        clipboardData.setData("Text", htmlDecode(labelElems[scriptBlock.activeTab].code));
+                        return false;
+                    });
+                    scriptBlock.insertBefore(copyLink, scriptBlock.childNodes[0]);
+                }
+            }
+        });
+    }
+
+    Galleries.onWindowLoad(function(){
+        initializePage();
+    });
+
+</script>
+<div id="longDesc">
+    
+<h1>Introduction</h1>
+<p>The .Net-provided interface <strong>INotifyPropertyChanged</strong> is one of the most useful and popular interfaces in .Net. &nbsp;WPF is a HUGE customer of
+<strong>INotifyPropertyChanged</strong> as well as Windows Forms data binding, both of which are extremely popular.</p>
+<p>But anyone who has implemented this interface has noted it is BORING to implement. &nbsp;It is always the same code over and over, and we think we cannot copy/paste because of data types, etc. &nbsp;Well, with Generic programming and extension methods the
+ boredom is over.</p>
+<h1>Revision Update</h1>
+<p>2012-08-12: &nbsp;User Keratin pointed out something to me, which I thought I had the perfect answer for. &nbsp;But it turned out he was really on to something and I was actually wrong. &nbsp;Well, it happens. &nbsp;Thank you Keratin for pointing it out.</p>
+<p>In short: &nbsp;Keratin stated I was killing performance using exceptions to determine null values. &nbsp;I thought &quot;I know, but what else can I do? &nbsp;After all Generics programming demands that I constrain the type to classes before I can make that
+ comparison&quot;... or so I thought. &nbsp;It turns out that you CAN compare to null when the type is either NOT constrained or constrained to be a class. &nbsp;The only case where you CANNOT compare to null is when the type is constrained to be a struct.</p>
+<p>Therefore this updated version drops the exceptions construct and adds a smart interface that may interest all of you. &nbsp;This update, however, doesn't include a suitable sample that shows the use of this new interface. &nbsp;I will try to upload a sample
+ for this interface as soon as I can.</p>
+<h1>Description</h1>
+<p>By using a very simple generic function, you can cover all the most common implementations, freeing yourself from having to write this boilerplate code over and over. &nbsp;Let's see the meat right away:<em><br>
+</em></p>
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>C#</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">csharp</span>
+<pre class="hidden">using System;
+using <a class="libraryLink" href="http://msdn.microsoft.com/en-US/library/System.Text.aspx"  title="Auto generated link to System.Text">System.Text</a>;
+using <a class="libraryLink" href="http://msdn.microsoft.com/en-US/library/System.ComponentModel.aspx"  title="Auto generated link to System.ComponentModel">System.ComponentModel</a>;
+
+namespace WPFBP
+{
+    public static class INPC
+    {
+        public static bool SetAndRaise&lt;T&gt;(this PropertyChangedEventHandler handler, T newValue, ref T oldValue, string propertyName, object sender)
+        {
+            bool changed = !Object.Equals(oldValue, newValue);
+            if (changed)
+            {
+                //Save the new value.
+                oldValue = newValue;
+                ISmartNotify isn = sender as ISmartNotify;
+                //Raise the event
+                if (handler != null &amp;&amp; (isn == null || isn.NotifyChanges))
+                {
+                    handler(sender, new PropertyChangedEventArgs(propertyName));
+                }
+                else if (isn != null &amp;&amp; !isn.NotifyChanges)
+                {
+                    //The event was muted (regardless of the state of the handler).  Report it.
+                    isn.ReportMutedChange(propertyName);
+                }
+            }
+            //Signal what happened.
+            return changed;
+        }
+    }
+}
+</pre>
+<div class="preview">
+<pre class="csharp"><span class="cs__keyword">using</span>&nbsp;System;&nbsp;
+<span class="cs__keyword">using</span>&nbsp;<a class="libraryLink" href="http://msdn.microsoft.com/en-US/library/System.Text.aspx"  title="Auto generated link to System.Text">System.Text</a>;&nbsp;
+<span class="cs__keyword">using</span>&nbsp;<a class="libraryLink" href="http://msdn.microsoft.com/en-US/library/System.ComponentModel.aspx"  title="Auto generated link to System.ComponentModel">System.ComponentModel</a>;&nbsp;
+&nbsp;
+<span class="cs__keyword">namespace</span>&nbsp;WPFBP&nbsp;
+{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;<span class="cs__keyword">static</span>&nbsp;<span class="cs__keyword">class</span>&nbsp;INPC&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;<span class="cs__keyword">static</span>&nbsp;<span class="cs__keyword">bool</span>&nbsp;SetAndRaise&lt;T&gt;(<span class="cs__keyword">this</span>&nbsp;PropertyChangedEventHandler&nbsp;handler,&nbsp;T&nbsp;newValue,&nbsp;<span class="cs__keyword">ref</span>&nbsp;T&nbsp;oldValue,&nbsp;<span class="cs__keyword">string</span>&nbsp;propertyName,&nbsp;<span class="cs__keyword">object</span>&nbsp;sender)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">bool</span>&nbsp;changed&nbsp;=&nbsp;!Object.Equals(oldValue,&nbsp;newValue);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">if</span>&nbsp;(changed)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">//Save&nbsp;the&nbsp;new&nbsp;value.</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oldValue&nbsp;=&nbsp;newValue;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ISmartNotify&nbsp;isn&nbsp;=&nbsp;sender&nbsp;<span class="cs__keyword">as</span>&nbsp;ISmartNotify;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">//Raise&nbsp;the&nbsp;event</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">if</span>&nbsp;(handler&nbsp;!=&nbsp;<span class="cs__keyword">null</span>&nbsp;&amp;&amp;&nbsp;(isn&nbsp;==&nbsp;<span class="cs__keyword">null</span>&nbsp;||&nbsp;isn.NotifyChanges))&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;handler(sender,&nbsp;<span class="cs__keyword">new</span>&nbsp;PropertyChangedEventArgs(propertyName));&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">else</span>&nbsp;<span class="cs__keyword">if</span>&nbsp;(isn&nbsp;!=&nbsp;<span class="cs__keyword">null</span>&nbsp;&amp;&amp;&nbsp;!isn.NotifyChanges)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">//The&nbsp;event&nbsp;was&nbsp;muted&nbsp;(regardless&nbsp;of&nbsp;the&nbsp;state&nbsp;of&nbsp;the&nbsp;handler).&nbsp;&nbsp;Report&nbsp;it.</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isn.ReportMutedChange(propertyName);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">//Signal&nbsp;what&nbsp;happened.</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">return</span>&nbsp;changed;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+}&nbsp;
+</pre>
+</div>
+</div>
+</div>
+<p>The above static class is quite simple: &nbsp;One generic method called <strong>
+SetAndRaise()</strong> that takes five arguments: &nbsp;The event handler, the property's new value (given by the
+<strong>value</strong> keyword in C# in the property SET accessor), the property's old value&nbsp;<span><em>by reference</em></span>&nbsp;which is the private member variable used to hold the property value at all times, a string representing the property name
+ and finally, the sender of the event (the object that owns the event represented by the event handler).</p>
+<p><strong>SIDE BUT IMPORTANT NOTE:</strong> &nbsp;Similar implementations exist out there that rely on reflection to obtain the property name and the sender. &nbsp;While that is a perfectly valid route, I personally find very little value in it when compared
+ to the toll it takes from performance. &nbsp;At the end of this article you'll find the contents of a Visual Studio code snippet (.snippet file) that you can incorporate to your installation of Visual Studio. &nbsp;It will allow you to write the property scope,
+ the property type and the property name and will automatically write the call to
+<strong>SetAndRaise()</strong> in the SET accessor for you. &nbsp;It doesn't declare the member variable as I personally like these in a separate section, so feel free to add the member variable declaration to the code snippet if you like. &nbsp;This snippet
+ is FAR easier than coding (and paying in performance) for reflection just to save a bit of typing. &nbsp;And sometimes is not even that intuitive. &nbsp;One implementation out there requires a lambda expression as a source object to extract property name and
+ sender.</p>
+<p>&nbsp;</p>
+<p><strong>BACK ON TOPIC...</strong></p>
+<p>The two values given to <strong>SetAndRaise()</strong> are used for comparison: &nbsp;Are they the same? &nbsp;If they are the property isn't really changing so nothing else is done, but if they are the same then the old value is replaced and the handler
+ is invoked. &nbsp;The function returns a boolean value indicating if the property actually changed, in case this value is helpful information to the caller for more complex scenarios. &nbsp;The included WPF sample
+<em>does</em> consume this value to enable a visual cue of what is happening in the form of coloring boxes where a colored box means the associated value is the same in this (car) object as it was in the previous one, while an empty box means that the previous
+ (car) object had the exact same value as this new (car) object.</p>
+<h2>ISmartNotify</h2>
+<p>This updated code includes a new interface that looks like this:</p>
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>C#</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">csharp</span>
+<pre class="hidden">using System;
+
+namespace WPFBP
+{
+    public interface ISmartNotify
+    {
+        bool NotifyChanges { get; }
+        void ReportMutedChange(string propertyName);
+    }
+}
+</pre>
+<div class="preview">
+<pre class="csharp"><span class="cs__keyword">using</span>&nbsp;System;&nbsp;
+&nbsp;
+<span class="cs__keyword">namespace</span>&nbsp;WPFBP&nbsp;
+{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;<span class="cs__keyword">interface</span>&nbsp;ISmartNotify&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">bool</span>&nbsp;NotifyChanges&nbsp;{&nbsp;<span class="cs__keyword">get</span>;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">void</span>&nbsp;ReportMutedChange(<span class="cs__keyword">string</span>&nbsp;propertyName);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+}&nbsp;
+</pre>
+</div>
+</div>
+</div>
+<div class="endscriptcode">&nbsp;I created this interface when I linked the DLL INPC in this project with the frequency regulator component for Windows Forms in one of my other code snippets: &nbsp;<a href="http://code.msdn.microsoft.com/UI-Progress-Regulation-for-71dfd4ad">http://code.msdn.microsoft.com/UI-Progress-Regulation-for-71dfd4ad</a>.
+ &nbsp;If I had let the <strong>PropertyChanged </strong>event fire with every iteration of my worker threads, I would have lost the ability to regulate frequency because Data Binding in Windows Forms can also take advantage of
+<strong>INotifyPropertyChanged</strong>. &nbsp;I needed a way to make the boilerplate implementation shown here to play nicely with my frequency regulator. &nbsp;This interface was the answer.</div>
+<p>Since I am correcting this post only to get rid of the inefficient exception handling, I really am unprepared to talk about how to use and implement this interface, so I will cut this topic short for the time being.</p>
+<p>I must say, though, that even when I like this boilerplate implementation, it crumbles to the ground in multi-tier programming. &nbsp;It is just inadequate for polymorphism where descendants of a class simply cannot use this because of event protection in
+ .Net. &nbsp;Therefore I'll try to present a new bolerplate version that is more multi-tier and polymorphic-friendly in the near future.</p>
+<h1><span>Source Code Files</span></h1>
+<ul>
+<li><em>WPFBP.csproj:</em>&nbsp; C# class library project; WPFBP stands for WPF Boilerplate and its intention is to collect useful classes and code to more easily build WPF applications. &nbsp;It can, however, be referenced from other project types.
+</li><li><em>INPC.cs: &nbsp;</em>Contains the <strong>INPC</strong> static class, the central piece for this article.
+</li><li><em>RelayCommand.cs:</em> &nbsp;Contains a helper class specific to WPF programming. &nbsp;Unrelated to the central topic, but nice-to-have in a WPF Boilerplate DLL (such as the one this file belongs to).
+</li><li><em><em>INPC.csproj:</em></em> &nbsp;C# WPF sample project to exemplify the use of the INPC class found in the DLL project.
+</li><li><em>BoolToStyleConverter.cs:</em> &nbsp;Class implementing <strong>IValueConverter
+</strong>to assist in the creation of the WPF sample application. &nbsp;It converts a boolean value to a
+<strong>Style </strong>object in order to visually show when the <strong>PropertyChanged
+</strong>event fires. &nbsp;Once more, unrelated to the main topic. </li></ul>
+<h1>Appendix: &nbsp;Code Snippet</h1>
+<p>Enjoy.</p>
+<p>&nbsp;</p>
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>XML</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">xml</span>
+<pre class="hidden">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;CodeSnippets xmlns=&quot;http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet&quot;&gt;
+	&lt;CodeSnippet Format=&quot;1.0.0&quot;&gt;
+		&lt;Header&gt;
+			&lt;Title&gt;
+				INotifyPropertyChange-Enabled Property
+			&lt;/Title&gt;
+			&lt;Description&gt;
+				Declares a new property whose SET accessor raises the INotifyPropertyChanged.PropertyChanged event using a helper extension method.
+
+NOTE:  The reference to the class library containing the extension method must be added and the using statement mush be included in the code file too.
+			&lt;/Description&gt;
+			&lt;Shortcut&gt;mvvmprop&lt;/Shortcut&gt;
+		&lt;/Header&gt;
+		&lt;Snippet&gt;
+			&lt;Declarations&gt;
+				&lt;Literal&gt;
+					&lt;ID&gt;PropName&lt;/ID&gt;
+					&lt;ToolTip&gt;Type the property name.&lt;/ToolTip&gt;
+					&lt;Default&gt;MyProperty&lt;/Default&gt;
+				&lt;/Literal&gt;
+				&lt;Literal&gt;
+					&lt;ID&gt;PropType&lt;/ID&gt;
+					&lt;ToolTip&gt;Type the property's data type.&lt;/ToolTip&gt;
+					&lt;Default&gt;string&lt;/Default&gt;
+				&lt;/Literal&gt;
+				&lt;Literal&gt;
+					&lt;ID&gt;PropScope&lt;/ID&gt;
+					&lt;ToolTip&gt;Type the property's scope&lt;/ToolTip&gt;
+					&lt;Default&gt;public&lt;/Default&gt;
+				&lt;/Literal&gt;
+			&lt;/Declarations&gt;
+			&lt;Code Language=&quot;CSharp&quot;&gt;
+				&lt;![CDATA[
+					$PropScope$ $PropType$ $PropName$
+					{
+						get
+						{
+							return m_$PropName$;
+						}
+						set
+						{
+							PropertyChanged.SetAndRaise(value, ref m_$PropName$, &quot;$PropName$&quot;, this);
+						}
+					}
+				]]&gt;
+			&lt;/Code&gt;
+		&lt;/Snippet&gt;
+	&lt;/CodeSnippet&gt;
+&lt;/CodeSnippets&gt;
+</pre>
+<div class="preview">
+<pre class="xml"><span class="xml__tag_start">&lt;?xml</span>&nbsp;<span class="xml__attr_name">version</span>=<span class="xml__attr_value">&quot;1.0&quot;</span>&nbsp;<span class="xml__attr_name">encoding</span>=<span class="xml__attr_value">&quot;utf-8&quot;</span><span class="xml__tag_start">?&gt;</span>&nbsp;
+<span class="xml__tag_start">&lt;CodeSnippets</span>&nbsp;<span class="xml__attr_name">xmlns</span>=<span class="xml__attr_value">&quot;http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet&quot;</span><span class="xml__tag_start">&gt;&nbsp;
+</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_start">&lt;CodeSnippet</span>&nbsp;<span class="xml__attr_name">Format</span>=<span class="xml__attr_value">&quot;1.0.0&quot;</span><span class="xml__tag_start">&gt;&nbsp;
+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_start">&lt;Header</span><span class="xml__tag_start">&gt;&nbsp;
+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_start">&lt;Title</span><span class="xml__tag_start">&gt;&nbsp;
+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INotifyPropertyChange-Enabled&nbsp;Property&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_end">&lt;/Title&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_start">&lt;Description</span><span class="xml__tag_start">&gt;&nbsp;
+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Declares&nbsp;a&nbsp;new&nbsp;property&nbsp;whose&nbsp;SET&nbsp;accessor&nbsp;raises&nbsp;the&nbsp;INotifyPropertyChanged.PropertyChanged&nbsp;event&nbsp;using&nbsp;a&nbsp;helper&nbsp;extension&nbsp;method.&nbsp;
+&nbsp;
+NOTE:&nbsp;&nbsp;The&nbsp;reference&nbsp;to&nbsp;the&nbsp;class&nbsp;library&nbsp;containing&nbsp;the&nbsp;extension&nbsp;method&nbsp;must&nbsp;be&nbsp;added&nbsp;and&nbsp;the&nbsp;using&nbsp;statement&nbsp;mush&nbsp;be&nbsp;included&nbsp;in&nbsp;the&nbsp;code&nbsp;file&nbsp;too.&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_end">&lt;/Description&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_start">&lt;Shortcut</span><span class="xml__tag_start">&gt;</span>mvvmprop<span class="xml__tag_end">&lt;/Shortcut&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_end">&lt;/Header&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_start">&lt;Snippet</span><span class="xml__tag_start">&gt;&nbsp;
+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_start">&lt;Declarations</span><span class="xml__tag_start">&gt;&nbsp;
+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_start">&lt;Literal</span><span class="xml__tag_start">&gt;&nbsp;
+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_start">&lt;ID</span><span class="xml__tag_start">&gt;</span>PropName<span class="xml__tag_end">&lt;/ID&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_start">&lt;ToolTip</span><span class="xml__tag_start">&gt;</span>Type&nbsp;the&nbsp;property&nbsp;name.<span class="xml__tag_end">&lt;/ToolTip&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_start">&lt;Default</span><span class="xml__tag_start">&gt;</span>MyProperty<span class="xml__tag_end">&lt;/Default&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_end">&lt;/Literal&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_start">&lt;Literal</span><span class="xml__tag_start">&gt;&nbsp;
+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_start">&lt;ID</span><span class="xml__tag_start">&gt;</span>PropType<span class="xml__tag_end">&lt;/ID&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_start">&lt;ToolTip</span><span class="xml__tag_start">&gt;</span>Type&nbsp;the&nbsp;property's&nbsp;data&nbsp;type.<span class="xml__tag_end">&lt;/ToolTip&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_start">&lt;Default</span><span class="xml__tag_start">&gt;</span>string<span class="xml__tag_end">&lt;/Default&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_end">&lt;/Literal&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_start">&lt;Literal</span><span class="xml__tag_start">&gt;&nbsp;
+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_start">&lt;ID</span><span class="xml__tag_start">&gt;</span>PropScope<span class="xml__tag_end">&lt;/ID&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_start">&lt;ToolTip</span><span class="xml__tag_start">&gt;</span>Type&nbsp;the&nbsp;property's&nbsp;scope<span class="xml__tag_end">&lt;/ToolTip&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_start">&lt;Default</span><span class="xml__tag_start">&gt;</span>public<span class="xml__tag_end">&lt;/Default&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_end">&lt;/Literal&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_end">&lt;/Declarations&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_start">&lt;Code</span>&nbsp;<span class="xml__attr_name">Language</span>=<span class="xml__attr_value">&quot;CSharp&quot;</span><span class="xml__tag_start">&gt;&nbsp;
+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__unParsedSection">&lt;![CDATA[&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$PropScope$&nbsp;$PropType$&nbsp;$PropName$&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;m_$PropName$;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PropertyChanged.SetAndRaise(value,&nbsp;ref&nbsp;m_$PropName$,&nbsp;&quot;$PropName$&quot;,&nbsp;this);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_end">&lt;/Code&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_end">&lt;/Snippet&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="xml__tag_end">&lt;/CodeSnippet&gt;</span>&nbsp;
+<span class="xml__tag_end">&lt;/CodeSnippets&gt;</span>&nbsp;
+</pre>
+</div>
+</div>
+</div>
+<div class="endscriptcode">&nbsp;</div>
+
+</div>
+
+
+    </div>
+</body>
+</html>

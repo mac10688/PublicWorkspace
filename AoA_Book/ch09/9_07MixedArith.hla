@@ -1,0 +1,18 @@
+program MixedArithmetic;
+#include( "stdlib.hhf" )
+
+static
+    tb: tbyte; @nostorage;
+        byte $21,$43,$65,0,0,0,0,0,0,0;
+        
+begin MixedArithmetic;
+
+    fbld( tb );
+    fmul( 2.0 );
+    fiadd( 1 );
+    fbstp( tb );
+    stdout.put( "bcd value is " );
+    stdout.puttb( tb );
+    stdout.newln();
+            
+end MixedArithmetic;

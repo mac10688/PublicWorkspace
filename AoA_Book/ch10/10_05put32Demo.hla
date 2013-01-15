@@ -1,0 +1,70 @@
+// put32.hla
+//
+// This program demonstrates procedure overloading via macros.
+//
+// It defines a "put32" macro that calls stdout.puti32, stdout.putu32, 
+// or stdout.putdw depending on the type of the operand.
+
+
+program put32Demo;
+#include( "stdlib.hhf" )
+
+
+// put32-
+//
+// Automatically decides whether we have an int32, uns32, or dword
+// operand and calls the appropriate stdout.putX routine to
+// output this value.
+
+#macro put32( operand );
+
+    // If we have an int32 operand, call puti32:
+    
+    #if( @typename( operand ) = "int32" )
+    
+        stdout.puti32( operand );
+        
+        
+    // If we have an uns32 operand, call putu32:
+    
+    #elseif( @typename( operand ) = "uns32" )
+    
+        stdout.putu32( operand );
+    
+    
+    // If we have a dword operand, call putidw:
+        
+    #elseif( @typename( operand ) = "dword" )
+    
+        stdout.putd( operand );
+        
+    
+    // If it's not a 32-bit integer value, report an error:
+        
+    #else
+    
+        #error( "Expected an int32, uns32, or dword operand" )
+        
+    #endif
+    
+#endmacro;
+
+
+// Some sample variable declarations so we can test the macro above.
+
+static
+    i32:    int32   := -32;
+    u32:    uns32   := 32;
+    d32:    dword   := $32;
+    
+
+begin put32Demo;
+
+    
+    // Demo the put32 macro:
+    
+    put32( d32 );  stdout.newln();
+    put32( u32 );  stdout.newln();
+    put32( i32 );  stdout.newln();
+                
+end put32Demo;

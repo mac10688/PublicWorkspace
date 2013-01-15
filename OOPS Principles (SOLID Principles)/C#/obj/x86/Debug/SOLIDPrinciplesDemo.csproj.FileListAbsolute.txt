@@ -1,0 +1,10 @@
+C:\Users\SrigopalChitrapu\Desktop\SOLIDPrinciplesDemo\bin\Debug\SOLIDPrinciplesDemo.exe
+C:\Users\SrigopalChitrapu\Desktop\SOLIDPrinciplesDemo\bin\Debug\SOLIDPrinciplesDemo.pdb
+C:\Users\SrigopalChitrapu\Desktop\SOLIDPrinciplesDemo\obj\x86\Debug\SOLIDPrinciplesDemo.exe
+C:\Users\SrigopalChitrapu\Desktop\SOLIDPrinciplesDemo\obj\x86\Debug\SOLIDPrinciplesDemo.pdb
+C:\Users\SrigopalChitrapu\Desktop\SOLIDPrinciplesDemo\obj\x86\Debug\SOLIDPrinciplesDemo.csprojResolveAssemblyReference.cache
+C:\Srigopal_SAI\Education\RNDApplications\RNDProjects\Notes\SOLIDPrinciplesDemo\obj\x86\Debug\SOLIDPrinciplesDemo.exe
+C:\Srigopal_SAI\Education\RNDApplications\RNDProjects\Notes\SOLIDPrinciplesDemo\obj\x86\Debug\SOLIDPrinciplesDemo.pdb
+C:\Srigopal_SAI\Education\RNDApplications\RNDProjects\Notes\SOLIDPrinciplesDemo\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Srigopal_SAI\Education\RNDApplications\RNDProjects\Notes\SOLIDPrinciplesDemo\bin\Debug\SOLIDPrinciplesDemo.exe
+C:\Srigopal_SAI\Education\RNDApplications\RNDProjects\Notes\SOLIDPrinciplesDemo\bin\Debug\SOLIDPrinciplesDemo.pdb

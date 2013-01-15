@@ -1,0 +1,38 @@
+// To compile this module and the attendant MASM file, use the following
+// command line:
+//
+//      ml -c masmupper.masm
+//      hla masmdemo1.hla masmupper.obj 
+//
+//  Sorry about no make file for this code, but these two files are in
+//  the HLA Vol4/Ch12 subdirectory that has it's own makefile for building
+//  all the source files in the directory and I wanted to avoid confusion.
+
+program MasmDemo1;
+#include( "stdlib.hhf" )
+
+    // The following external declaration defines a function that
+    // is written in MASM to convert the character in AL from
+    // lower case to upper case.
+
+    procedure masmUpperCase( c:char in al ); external( "masmUpperCase" );
+
+static
+    s: string := "Hello World!";
+
+begin MasmDemo1;
+
+    stdout.put( "String converted to uppercase: '" );
+    mov( s, edi );
+    while( mov( [edi], al ) <> #0 ) do
+
+        masmUpperCase( al );
+        stdout.putc( al );
+        inc( edi );
+
+    endwhile;
+    stdout.put( "'" nl );
+
+
+end MasmDemo1;
+            

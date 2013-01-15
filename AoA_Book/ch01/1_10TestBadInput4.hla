@@ -1,0 +1,41 @@
+program testBadInput4;
+#include( "stdlib.hhf" );
+
+static
+    input:  uns32;  
+
+begin testBadInput4;
+
+    // This forever loop repeats until the user enters
+    // a good integer and the BREAK statement below
+    // exits the loop.
+    
+    forever
+    
+        try
+
+            stdout.put( "Enter an integer value: " );
+            stdin.get( input );
+            stdout.put( "The first input value was: ", input, nl );
+            break;
+                    
+          exception( ex.ValueOutOfRange )
+          
+            stdout.put( "The value was too large, reenter." nl );
+            
+          exception( ex.ConversionError )
+          
+            stdout.put( "The input contained illegal characters, reenter." nl );
+            
+        endtry;
+        
+    endfor;
+    
+    // Note that the following code is outside the loop and there
+    // is no TRY..ENDTRY statement protecting this code.
+    
+    stdout.put( "Enter another number: " );
+    stdin.get( input );
+    stdout.put( "The new number is: ", input, nl );
+
+end testBadInput4;

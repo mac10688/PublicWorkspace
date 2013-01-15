@@ -1,0 +1,16 @@
+unit Number1;
+
+static
+    Var1:   uns32;
+    Var2:   uns32;
+    
+    procedure Add1and2;
+    begin Add1and2;
+    
+        push( eax );
+        mov( Var2, eax );
+        add( eax, Var1 );
+        
+    end Add1and2;
+
+end Number1;

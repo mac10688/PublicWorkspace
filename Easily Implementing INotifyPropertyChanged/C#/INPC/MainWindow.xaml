@@ -1,0 +1,47 @@
+﻿<Window x:Class="INPC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="clr-namespace:INPC"
+        xmlns:conv="clr-namespace:INPC.Converters"
+        Title="INotifyPropertyChanged Made Easy" Height="239" Width="423" Name="wndMain">
+    <Window.DataContext>
+        <c:CarViewModel />
+    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="Rectangle" x:Key="OffStyle">
+            <Setter Property="RadiusX" Value="5" />
+            <Setter Property="RadiusY" Value="5" />
+            <Setter Property="StrokeThickness" Value="2" />
+        </Style>
+        <Style BasedOn="{StaticResource OffStyle}" TargetType="Rectangle" x:Key="OnStyle">
+            <Setter Property="Fill" Value="CornflowerBlue" />
+        </Style>
+        <conv:BoolToStyleConverter x:Key="BoolToStyle" FalseStyle="{StaticResource ResourceKey=OffStyle}" TrueStyle="{StaticResource ResourceKey=OnStyle}" />
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="273*" />
+            <ColumnDefinition Width="180*" />
+        </Grid.ColumnDefinitions>
+        <Label Content="Car Details" Height="28" HorizontalAlignment="Left" Margin="18,15,0,0" Name="label1" VerticalAlignment="Top" FontWeight="Bold" />
+        <Grid Height="117" HorizontalAlignment="Left" Margin="30,65,0,0" Name="grid1" VerticalAlignment="Top" Width="200">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="60*" />
+                <ColumnDefinition Width="138*" />
+            </Grid.ColumnDefinitions>
+            <Label Content="Make" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="21,6,0,0" Name="label2" VerticalAlignment="Top" />
+            <Label Content="{Binding Path=Make}" Grid.Column="2" Height="28" HorizontalAlignment="Left" Margin="0,6,0,0" Name="lblMake" VerticalAlignment="Top" />
+            <Label Content="Model" Height="28" HorizontalAlignment="Right" Margin="13,40,0,0" Name="label3" VerticalAlignment="Top" Grid.Column="1" />
+            <Label Content="{Binding Path=Model}" Grid.Column="2" Height="28" HorizontalAlignment="Left" Margin="0,40,0,0" Name="lblModel" VerticalAlignment="Top" />
+            <Label Content="Year" Grid.Column="1" Height="28" HorizontalAlignment="Right" Margin="27,74,0,0" Name="label4" VerticalAlignment="Top" />
+            <Label Content="{Binding Path=Year}" Grid.Column="2" Height="28" HorizontalAlignment="Left" Margin="0,74,0,0" Name="lblYear" VerticalAlignment="Top" />
+            <Rectangle Grid.Column="2" Height="28" HorizontalAlignment="Right" Margin="0,6,6,0" Name="rtMake" Stroke="Black" VerticalAlignment="Top" Width="28" Style="{Binding Path=MakeChanged, Converter={StaticResource BoolToStyle}}" />
+            <Rectangle Grid.Column="2" HorizontalAlignment="Left" Margin="104,40,0,49" Name="rtModel" RadiusX="5" RadiusY="5" Stroke="Black" StrokeThickness="2" Width="28" Style="{Binding Path=ModelChanged, Converter={StaticResource BoolToStyle}}" />
+            <Rectangle Grid.Column="2" Height="28" HorizontalAlignment="Left" Margin="104,74,0,0" Name="rtYear" RadiusX="5" RadiusY="5" Stroke="Black" StrokeThickness="2" VerticalAlignment="Top" Width="28" Style="{Binding Path=YearChanged, Converter={StaticResource BoolToStyle}}" />
+        </Grid>
+        <Button Content="Change Values" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="8,20,0,0" Name="btnChangeValues" VerticalAlignment="Top" Width="141" Command="{Binding Path=ChangeCarValuesCommand}" />
+        <Button Content="Exit" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="73,165,0,0" Name="btnExit" VerticalAlignment="Top" Width="75" IsCancel="True" DataContext="{Binding}" Click="btnExit_Click" />
+        <TextBlock Grid.Column="1" Height="94" HorizontalAlignment="Left" Margin="8,65,0,0" Name="textBlock1" Text="The boxes to the left will fill up whenever the event PropertyChanged is fired for the individual property to their left." VerticalAlignment="Top" Width="139" TextWrapping="Wrap" />
+    </Grid>
+</Window>

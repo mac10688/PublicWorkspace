@@ -1,0 +1,14 @@
+
+
+unit ReturnHWUnit;
+
+    procedure ReturnHW; @external( "_ReturnHW" ); // Drop string for GCC.
+    procedure ReturnHW; nodisplay; noframe; noalignstk;
+    begin ReturnHW;
+
+        lea( eax, "Hello World" );
+        ret();
+
+    end ReturnHW;
+
+end ReturnHWUnit;

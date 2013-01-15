@@ -1,0 +1,14 @@
+program labelDemo;
+#include( "stdlib.hhf" );
+    
+begin labelDemo;
+
+    lbl1:
+    
+        lea( ebx, lbl1 );
+        lea( eax, lbl2 );
+        stdout.put( "&lbl1=$", ebx, " &lbl2=", eax, nl );
+    
+    lbl2:
+        
+end labelDemo;

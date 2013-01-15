@@ -1,0 +1,47 @@
+unit TableDataUnit;
+
+static
+    y:int32; external;      // Static object from Delphi code
+
+    //d:dataseg:nostorage;  // All of our static variables are here.
+    
+    index: dword := -1; // index initial value;
+    TheTable: dword[12] := 
+        [ -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6]; // TheTable values.
+
+
+
+// Interface to "callme" procedure found in the Delphi code:
+
+procedure callme; external;
+
+
+// Declare the procedure we're supplying to the Delphi code:
+
+procedure TableData; external;
+procedure TableData; nodisplay; noalignstk; noframe;
+begin TableData;
+
+    callme();           // Call Delphi code.
+    mov( eax, y );      // Store return result in Y.
+
+    // Okay, on each successive call to this function, return
+    // the next element (or wraparound to the first element) from
+    // the "TheTable" array:
+
+    inc( index );
+    mov( index, eax );
+    if( eax > 11 ) then
+
+        xor( eax, eax );
+        mov( eax, index );
+
+    endif;
+    mov( TheTable[ eax*4 ], eax );
+    ret();
+
+end TableData;
+
+
+end TableDataUnit;
+            

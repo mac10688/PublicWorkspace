@@ -1,0 +1,1092 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MyEvents.Data</name>
+    </assembly>
+    <members>
+        <member name="T:MyEvents.Data.EventDefinitionRepository">
+            <summary>
+            <see cref="T:MyEvents.Data.IEventDefinitionRepository"/>
+            </summary>
+        </member>
+        <member name="T:MyEvents.Data.IEventDefinitionRepository">
+            <summary>
+            Repository to access to Event Definition entities
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.IEventDefinitionRepository.GetCount">
+            <summary>
+            Get Events Count
+            </summary>
+            <returns>Event Count</returns>
+        </member>
+        <member name="M:MyEvents.Data.IEventDefinitionRepository.GetAll(System.Int32,System.Int32)">
+            <summary>
+            Get All Events
+            </summary>
+            <param name="pageSize">Number of results to get</param>
+            <param name="pageIndex">Page Index</param>
+            <returns>List of EventDefinitions</returns>
+        </member>
+        <member name="M:MyEvents.Data.IEventDefinitionRepository.GetAllWithUserInfo(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Get All Events.
+            This method uses the userId to get more information, for example, if the user is registered as attendee
+            </summary>
+            <param name="registeredUserId">Id of the user that do the call</param>
+            <param name="pageSize">Number of results to get</param>
+            <param name="pageIndex">Page Index</param>
+            <returns>List of EventDefinitions</returns>
+        </member>
+        <member name="M:MyEvents.Data.IEventDefinitionRepository.GetLast(System.Int32)">
+            <summary>
+            Get the last X events
+            </summary>
+            <param name="number">Number of results to get</param>
+            <returns>List of EventDefinitions</returns>
+        </member>
+        <member name="M:MyEvents.Data.IEventDefinitionRepository.GetLastWithUserInfo(System.Int32,System.Int32)">
+            <summary>
+            Get the last "number" events
+            This method uses the userId to get more information, for example, if the user is registered as attendee
+            </summary>
+            <param name="registeredUserId">Id of the user that do the call</param>
+            <param name="number">Number of results to get</param>
+            <returns>List of EventDefinitions</returns>
+        </member>
+        <member name="M:MyEvents.Data.IEventDefinitionRepository.GetCurrent">
+            <summary>
+            Get the event that happens today ordered by name
+            </summary>
+            <returns>EventDefinition List with Id and Name</returns>
+        </member>
+        <member name="M:MyEvents.Data.IEventDefinitionRepository.GetCountByOrganizerId(System.Int32,System.String)">
+            <summary>
+            Get Events count filtered by OrganizerId and title
+            </summary>
+            <param name="organizerId">Organizer Id</param>
+            <param name="filter">filter applied to search</param>
+            <returns>Event Count</returns>
+        </member>
+        <member name="M:MyEvents.Data.IEventDefinitionRepository.GetByOrganizerId(System.Int32,System.String,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Get All Events filtered by OrganizerId and title
+            </summary>
+            <param name="organizerId">Organizer Id</param>
+            <param name="filter">filter applied to search</param>
+            <param name="pageSize">Number of results to get</param>
+            <param name="pageIndex">Page Index</param>
+            <param name="completeInfo">true is the method must return complete information about the event</param>
+            <returns>List of EventDefinitions</returns>
+        </member>
+        <member name="M:MyEvents.Data.IEventDefinitionRepository.GetById(System.Int32)">
+            <summary>
+            Get Event Definition By Id
+            </summary>
+            <param name="eventDefinitionId">eventDefinition Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyEvents.Data.IEventDefinitionRepository.GetByIdWithUserInfo(System.Int32,System.Int32)">
+            <summary>
+            Get Event Definition By Id
+            This method uses the userId to get more information, for example, if the user is registered as attendee
+            </summary>
+            <param name="registeredUserId">Id of the user that do the call</param>
+            <param name="eventDefinitionId">eventDefinition Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyEvents.Data.IEventDefinitionRepository.GetEventLogo(System.Int32)">
+            <summary>
+            Get the event logo
+            </summary>
+            <param name="eventDefinitionId">eventDefinition Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyEvents.Data.IEventDefinitionRepository.Add(MyEvents.Model.EventDefinition)">
+            <summary>
+            Add new event definition
+            </summary>
+            <param name="eventDefinition">Event definition</param>
+            <returns>eventDefinitionId</returns>
+        </member>
+        <member name="M:MyEvents.Data.IEventDefinitionRepository.Update(MyEvents.Model.EventDefinition)">
+            <summary>
+            Update event definition
+            </summary>
+            <param name="eventDefinition">Event definition</param>
+        </member>
+        <member name="M:MyEvents.Data.IEventDefinitionRepository.Delete(System.Int32)">
+            <summary>
+            Delete Event
+            </summary>
+            <param name="eventDefinitionId">eventDefinition to delete</param>
+        </member>
+        <member name="M:MyEvents.Data.IEventDefinitionRepository.GetTopTags(System.Int32)">
+            <summary>
+            Get Top tags used in all the events that are in My Events Platform
+            </summary>
+            <param name="organizerId">Organizer Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyEvents.Data.IEventDefinitionRepository.GetTopSpeakers(System.Int32)">
+            <summary>
+            Get Top speaker in all the events that are in My Events Platform
+            </summary>
+            <param name="organizerId">Organizer Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyEvents.Data.IEventDefinitionRepository.GetRoomImage(System.Int32)">
+            <summary>
+            Get Room Image
+            </summary>
+            <param name="eventDefinitionId">eventDefinitionId</param>
+            <returns>Image</returns>
+        </member>
+        <member name="M:MyEvents.Data.IEventDefinitionRepository.GetAllRoomPoints(System.Int32)">
+            <summary>
+            Get Room Points of ALL the sessions
+            </summary>
+            <param name="eventDefinitionId">eventDefinitionId</param>
+            <returns>List of RoomPoint</returns>
+        </member>
+        <member name="M:MyEvents.Data.IEventDefinitionRepository.GetRoomPoints(System.Int32)">
+            <summary>
+            Get Room Points of the session
+            </summary>
+            <param name="sessionId">SessionId</param>
+            <returns>List of RoomPoint</returns>
+        </member>
+        <member name="M:MyEvents.Data.IEventDefinitionRepository.UpdateRoomImage(MyEvents.Model.EventDefinition)">
+            <summary>
+            Update Room Image
+            </summary>
+            <param name="eventDefinition">eventDefinition. </param>
+        </member>
+        <member name="M:MyEvents.Data.IEventDefinitionRepository.AddRoomPoints(System.Collections.Generic.IEnumerable{MyEvents.Model.RoomPoint})">
+            <summary>
+            Add room points. Boefe adding new points old ones are deleted
+            </summary>
+            <param name="roomPoints">Points of the room</param>
+        </member>
+        <member name="M:MyEvents.Data.IEventDefinitionRepository.DeleteRoomPoints(System.Int32,System.Int32)">
+            <summary>
+            Delete room points
+            </summary>
+            <param name="eventDefinitionId">eventDefinitionId></param>
+            <param name="roomNumber">roomNumber</param>
+        </member>
+        <member name="M:MyEvents.Data.EventDefinitionRepository.GetCount">
+            <summary>
+            <see cref="T:MyEvents.Data.IEventDefinitionRepository"/>
+            </summary>
+            <returns><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.EventDefinitionRepository.GetAll(System.Int32,System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.IEventDefinitionRepository"/>
+            </summary>
+            <param name="pageSize"><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></param>
+            <param name="pageIndex"><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.EventDefinitionRepository.GetAllWithUserInfo(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.IEventDefinitionRepository"/>
+            </summary>
+            <param name="registeredUserId"><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></param>
+            <param name="pageSize"><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></param>
+            <param name="pageIndex"><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.EventDefinitionRepository.GetLast(System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.IEventDefinitionRepository"/>
+            </summary>
+            <param name="number"><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.EventDefinitionRepository.GetLastWithUserInfo(System.Int32,System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.IEventDefinitionRepository"/>
+            </summary>
+            <param name="registeredUserId"><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></param>
+            <param name="number"><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.EventDefinitionRepository.GetCurrent">
+            <summary>
+            <see cref="T:MyEvents.Data.IEventDefinitionRepository"/>
+            </summary>
+            <returns><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.EventDefinitionRepository.GetCountByOrganizerId(System.Int32,System.String)">
+            <summary>
+            <see cref="T:MyEvents.Data.IEventDefinitionRepository"/>
+            </summary>
+            <returns><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.EventDefinitionRepository.GetByOrganizerId(System.Int32,System.String,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            <see cref="T:MyEvents.Data.IEventDefinitionRepository"/>
+            </summary>
+            <param name="organizerId"><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></param>
+            <param name="filter"><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></param>
+            <param name="pageSize"><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></param>
+            <param name="pageIndex"><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></param>
+            <param name="completeInfo"><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.EventDefinitionRepository.GetById(System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.IEventDefinitionRepository"/>
+            </summary>
+            <param name="eventDefinitionId"><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.EventDefinitionRepository.GetByIdWithUserInfo(System.Int32,System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.IEventDefinitionRepository"/>
+            </summary>
+            <param name="registeredUserId"><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></param>
+            <param name="eventDefinitionId"><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.EventDefinitionRepository.Add(MyEvents.Model.EventDefinition)">
+            <summary>
+            <see cref="T:MyEvents.Data.IEventDefinitionRepository"/>
+            </summary>
+            <param name="eventDefinition"><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.EventDefinitionRepository.Update(MyEvents.Model.EventDefinition)">
+            <summary>
+            <see cref="T:MyEvents.Data.IEventDefinitionRepository"/>
+            </summary>
+            <param name="eventDefinition"><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></param>
+        </member>
+        <member name="M:MyEvents.Data.EventDefinitionRepository.Delete(System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.IEventDefinitionRepository"/>
+            </summary>
+            <param name="eventDefinitionId"><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></param>
+        </member>
+        <member name="M:MyEvents.Data.EventDefinitionRepository.GetEventLogo(System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.IEventDefinitionRepository"/>
+            </summary>
+            <param name="eventDefinitionId"><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.EventDefinitionRepository.GetTopTags(System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.IEventDefinitionRepository"/>
+            </summary>
+            <param name="organizerId"><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.EventDefinitionRepository.GetTopSpeakers(System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.IEventDefinitionRepository"/>
+            </summary>
+            <param name="organizerId"><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.IEventDefinitionRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.EventDefinitionRepository.GetRoomImage(System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.ISessionRepository"/>
+            </summary>
+            <param name="eventDefinitionId"><see cref="T:MyEvents.Data.ISessionRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.ISessionRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.EventDefinitionRepository.GetAllRoomPoints(System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.ISessionRepository"/>
+            </summary>
+            <param name="eventDefinitionId"><see cref="T:MyEvents.Data.ISessionRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.ISessionRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.EventDefinitionRepository.GetRoomPoints(System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.ISessionRepository"/>
+            </summary>
+            <param name="sessionId"><see cref="T:MyEvents.Data.ISessionRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.ISessionRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.EventDefinitionRepository.UpdateRoomImage(MyEvents.Model.EventDefinition)">
+            <summary>
+            <see cref="T:MyEvents.Data.ISessionRepository"/>
+            </summary>
+            <param name="eventDefinition"><see cref="T:MyEvents.Data.ISessionRepository"/></param>
+        </member>
+        <member name="M:MyEvents.Data.EventDefinitionRepository.AddRoomPoints(System.Collections.Generic.IEnumerable{MyEvents.Model.RoomPoint})">
+            <summary>
+            <see cref="T:MyEvents.Data.ISessionRepository"/>
+            </summary>
+            <param name="roomPoints"><see cref="T:MyEvents.Data.ISessionRepository"/></param>
+        </member>
+        <member name="M:MyEvents.Data.EventDefinitionRepository.DeleteRoomPoints(System.Int32,System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.ISessionRepository"/>
+            </summary>
+            <param name="eventDefinitionId"><see cref="T:MyEvents.Data.ISessionRepository"/></param>
+            <param name="roomNumber"><see cref="T:MyEvents.Data.ISessionRepository"/></param>
+        </member>
+        <member name="M:MyEvents.Data.EventDefinitionRepository.CleanRooms(System.Int32,System.Int32)">
+            <summary>
+            After update eventdefinition we have to clean the room number of the sessions to be sure that all room numbers exist
+            </summary>
+            <param name="eventDefinitionId">eventDefinitionId</param>
+            <param name="roomNumber">Actual room number</param>
+        </member>
+        <member name="T:MyEvents.Data.ICommentRepository">
+            <summary>
+            Repository to access to Comment entities
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.ICommentRepository.Get(System.Int32)">
+            <summary>
+            Get comment by Id
+            </summary>
+            <param name="commentId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyEvents.Data.ICommentRepository.GetAll(System.Int32)">
+            <summary>
+            Get All Comments
+            </summary>
+            <param name="sessionId">sessionId</param>
+            <returns>List of Comments</returns>
+        </member>
+        <member name="M:MyEvents.Data.ICommentRepository.Add(MyEvents.Model.Comment)">
+            <summary>
+            Add new comment
+            </summary>
+            <param name="comment">comment information</param>
+            <returns>commentId</returns>
+        </member>
+        <member name="M:MyEvents.Data.ICommentRepository.Delete(System.Int32)">
+            <summary>
+            Delete Comment
+            </summary>
+            <param name="commentId">Comment to delete</param>
+        </member>
+        <member name="M:MyEvents.Data.ICommentRepository.GetOrganizerId(System.Int32)">
+            <summary>
+            Get the organizerId of the event
+            </summary>
+            <param name="commentId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MyEvents.Data.IMaterialRepository">
+            <summary>
+            Repository to access to Material entities
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.IMaterialRepository.Get(System.Int32)">
+            <summary>
+            Gets the material with the specified id.
+            </summary>
+            <param name="materialId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyEvents.Data.IMaterialRepository.GetAll(System.Int32)">
+            <summary>
+            Get All Materials
+            </summary>
+            <param name="sessionId">sessionId</param>
+            <returns>List of Materials</returns>
+        </member>
+        <member name="M:MyEvents.Data.IMaterialRepository.Add(MyEvents.Model.Material)">
+            <summary>
+            Add new material
+            </summary>
+            <param name="material">material information</param>
+            <returns>materialId</returns>
+        </member>
+        <member name="M:MyEvents.Data.IMaterialRepository.Delete(System.Int32)">
+            <summary>
+            Delete Material
+            </summary>
+            <param name="materialId">Material to delete</param>
+        </member>
+        <member name="M:MyEvents.Data.IMaterialRepository.GetOrganizerId(System.Int32)">
+            <summary>
+            Get the organizerId of the event
+            </summary>
+            <param name="materialId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MyEvents.Data.Initializers.Events.FacebookData">
+            <summary>
+            Facebook data.
+            </summary>
+        </member>
+        <member name="P:MyEvents.Data.Initializers.Events.FacebookData.FacebookId">
+            <summary>
+            Facebook id.
+            </summary>
+        </member>
+        <member name="P:MyEvents.Data.Initializers.Events.FacebookData.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:MyEvents.Data.Initializers.Events.FacebookData.Bio">
+            <summary>
+            Biography.
+            </summary>
+        </member>
+        <member name="T:MyEvents.Data.Initializers.Events.VisualStudioChinaLaunchEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.Initializers.Events.IEvent.Create(MyEvents.Data.MyEventsContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:MyEvents.Data.Initializers.Events.VisualStudioChinaLaunchEvent.Create(MyEvents.Data.MyEventsContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:MyEvents.Data.Initializers.Events.VisualStudioIndiaLaunchEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.Initializers.Events.VisualStudioIndiaLaunchEvent.Create(MyEvents.Data.MyEventsContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:MyEvents.Data.Initializers.Events.VisualStudioGermanyLaunchEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.Initializers.Events.VisualStudioGermanyLaunchEvent.Create(MyEvents.Data.MyEventsContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:MyEvents.Data.Initializers.Events.VisualStudioMexicoLaunchEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.Initializers.Events.VisualStudioMexicoLaunchEvent.Create(MyEvents.Data.MyEventsContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:MyEvents.Data.Initializers.Events.VisualStudioMadridLaunchEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.Initializers.Events.VisualStudioMadridLaunchEvent.Create(MyEvents.Data.MyEventsContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:MyEvents.Data.Initializers.Events.VisualStudioAtlantaLaunchEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.Initializers.Events.VisualStudioAtlantaLaunchEvent.Create(MyEvents.Data.MyEventsContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:MyEvents.Data.Initializers.Events.VisualStudioLondonLaunchEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.Initializers.Events.VisualStudioLondonLaunchEvent.Create(MyEvents.Data.MyEventsContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:MyEvents.Data.Initializers.Events.VisualStudioGlobalLaunchEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.Initializers.Events.VisualStudioGlobalLaunchEvent.Create(MyEvents.Data.MyEventsContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:MyEvents.Data.Initializers.Events.VisualStudioSanFranciscoLaunchEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.Initializers.Events.VisualStudioSanFranciscoLaunchEvent.Create(MyEvents.Data.MyEventsContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:MyEvents.Data.Initializers.MyEventsContextRandomInitializer">
+            <summary>
+            The default initializer for testing . Yoy can
+            learn more about initializers in 
+            http://msdn.microsoft.com/en-us/library/gg696323(v=VS.103).aspx
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.Initializers.MyEventsContextRandomInitializer.Seed(MyEvents.Data.MyEventsContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:MyEvents.Data.Initializers.Events.CommonInitializer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MyEvents.Data.Initializers.Events.CommonInitializer.DefaultOrganizerBio">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MyEvents.Data.Initializers.Events.CommonInitializer.DefaultSessionDescription">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MyEvents.Data.Initializers.Events.CommonInitializer.DefaultSpeakerBio">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MyEvents.Data.Initializers.Events.CommonInitializer.FakeUserFacebookId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MyEvents.Data.Initializers.Events.CommonInitializer.FakeUserName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.Initializers.Events.CommonInitializer.GetOrganizer(MyEvents.Data.MyEventsContext,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyEvents.Data.Initializers.Events.CommonInitializer.LoadFile(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyEvents.Data.Initializers.Events.CommonInitializer.GetRoomPoints(System.Int32)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MyEvents.Data.IRegisteredUserRepository">
+            <summary>
+            Repository to access to RegisteredUser entities
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.IRegisteredUserRepository.Get(System.String)">
+            <summary>
+            Get RegisteredUser Information
+            </summary>
+            <param name="facebookId">facebookId</param>
+            <returns>RegisteredUser</returns>
+        </member>
+        <member name="M:MyEvents.Data.IRegisteredUserRepository.GetById(System.Int32)">
+            <summary>
+            Get RegisteredUser Information
+            </summary>
+            <param name="registeredUserId">UserId</param>
+            <returns>RegisteredUser</returns>
+        </member>
+        <member name="M:MyEvents.Data.IRegisteredUserRepository.GetAllByEventId(System.Int32)">
+            <summary>
+            Get All RegisteredUsers By EventId
+            </summary>
+            <param name="eventDefinitionId">Event Id</param>
+            <returns>List of RegisteredUsers</returns>
+        </member>
+        <member name="M:MyEvents.Data.IRegisteredUserRepository.GetIfUserIsRegistered(System.Int32,System.Int32)">
+            <summary>
+            Get if user is already registered
+            </summary>
+            <param name="eventDefinitionId">event id</param>
+            <param name="registeredUserId">registered user id</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyEvents.Data.IRegisteredUserRepository.GetAllBySessionId(System.Int32)">
+            <summary>
+            Get All RegisteredUsers By SessionId
+            </summary>
+            <param name="sessionId">Session Id</param>
+            <returns>List of RegisteredUsers</returns>
+        </member>
+        <member name="M:MyEvents.Data.IRegisteredUserRepository.GetEventDefinitions(System.Int32)">
+            <summary>
+            Get All events for the currennt RegisteredUserId
+            </summary>
+            <param name="registeredUserId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyEvents.Data.IRegisteredUserRepository.GetSessions(System.Int32,System.Int32)">
+            <summary>
+            Get All sessions for the currennt RegisteredUserId
+            </summary>
+            <param name="eventDefinitionId"></param>
+            <param name="registeredUserId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyEvents.Data.IRegisteredUserRepository.Add(MyEvents.Model.RegisteredUser)">
+            <summary>
+            Add RegisteredUser
+            </summary>
+            <param name="registeredUser">registeredUser</param>
+            <returns>registeredUser Id</returns>
+        </member>
+        <member name="M:MyEvents.Data.IRegisteredUserRepository.AddRegisteredUserToEvent(System.Int32,System.Int32)">
+            <summary>
+             Asociate RegisteredUser with event
+            </summary>
+            <param name="registeredUserId">RegisteredUser Id</param>
+            <param name="eventDefinitionId">eventDefinitionId</param>
+        </member>
+        <member name="M:MyEvents.Data.IRegisteredUserRepository.DeleteRegisteredUserFromEvent(System.Int32,System.Int32)">
+            <summary>
+            Delete RegisteredUser from event
+            </summary>
+            <param name="registeredUserId">RegisteredUser Id</param>
+            <param name="eventDefinitionId">eventDefinitionId</param>
+        </member>
+        <member name="M:MyEvents.Data.IRegisteredUserRepository.AddRegisteredUserToSession(System.Int32,System.Int32)">
+            <summary>
+            Asociate RegisteredUser with session
+            </summary>
+            <param name="registeredUserId">RegisteredUser Id</param>
+            <param name="sessionId">Session Id</param>
+        </member>
+        <member name="M:MyEvents.Data.IRegisteredUserRepository.DeleteRegisteredUserFromSession(System.Int32,System.Int32)">
+            <summary>
+            Delete RegisteredUser from session
+            </summary>
+            <param name="registeredUserId">RegisteredUser Id</param>
+            <param name="sessionId">Session Id</param>
+        </member>
+        <member name="M:MyEvents.Data.IRegisteredUserRepository.AddRegisteredUserScore(System.Int32,System.Int32,System.Double)">
+            <summary>
+            Update the score of the session
+            </summary>
+            <param name="registeredUserId">RegisteredUser Id</param>
+            <param name="sessionId">Session Id</param>
+            <param name="score">Score</param>
+        </member>
+        <member name="T:MyEvents.Data.ISessionRepository">
+            <summary>
+            Repository to access to Session entities
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.ISessionRepository.GetAll(System.Int32)">
+            <summary>
+            Get All Sessions
+            </summary>
+            <param name="eventDefinitionId">Event Definition Id</param>
+            <returns>List of Sessions</returns>
+        </member>
+        <member name="M:MyEvents.Data.ISessionRepository.GetAllWithUserInfo(System.Int32,System.Int32)">
+            <summary>
+            Get All Sessions
+            This method uses the userId to get more information, for example, if the user is registered as attendee
+            </summary>
+            <param name="registeredUserId">Id of the user that do the call</param>
+            <param name="eventDefinitionId">Event Definition Id</param>
+            <returns>List of Sessions</returns>
+        </member>
+        <member name="M:MyEvents.Data.ISessionRepository.Get(System.Int32)">
+            <summary>
+            Get Session
+            </summary>
+            <param name="sessionId">SessionId</param>
+            <returns>Session</returns>
+        </member>
+        <member name="M:MyEvents.Data.ISessionRepository.GetWithUserInfo(System.Int32,System.Int32)">
+            <summary>
+            Get Session
+            This method uses the userId to get more information, for example, if the user is registered as attendee
+            </summary>
+            <param name="registeredUserId">Id of the user that do the call</param>
+            <param name="sessionId">SessionId</param>
+            <returns>Session</returns>
+        </member>
+        <member name="M:MyEvents.Data.ISessionRepository.Add(MyEvents.Model.Session)">
+            <summary>
+            Add new session
+            </summary>
+            <param name="session">Session information</param>
+            <returns>sessionId</returns>
+        </member>
+        <member name="M:MyEvents.Data.ISessionRepository.Update(MyEvents.Model.Session)">
+            <summary>
+            Update Session information
+            </summary>
+            <param name="session">Session information</param>
+        </member>
+        <member name="M:MyEvents.Data.ISessionRepository.Delete(System.Int32)">
+            <summary>
+            Delete Session
+            </summary>
+            <param name="sessionId">Session Id</param>
+        </member>
+        <member name="M:MyEvents.Data.ISessionRepository.GetOrganizerId(System.Int32)">
+            <summary>
+            Get the organizerId of the event
+            </summary>
+            <param name="sessionId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MyEvents.Data.Mapping.EventDefinitionEntityTypeConfigurator">
+            <summary>
+            The entity type configuration
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.Mapping.EventDefinitionEntityTypeConfigurator.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:MyEvents.Data.Mapping.RegisteredUserEntityTypeConfigurator">
+            <summary>
+            The entity type configuration
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.Mapping.RegisteredUserEntityTypeConfigurator.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:MyEvents.Data.RegisteredUserRepository">
+            <summary>
+            <see cref="T:MyEvents.Data.IRegisteredUserRepository"/>
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.RegisteredUserRepository.Get(System.String)">
+            <summary>
+            <see cref="T:MyEvents.Data.IRegisteredUserRepository"/>
+            </summary>
+            <param name="facebookId"><see cref="T:MyEvents.Data.IRegisteredUserRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.IRegisteredUserRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.RegisteredUserRepository.GetById(System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.IRegisteredUserRepository"/>
+            </summary>
+            <param name="registeredUserId"><see cref="T:MyEvents.Data.IRegisteredUserRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.IRegisteredUserRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.RegisteredUserRepository.GetAllByEventId(System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.IRegisteredUserRepository"/>
+            </summary>
+            <param name="eventDefinitionId"><see cref="T:MyEvents.Data.IRegisteredUserRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.IRegisteredUserRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.RegisteredUserRepository.GetIfUserIsRegistered(System.Int32,System.Int32)">
+            <summary>
+            Get if user is already registered
+            </summary>
+            <param name="eventDefinitionId"></param>
+            <param name="registeredUserId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyEvents.Data.RegisteredUserRepository.GetAllBySessionId(System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.IRegisteredUserRepository"/>
+            </summary>
+            <param name="sessionId"><see cref="T:MyEvents.Data.IRegisteredUserRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.IRegisteredUserRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.RegisteredUserRepository.GetEventDefinitions(System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.IRegisteredUserRepository"/>
+            </summary>
+            <param name="registeredUserId"><see cref="T:MyEvents.Data.IRegisteredUserRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.IRegisteredUserRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.RegisteredUserRepository.GetSessions(System.Int32,System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.IRegisteredUserRepository"/>
+            </summary>
+            <param name="eventDefinitionId"><see cref="T:MyEvents.Data.IRegisteredUserRepository"/></param>
+            <param name="registeredUserId"><see cref="T:MyEvents.Data.IRegisteredUserRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.IRegisteredUserRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.RegisteredUserRepository.Add(MyEvents.Model.RegisteredUser)">
+            <summary>
+             <see cref="T:MyEvents.Data.IRegisteredUserRepository"/>
+            </summary>
+            <param name="registeredUser"> <see cref="T:MyEvents.Data.IRegisteredUserRepository"/></param>
+        </member>
+        <member name="M:MyEvents.Data.RegisteredUserRepository.AddRegisteredUserToEvent(System.Int32,System.Int32)">
+            <summary>
+             <see cref="T:MyEvents.Data.IRegisteredUserRepository"/>
+            </summary>
+            <param name="registeredUserId"> <see cref="T:MyEvents.Data.IRegisteredUserRepository"/></param>
+            <param name="eventDefinitionId"> <see cref="T:MyEvents.Data.IRegisteredUserRepository"/></param>
+        </member>
+        <member name="M:MyEvents.Data.RegisteredUserRepository.DeleteRegisteredUserFromEvent(System.Int32,System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.IRegisteredUserRepository"/>
+            </summary>
+            <param name="registeredUserId"> <see cref="T:MyEvents.Data.IRegisteredUserRepository"/></param>
+            <param name="eventDefinitionId"> <see cref="T:MyEvents.Data.IRegisteredUserRepository"/></param>
+        </member>
+        <member name="M:MyEvents.Data.RegisteredUserRepository.AddRegisteredUserToSession(System.Int32,System.Int32)">
+            <summary>
+             <see cref="T:MyEvents.Data.IRegisteredUserRepository"/>
+            </summary>
+            <param name="registeredUserId"> <see cref="T:MyEvents.Data.IRegisteredUserRepository"/></param>
+            <param name="sessionId"> <see cref="T:MyEvents.Data.IRegisteredUserRepository"/></param>
+        </member>
+        <member name="M:MyEvents.Data.RegisteredUserRepository.DeleteRegisteredUserFromSession(System.Int32,System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.IRegisteredUserRepository"/>
+            </summary>
+            <param name="registeredUserId"> <see cref="T:MyEvents.Data.IRegisteredUserRepository"/></param>
+            <param name="sessionId"> <see cref="T:MyEvents.Data.IRegisteredUserRepository"/></param>
+        </member>
+        <member name="M:MyEvents.Data.RegisteredUserRepository.AddRegisteredUserScore(System.Int32,System.Int32,System.Double)">
+            <summary>
+            <see cref="T:MyEvents.Data.IRegisteredUserRepository"/>
+            </summary>
+            <param name="registeredUserId"><see cref="T:MyEvents.Data.IRegisteredUserRepository"/></param>
+            <param name="sessionId"><see cref="T:MyEvents.Data.IRegisteredUserRepository"/></param>
+            <param name="score"><see cref="T:MyEvents.Data.IRegisteredUserRepository"/></param>
+        </member>
+        <member name="T:MyEvents.Data.CommentRepository">
+            <summary>
+            <see cref="T:MyEvents.Data.ICommentRepository"/>
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.CommentRepository.Get(System.Int32)">
+            <summary> 
+            <see cref="T:MyEvents.Data.ICommentRepository"/>
+            </summary>
+            <param name="commentId"><see cref="T:MyEvents.Data.ICommentRepository"/></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyEvents.Data.CommentRepository.GetAll(System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.ICommentRepository"/>
+            </summary>
+            <param name="sessionId"><see cref="T:MyEvents.Data.ICommentRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.ICommentRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.CommentRepository.Add(MyEvents.Model.Comment)">
+            <summary>
+            <see cref="T:MyEvents.Data.ICommentRepository"/>
+            </summary>
+            <param name="comment"><see cref="T:MyEvents.Data.ICommentRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.ICommentRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.CommentRepository.Delete(System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.ICommentRepository"/>
+            </summary>
+            <param name="commentId"><see cref="T:MyEvents.Data.ICommentRepository"/></param>
+        </member>
+        <member name="M:MyEvents.Data.CommentRepository.GetOrganizerId(System.Int32)">
+            <summary>
+             <see cref="T:MyEvents.Data.ICommentRepository"/>
+            </summary>
+            <param name="commentId"> <see cref="T:MyEvents.Data.ICommentRepository"/></param>
+            <returns> <see cref="T:MyEvents.Data.ICommentRepository"/></returns>
+        </member>
+        <member name="T:MyEvents.Data.Initializers.MyEventsContextInitializer">
+            <summary>
+            The default initializer for testing . Yoy can
+            learn more about initializers in 
+            http://msdn.microsoft.com/en-us/library/gg696323(v=VS.103).aspx
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.Initializers.MyEventsContextInitializer.Seed(MyEvents.Data.MyEventsContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:MyEvents.Data.MaterialRepository">
+            <summary>
+            <see cref="T:MyEvents.Data.IMaterialRepository"/>
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.MaterialRepository.Get(System.Int32)">
+            <summary>
+             <see cref="T:MyEvents.Data.IMaterialRepository"/>
+            </summary>
+            <param name="materialId"><see cref="T:MyEvents.Data.IMaterialRepository"/></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyEvents.Data.MaterialRepository.GetAll(System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.IMaterialRepository"/>
+            </summary>
+            <param name="sessionId"><see cref="T:MyEvents.Data.IMaterialRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.IMaterialRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.MaterialRepository.Add(MyEvents.Model.Material)">
+            <summary>
+            <see cref="T:MyEvents.Data.IMaterialRepository"/>
+            </summary>
+            <param name="material"><see cref="T:MyEvents.Data.IMaterialRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.IMaterialRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.MaterialRepository.Delete(System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.IMaterialRepository"/>
+            </summary>
+            <param name="materialId"><see cref="T:MyEvents.Data.IMaterialRepository"/></param>
+        </member>
+        <member name="M:MyEvents.Data.MaterialRepository.GetOrganizerId(System.Int32)">
+            <summary>
+             <see cref="T:MyEvents.Data.IMaterialRepository"/>
+            </summary>
+            <param name="materialId"> <see cref="T:MyEvents.Data.IMaterialRepository"/></param>
+            <returns> <see cref="T:MyEvents.Data.IMaterialRepository"/></returns>
+        </member>
+        <member name="T:MyEvents.Data.MyEventsContext">
+            <summary>
+            Context to access to MyEvents entities
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.MyEventsContext.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.MyEventsContext.OnModelCreating(System.Data.Entity.DbModelBuilder)">
+            <summary>
+            This method is called when the model for a derived context has been initialized,
+            but before the model has been locked down and used to initialize the context
+            </summary>
+            <param name="modelBuilder">The builder that defines the model for the context being created</param>
+        </member>
+        <member name="P:MyEvents.Data.MyEventsContext.EventDefinitions">
+            <summary>
+            EventDefinition Collection
+            </summary>
+        </member>
+        <member name="P:MyEvents.Data.MyEventsContext.RegisteredUsers">
+            <summary>
+            RegisteredUser Collection
+            </summary>
+        </member>
+        <member name="P:MyEvents.Data.MyEventsContext.SessionRegisteredUsers">
+            <summary>
+            SessionRegisteredUser Collection
+            </summary>
+        </member>
+        <member name="P:MyEvents.Data.MyEventsContext.Sessions">
+            <summary>
+            Session Collection
+            </summary>
+        </member>
+        <member name="P:MyEvents.Data.MyEventsContext.Comments">
+            <summary>
+            Comment Collection
+            </summary>
+        </member>
+        <member name="P:MyEvents.Data.MyEventsContext.Materials">
+            <summary>
+            Material Collection
+            </summary>
+        </member>
+        <member name="P:MyEvents.Data.MyEventsContext.RoomPoints">
+            <summary>
+            RoomPoint Collection
+            </summary>
+        </member>
+        <member name="T:MyEvents.Data.SessionRepository">
+            <summary>
+            <see cref="T:MyEvents.Data.ISessionRepository"/>
+            </summary>
+        </member>
+        <member name="M:MyEvents.Data.SessionRepository.GetAll(System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.ISessionRepository"/>
+            </summary>
+            <param name="eventDefinitionId"><see cref="T:MyEvents.Data.ISessionRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.ISessionRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.SessionRepository.GetAllWithUserInfo(System.Int32,System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.ISessionRepository"/>
+            </summary>
+            <param name="registeredUserId"><see cref="T:MyEvents.Data.ISessionRepository"/></param>
+            <param name="eventDefinitionId"><see cref="T:MyEvents.Data.ISessionRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.ISessionRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.SessionRepository.Get(System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.ISessionRepository"/>
+            </summary>
+            <param name="sessionId"><see cref="T:MyEvents.Data.ISessionRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.ISessionRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.SessionRepository.GetWithUserInfo(System.Int32,System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.ISessionRepository"/>
+            </summary>
+            <param name="registeredUserId"><see cref="T:MyEvents.Data.ISessionRepository"/></param>
+            <param name="sessionId"><see cref="T:MyEvents.Data.ISessionRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.ISessionRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.SessionRepository.Add(MyEvents.Model.Session)">
+            <summary>
+            <see cref="T:MyEvents.Data.ISessionRepository"/>
+            </summary>
+            <param name="session"><see cref="T:MyEvents.Data.ISessionRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.ISessionRepository"/></returns>
+        </member>
+        <member name="M:MyEvents.Data.SessionRepository.Update(MyEvents.Model.Session)">
+            <summary>
+            <see cref="T:MyEvents.Data.ISessionRepository"/>
+            </summary>
+            <param name="session"><see cref="T:MyEvents.Data.ISessionRepository"/></param>
+        </member>
+        <member name="M:MyEvents.Data.SessionRepository.Delete(System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.ISessionRepository"/>
+            </summary>
+            <param name="sessionId"><see cref="T:MyEvents.Data.ISessionRepository"/></param>
+        </member>
+        <member name="M:MyEvents.Data.SessionRepository.GetOrganizerId(System.Int32)">
+            <summary>
+            <see cref="T:MyEvents.Data.ISessionRepository"/>
+            </summary>
+            <param name="sessionId"><see cref="T:MyEvents.Data.ISessionRepository"/></param>
+            <returns><see cref="T:MyEvents.Data.ISessionRepository"/></returns>
+        </member>
+    </members>
+</doc>

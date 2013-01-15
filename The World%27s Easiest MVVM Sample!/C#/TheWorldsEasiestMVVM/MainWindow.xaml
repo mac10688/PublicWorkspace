@@ -1,0 +1,56 @@
+﻿<Window x:Class="TheWorldsEasiestMVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:TheWorldsEasiestMVVM"
+        Title="MainWindow"
+        Width="800"
+        Height="600"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <vm:MainWindowViewModel x:Key="VM" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="XDG"
+                  Grid.Row="0"
+                  Margin="0,0,17,0"
+                  DataContext="{StaticResource ResourceKey=VM}"
+                  ItemsSource="{Binding Path=OC}" />
+        <FlowDocumentReader Grid.Row="2" HorizontalAlignment="Stretch">
+
+            <FlowDocument ColumnWidth="1024">
+                <FlowDocument.Resources>
+                    <vm:AddNewPerson x:Key="CMD"/>
+                </FlowDocument.Resources>
+                <BlockUIContainer >
+                    <TextBlock
+                        x:Name="XTBEndOfStory"
+                        Visibility="Collapsed"
+                        Background="red" Foreground="white" HorizontalAlignment="Stretch" TextAlignment="Center">Now that's a funny name!</TextBlock>
+                </BlockUIContainer>
+                <Paragraph>If you look into the code behind of the MainWindow, you will see three classes in the same file.  This is done so you can easily see all three classes working together.</Paragraph>
+                <Paragraph>While this is not best practice, it is a working MVVM example and is intended to be the most easy way to get things up and running from a learning Perspective.</Paragraph>
+                <Paragraph>
+                    This design uses the View-First methodology which is just fine for many applications.  It also uses the style of creating a static ViewModel from the XAML of the View!
+                    This too is fine and works universally.
+                </Paragraph>
+                <Paragraph>
+                    The model on the other hand is just an example which really isn't normal in that typically the developer would call out to a database to get information.  In this example the MODEL
+                    itself is the collection which will be bound to the ViewModel.
+                </Paragraph>
+                <Paragraph>
+                    There is no persistence of data in this example but it wouldn't be that difficult to implement.  Most of the time, a developer will save data to the database.  Note that the binding
+                    to the view of this data, is TWO WAY by default, so any changes in the View are immediately available in the Model.  No logic is included to show how to add dynamic data to the collection,
+                    mostly because that would involve Commanding and or other code to inject new content into the collection.  This demo is just to show how the three work together.
+                </Paragraph>
+                <Paragraph>Ok Ok so you want to see a button and a Command!  Click on the button here:
+                    <Button Width="96" Height="19" FontSize="9" Command="{Binding Source={StaticResource CMD}}" Click="Button_Click">Add New Person</Button>
+                </Paragraph>
+
+            </FlowDocument>
+        </FlowDocumentReader>
+    </Grid>
+</Window>

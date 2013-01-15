@@ -1,0 +1,34 @@
+﻿<Window x:Class="Example06.Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Example06"
+    Title="Temperature Converter" Height="109" Width="273">
+    <Window.Resources>
+        <local:FahrenheitToCelciusConverter x:Key="myTemperatureConverter" />
+        <local:TemperatureToColorConverter x:Key="myFRangeIndicator" HotTemperature="80" ColdTemperature="65" />
+        <local:TemperatureToColorConverter x:Key="myCRangeIndicator" HotTemperature="26.6" ColdTemperature="18.8" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="35" />
+            <RowDefinition  Height="35" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100">                
+            </ColumnDefinition>
+            <ColumnDefinition Width="150" />
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0">Fahrenheit</Label>
+        <Label Grid.Row="1" Grid.Column="0">Celcius</Label>
+        <TextBox Grid.Row="0" Grid.Column="1" Name="txtFahrenheit" 
+                 Foreground="{Binding Path=Text, ElementName=txtFahrenheit, Converter={StaticResource myFRangeIndicator}}"
+                 ></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="txtCelcius"
+                 Text="{Binding  UpdateSourceTrigger=PropertyChanged, Path=Text,ElementName=txtFahrenheit, Converter={StaticResource myTemperatureConverter}}" 
+                 Foreground="{Binding Path=Text, ElementName=txtCelcius, Converter={StaticResource myCRangeIndicator}}"
+                >
+        </TextBox>
+    </Grid>
+    
+    
+</Window>

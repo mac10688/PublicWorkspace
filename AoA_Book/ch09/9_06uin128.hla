@@ -1,0 +1,220 @@
+program Uin128;
+
+#include( "stdlib.hhf" );
+
+// 128-bit unsigned integer data type:
+
+type
+    u128: dword[4];
+
+
+
+procedure getu128( var inValue:u128 ); @nodisplay;
+var
+    Delimiters: cset;
+    LocalValue: u128;
+    PartialSum: u128;
+    
+begin getu128;
+
+    push( eax );
+    push( ebx );
+    push( ecx );
+    push( edx );
+    
+    // Get a copy of the HLA standard numeric input delimiters:
+    
+    conv.getDelimiters( Delimiters );
+    
+    // Initialize the numeric input value to zero:
+    
+    xor( eax, eax );
+    mov( eax, LocalValue[0] );
+    mov( eax, LocalValue[4] );
+    mov( eax, LocalValue[8] );
+    mov( eax, LocalValue[12] );
+    
+    // By default, #0 is a member of the HLA Delimiters
+    // character set.  However, someone may have called
+    // conv.setDelimiters and removed this character
+    // from the internal Delimiters character set.  This
+    // algorithm depends upon #0 being in the Delimiters
+    // character set, so let's add that character in
+    // at this point just to be sure.   
+    
+    cs.unionChar( #0, Delimiters );
+
+
+    // If we're at the end of the current input
+    // line (or the program has yet to read any input),
+    // for the input of an actual character.
+    
+    if( stdin.peekc() = #0 ) then
+    
+        stdin.readLn();
+        
+    endif;
+    
+
+
+    // Skip the delimiters found on input.  This code is
+    // somewhat convoluted because stdin.peekc does not
+    // force the input of a new line of text if the current
+    // input buffer is empty.  We have to force that input
+    // ourselves in the event the input buffer is empty.
+        
+    while( stdin.peekc() in Delimiters ) do
+
+        // If we're at the end of the line, read a new line
+        // of text from the user; otherwise, remove the
+        // delimiter character from the input stream.
+        
+        if( al = #0 ) then
+        
+            stdin.readLn(); // Force a new input line.
+            
+        else
+        
+            stdin.getc();   // Remove the delimiter from the input buffer.
+            
+        endif;
+            
+    endwhile;
+    
+    // Read the decimal input characters and convert
+    // them to the internal representation:
+    
+    while( stdin.peekc() in '0'..'9' ) do
+    
+        // Actually read the character to remove it from the
+        // input buffer.
+        
+        stdin.getc();
+        
+        // Ignore underscores, process everything else.
+        
+        if( al <> '_' ) then
+        
+            and( $f, al );              // '0'..'9' -> 0..9
+            mov( eax, PartialSum[0] );  // Save to add in later.
+            
+            // Conversion algorithm is the following:
+            //
+            // (1) LocalValue := LocalValue * 10.
+            // (2) LocalValue := LocalValue + al
+            //
+            // First, multiply LocalValue by 10:
+            
+            mov( 10, eax );
+            mul( LocalValue[0], eax );
+            mov( eax, LocalValue[0] );
+            mov( edx, PartialSum[4] );
+            
+            mov( 10, eax );
+            mul( LocalValue[4], eax );
+            mov( eax, LocalValue[4] );
+            mov( edx, PartialSum[8] );
+            
+            mov( 10, eax );
+            mul( LocalValue[8], eax );
+            mov( eax, LocalValue[8] );
+            mov( edx, PartialSum[12] );
+                        
+            mov( 10, eax );
+            mul( LocalValue[12], eax );
+            mov( eax, LocalValue[12] );
+            
+            // Check for overflow.  This occurs if EDX
+            // contains a none zero value.
+            
+            if( edx /* <> 0 */ ) then
+            
+                raise( ex.ValueOutOfRange );
+                
+            endif;
+            
+            // Add in the partial sums (including the
+            // most recently converted character).
+            
+            mov( PartialSum[0], eax );
+            add( eax, LocalValue[0] );
+
+            mov( PartialSum[4], eax );
+            adc( eax, LocalValue[4] );
+
+            mov( PartialSum[8], eax );
+            adc( eax, LocalValue[8] );
+
+            mov( PartialSum[12], eax );
+            adc( eax, LocalValue[12] );
+            
+            // Another check for overflow.  If there
+            // was a carry out of the extended precision
+            // addition above, we've got overflow.
+            
+            if( @c ) then
+            
+                raise( ex.ValueOutOfRange );
+                
+            endif;
+
+        endif;
+        
+    endwhile;
+
+    // Okay, we've encountered a non-decimal character.
+    // Let's make sure it's a valid delimiter character.
+    // Raise the ex.ConversionError exception if it's invalid.
+    
+    if( al not in Delimiters ) then
+    
+        raise( ex.ConversionError );
+        
+    endif;
+    
+    // Okay, this conversion has been a success.  Let's store
+    // away the converted value into the output parameter.
+    
+    mov( inValue, ebx );
+    mov( LocalValue[0], eax );
+    mov( eax, [ebx] );
+    
+    mov( LocalValue[4], eax );
+    mov( eax, [ebx+4] );
+    
+    mov( LocalValue[8], eax );
+    mov( eax, [ebx+8] );
+    
+    mov( LocalValue[12], eax );
+    mov( eax, [ebx+12] );
+    
+    pop( edx );
+    pop( ecx );
+    pop( ebx );
+    pop( eax );
+    
+end getu128;
+
+
+
+// Code to test the routines above:
+
+static
+    b1:u128;
+        
+begin Uin128;
+
+    stdout.put( "Input a 128-bit decimal value: " );
+    getu128( b1 );
+    stdout.put
+    ( 
+        "The value is: $",
+        b1[12], '_',
+        b1[8],  '_',
+        b1[4],  '_',
+        b1[0],
+        nl
+    );
+    
+end Uin128;
+    

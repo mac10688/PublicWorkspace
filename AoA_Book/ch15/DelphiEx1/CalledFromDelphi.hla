@@ -1,0 +1,10 @@
+unit LinkWithDelphi;
+    
+    procedure CalledFromDelphi; external;
+
+    procedure CalledFromDelphi;
+    begin CalledFromDelphi;
+    end CalledFromDelphi;
+     
+end LinkWithDelphi;
+            

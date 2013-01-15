@@ -1,0 +1,5 @@
+C:\TempEducation\BuilderPatternDemo\BuilderPatternDemo2008\bin\Debug\BuilderPatternDemo.exe
+C:\TempEducation\BuilderPatternDemo\BuilderPatternDemo2008\bin\Debug\BuilderPatternDemo.pdb
+C:\TempEducation\BuilderPatternDemo\BuilderPatternDemo2008\obj\Debug\ResolveAssemblyReference.cache
+C:\TempEducation\BuilderPatternDemo\BuilderPatternDemo2008\obj\Debug\BuilderPatternDemo.exe
+C:\TempEducation\BuilderPatternDemo\BuilderPatternDemo2008\obj\Debug\BuilderPatternDemo.pdb

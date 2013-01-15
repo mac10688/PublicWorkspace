@@ -1,0 +1,6 @@
+program ctlHelloWorld;
+begin ctlHelloWorld;
+
+    #print( "Hello, World of HLA/CTL" )
+
+end ctlHelloWorld;

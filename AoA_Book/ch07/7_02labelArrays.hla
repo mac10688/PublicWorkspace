@@ -1,0 +1,34 @@
+program labelArrays;
+#include( "stdlib.hhf" );
+    
+static
+    labels:dword[2] := [ &lbl1, &lbl2 ];
+    
+    procedure hasLabels;
+    static
+        stmtLbls: dword[2] := [ &label1, &label2 ];
+
+    begin hasLabels;
+    
+        label1:
+            
+            stdout.put
+            ( 
+                "stmtLbls[0]= $", stmtLbls[0], nl,
+                "stmtLbls[1]= $", stmtLbls[4], nl
+            );
+            
+        label2:
+        
+    end hasLabels;
+        
+begin labelArrays;
+
+    hasLabels();
+    lbl1:
+    
+        stdout.put( "labels[0]= $", labels[0], " labels[1]=", labels[4], nl );
+    
+    lbl2:
+        
+end labelArrays;

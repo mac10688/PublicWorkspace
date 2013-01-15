@@ -1,0 +1,68 @@
+c:\users\houssem\documents\visual studio 2010\Projects\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\ApplicationIcon.png
+c:\users\houssem\documents\visual studio 2010\Projects\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\Background.png
+c:\users\houssem\documents\visual studio 2010\Projects\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\MyScheduleAppWP7v1.dll
+c:\users\houssem\documents\visual studio 2010\Projects\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\MyScheduleAppWP7v1.pdb
+c:\users\houssem\documents\visual studio 2010\Projects\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\AppManifest.xaml
+c:\users\houssem\documents\visual studio 2010\Projects\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\MyScheduleAppWP7v1.xap
+c:\users\houssem\documents\visual studio 2010\Projects\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\Microsoft.Phone.Controls.dll
+c:\users\houssem\documents\visual studio 2010\Projects\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\Microsoft.Phone.Controls.xml
+c:\users\houssem\documents\visual studio 2010\Projects\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\App.g.i.cs
+c:\users\houssem\documents\visual studio 2010\Projects\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\MainPage.g.i.cs
+c:\users\houssem\documents\visual studio 2010\Projects\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\PivotPage1.g.i.cs
+c:\users\houssem\documents\visual studio 2010\Projects\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\UserControl-Day.g.i.cs
+c:\users\houssem\documents\visual studio 2010\Projects\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\MyScheduleAppWP7v1.g.resources
+c:\users\houssem\documents\visual studio 2010\Projects\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\MyScheduleAppWP7v1.dll
+c:\users\houssem\documents\visual studio 2010\Projects\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\MyScheduleAppWP7v1.pdb
+c:\users\houssem\documents\visual studio 2010\Projects\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\XapCacheFile.xml
+c:\users\houssem\documents\visual studio 2010\Projects\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\Icons\add.png
+c:\users\houssem\documents\visual studio 2010\Projects\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\Icons\delete.png
+c:\users\houssem\documents\visual studio 2010\Projects\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\Icons\edit.png
+c:\users\houssem\documents\visual studio 2010\Projects\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\Icons\refresh.png
+c:\users\houssem\documents\visual studio 2010\Projects\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\AddEventPage.g.i.cs
+C:\Users\Houssem\documents\visual studio 2010\Projects\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\MyScheduleAppWP7v1.csprojResolveAssemblyReference.cache
+C:\Users\Houssem\documents\visual studio 2010\Projects\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\EditEventPage.g.i.cs
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 opdated on 23.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\Icons\add.png
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 opdated on 23.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\ApplicationIcon.png
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 opdated on 23.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\Background.png
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 opdated on 23.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\Icons\refresh.png
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 opdated on 23.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\Icons\delete.png
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 opdated on 23.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\Icons\edit.png
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 opdated on 23.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\MyScheduleAppWP7v1.dll
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 opdated on 23.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\MyScheduleAppWP7v1.pdb
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 opdated on 23.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\AppManifest.xaml
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 opdated on 23.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\MyScheduleAppWP7v1.xap
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 opdated on 23.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\Microsoft.Phone.Controls.dll
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 opdated on 23.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\Microsoft.Phone.Controls.xml
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 opdated on 23.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\MyScheduleAppWP7v1.csprojResolveAssemblyReference.cache
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 opdated on 23.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\App.g.i.cs
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 opdated on 23.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\AddEventPage.g.i.cs
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 opdated on 23.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\EditEventPage.g.i.cs
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 opdated on 23.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\MainPage.g.i.cs
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 opdated on 23.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\PivotPage1.g.i.cs
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 opdated on 23.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\UserControl-Day.g.i.cs
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 opdated on 23.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\MyScheduleAppWP7v1.g.resources
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 opdated on 23.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\MyScheduleAppWP7v1.dll
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 opdated on 23.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\MyScheduleAppWP7v1.pdb
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 opdated on 23.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\XapCacheFile.xml
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 updated on 24.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\Icons\add.png
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 updated on 24.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\ApplicationIcon.png
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 updated on 24.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\Background.png
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 updated on 24.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\Icons\refresh.png
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 updated on 24.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\Icons\delete.png
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 updated on 24.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\Icons\edit.png
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 updated on 24.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\MyScheduleAppWP7v1.dll
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 updated on 24.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\MyScheduleAppWP7v1.pdb
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 updated on 24.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\AppManifest.xaml
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 updated on 24.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\MyScheduleAppWP7v1.xap
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 updated on 24.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\Microsoft.Phone.Controls.dll
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 updated on 24.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\Bin\Debug\Microsoft.Phone.Controls.xml
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 updated on 24.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\MyScheduleAppWP7v1.csprojResolveAssemblyReference.cache
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 updated on 24.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\App.g.i.cs
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 updated on 24.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\AddEventPage.g.i.cs
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 updated on 24.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\EditEventPage.g.i.cs
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 updated on 24.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\MainPage.g.i.cs
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 updated on 24.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\PivotPage1.g.i.cs
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 updated on 24.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\MyScheduleAppWP7v1.g.resources
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 updated on 24.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\MyScheduleAppWP7v1.dll
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 updated on 24.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\MyScheduleAppWP7v1.pdb
+C:\Users\Houssem\Documents\Visual Studio 2010\Projects\MyScheduleAppWP7v1 updated on 24.08\MyScheduleAppWP7v1\MyScheduleAppWP7v1\obj\Debug\XapCacheFile.xml

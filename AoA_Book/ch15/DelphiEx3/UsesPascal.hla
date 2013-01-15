@@ -1,0 +1,31 @@
+// UsesPascalUnit-
+//
+//  Provides the UsesPascal function for the DelphiEx3 program.
+
+unit  UsesPascalUnit;
+
+// Tell HLA that UsesPascal is a public symbol:
+
+procedure UsesPascal( parm1:int32; parm2:int32; parm3:int32 ); external;
+
+// Demonstration of a function that uses the PASCAL calling convention.
+// This function simply computes parm1+parm2-parm3 and returns the
+// result in EAX.  Note that this function does not have the
+// "NOFRAME" option because it needs to build the activation record
+// (stack frame) in order to access the parameters.  Furthermore, this
+// code must clean up the parameters upon return (another chore handled
+// automatically by HLA if the "NOFRAME" option is not present).
+
+procedure UsesPascal( parm1:int32; parm2:int32; parm3:int32 ); 
+    nodisplay; noalignstk;
+
+begin UsesPascal;
+
+    mov( parm1, eax );
+    add( parm2, eax );
+    sub( parm3, eax );
+
+end UsesPascal;
+
+
+end UsesPascalUnit;

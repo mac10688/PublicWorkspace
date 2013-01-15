@@ -1,0 +1,18 @@
+program memIndJmp;
+#include( "stdlib.hhf" );
+    
+static
+    LabelPtr:dword := &stmtLabel;
+    
+begin memIndJmp;
+
+    stdout.put( "Before the JMP instruction" nl );
+    jmp( LabelPtr );
+    
+        stdout.put( "This should not execute" nl );
+    
+    stmtLabel:
+        
+        stdout.put( "After the LabelPtr label in the program" nl );
+        
+end memIndJmp;

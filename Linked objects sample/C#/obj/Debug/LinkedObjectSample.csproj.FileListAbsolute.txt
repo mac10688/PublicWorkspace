@@ -1,0 +1,12 @@
+c:\users\paavo\documents\visual studio 2012\Projects\LinkedObjectSample\bin\Debug\LinkedObjectSample.exe.config
+c:\users\paavo\documents\visual studio 2012\Projects\LinkedObjectSample\bin\Debug\LinkedObjectSample.exe
+c:\users\paavo\documents\visual studio 2012\Projects\LinkedObjectSample\bin\Debug\LinkedObjectSample.pdb
+c:\users\paavo\documents\visual studio 2012\Projects\LinkedObjectSample\obj\Debug\MainWindow.baml
+c:\users\paavo\documents\visual studio 2012\Projects\LinkedObjectSample\obj\Debug\MainWindow.g.cs
+c:\users\paavo\documents\visual studio 2012\Projects\LinkedObjectSample\obj\Debug\App.g.cs
+c:\users\paavo\documents\visual studio 2012\Projects\LinkedObjectSample\obj\Debug\LinkedObjectSample_MarkupCompile.cache
+c:\users\paavo\documents\visual studio 2012\Projects\LinkedObjectSample\obj\Debug\LinkedObjectSample.g.resources
+c:\users\paavo\documents\visual studio 2012\Projects\LinkedObjectSample\obj\Debug\LinkedObjectSample.Properties.Resources.resources
+c:\users\paavo\documents\visual studio 2012\Projects\LinkedObjectSample\obj\Debug\LinkedObjectSample.csproj.GenerateResource.Cache
+c:\users\paavo\documents\visual studio 2012\Projects\LinkedObjectSample\obj\Debug\LinkedObjectSample.exe
+c:\users\paavo\documents\visual studio 2012\Projects\LinkedObjectSample\obj\Debug\LinkedObjectSample.pdb

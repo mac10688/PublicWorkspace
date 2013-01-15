@@ -1,0 +1,13 @@
+program ConvertToHex;
+#include( "stdlib.hhf" );
+static 
+    value: int32;
+    
+begin ConvertToHex; 
+
+    stdout.put( "Input a decimal value:" );    
+    stdin.get( value );    
+    mov( value, eax ); 
+    stdout.put( "The value ", value, " converted to hex is $", eax, nl );
+    
+end ConvertToHex;

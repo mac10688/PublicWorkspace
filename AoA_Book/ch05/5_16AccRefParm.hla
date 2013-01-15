@@ -1,0 +1,38 @@
+program AccessingReferenceParameters;
+#include( "stdlib.hhf" )
+
+    procedure RefParm( var theParameter: uns32 ); @nodisplay;
+    begin RefParm;
+
+        // Add two directly to the parameter passed by
+        // reference to this procedure.
+        
+        mov( theParameter, eax );
+        add( 2, (type uns32 [eax]) );
+        
+        // Fetch the value of the reference parameter 
+        // and print it's value.
+        
+        mov( [eax], eax );
+        stdout.put
+        ( 
+            "theParameter now equals ", 
+            (type uns32 eax), 
+            nl 
+        );
+
+    end RefParm;
+
+
+static
+    p1: uns32 := 10;
+    p2: uns32 := 15;
+
+begin AccessingReferenceParameters;
+
+    RefParm( p1 );
+    RefParm( p2 );
+    
+    stdout.put( "On return, p1=", p1, " and p2=", p2, nl );
+
+end AccessingReferenceParameters;

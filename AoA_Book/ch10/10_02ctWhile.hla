@@ -1,0 +1,17 @@
+program ctWhile;
+#include( "stdlib.hhf" )
+
+static
+    ary: uns32[5] := [ 2, 3, 5, 8, 13 ];
+    
+begin ctWhile;
+
+    ?i := 0;
+    #while( i < 5 )
+    
+        stdout.put( "array[ ", i, " ] = ", ary[i*4], nl );
+        ?i := i + 1;
+        
+    #endwhile
+                
+end ctWhile;

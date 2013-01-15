@@ -1,0 +1,82 @@
+program printDemo;
+#include( "stdlib.hhf" );
+
+    // print-
+    //
+    //  This procedure writes the literal string
+    //  immediately following the call to the
+    //  standard output device.  The literal string
+    //  must be a sequence of characters ending with
+    //  a zero byte (i.e., a C string, not an HLA 
+    //  string).
+    
+    procedure print; @noframe; @nodisplay;
+    const
+        
+        // RtnAdrs is the offset of this procedure's
+        // return address in the activation record.
+        
+        RtnAdrs:text := "(type dword [ebp+4])";
+        
+    begin print;
+    
+        // Build the activation record (note the
+        // "noframe" option above).
+        
+        push( ebp );
+        mov( esp, ebp );
+        
+        // Preserve the registers this function uses.
+        
+        push( eax );
+        push( ebx );
+        
+        // Copy the return address into the EBX
+        // register.  Since the return address points
+        // at the start of the string to print, this
+        // instruction loads EBX with the address of
+        // the string to print.
+        
+        mov( RtnAdrs, ebx );
+        
+        // Until we encounter a zero byte, print the
+        // characters in the string.
+        
+        forever
+        
+            mov( [ebx], al );   // Get the next character.
+            breakif( !al );     // Quit if it's zero.
+            stdout.putc( al );  // Print it.
+            inc( ebx );         // Move on to the next char.
+            
+        endfor;
+        
+        // Skip past the zero byte and store the resulting
+        // address over the top of the return address so
+        // we'll return to the location that is one byte
+        // beyond the zero terminating byte of the string.
+        
+        inc( ebx );
+        mov( ebx, RtnAdrs );
+        
+        // Restore EAX and EBX.
+        
+        pop( ebx );
+        pop( eax );
+        
+        // Clean up the activation record and return.
+        
+        pop( ebp );
+        ret();
+        
+    end print;
+    
+    
+begin printDemo;
+
+    // Simple test of the print procedure.
+    
+    call print;
+    byte "Hello World!", 13, 10, 0 ;
+                    
+end printDemo;

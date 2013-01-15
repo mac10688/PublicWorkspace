@@ -1,0 +1,36 @@
+program PassingExpressions;
+#include( "stdlib.hhf" )
+
+    procedure ExprParm( exprValue:uns32 ); @nodisplay;
+    begin ExprParm;
+
+        stdout.put( "exprValue = ", exprValue, nl );
+        
+    end ExprParm;
+    
+    
+static
+    Operand1: uns32 := 5;
+    Operand2: uns32 := 20;
+    
+begin PassingExpressions;
+
+    // ExprParm( Operand1 + Operand2 );
+    //
+    //  Method one: Compute the sum and manually
+    //  push the sum onto the stack.
+    
+    mov( Operand1, eax );
+    add( Operand2, eax );
+    push( eax );
+    call ExprParm;
+    
+    //  Method two: Compute the sum in a register and
+    //  pass the register using the HLA high level
+    //  language syntax.
+    
+    mov( Operand1, eax );
+    add( Operand2, eax );
+    ExprParm( eax );
+    
+end PassingExpressions;

@@ -1,0 +1,74 @@
+program testMUL64;
+#include( "stdlib.hhf" )
+
+type
+    t128:dword[4];
+    
+procedure MUL64( Multiplier:qword; Multiplicand:qword; var Product:t128 );
+	@nodisplay;
+const
+    mp: text := "(type dword Multiplier)";
+    mc: text := "(type dword Multiplicand)";
+    prd:text := "(type dword [edi])";
+
+begin MUL64;
+
+    mov( Product, edi );
+
+    // Multiply the L.O. dword of Multiplier times Multiplicand.
+                                           
+    mov( mp, eax );
+    mul( mc, eax );     // Multiply L.O. dwords.
+    mov( eax, prd );    // Save L.O. dword of product.
+    mov( edx, ecx );    // Save H.O. dword of partial product result.
+
+    mov( mp, eax );
+    mul( mc[4], eax );  // Multiply mp(L.O.) * mc(H.O.)
+    add( ecx, eax );    // Add to the partial product.
+    adc( 0, edx );      // Don't forget the carry!
+    mov( eax, ebx );    // Save partial product for now.
+    mov( edx, ecx );
+
+    // Multiply the H.O. word of Multiplier with Multiplicand.
+
+    mov( mp[4], eax );  // Get H.O. dword of Multiplier.
+    mul( mc, eax );     // Multiply by L.O. word of Multiplicand.
+    add( ebx, eax );    // Add to the partial product.
+    mov( eax, prd[4] ); // Save the partial product.
+    adc( edx, ecx );    // Add in the carry!
+	pushfd();			// Save carry out for the next partial sum.
+    
+    mov( mp[4], eax );  // Multiply the two H.O. dwords together.
+    mul( mc[4], eax );
+	popfd();			// Retrieve the carry from above.
+    adc( ecx, eax );    // Add in partial product.
+    adc( 0, edx );      // Don't forget the carry!
+    mov( eax, prd[8] ); // Save the partial product.
+    mov( edx, prd[12] );
+    
+end MUL64;
+
+static
+    op1: qword;
+    op2: qword;
+    rslt: t128; 
+
+
+begin testMUL64;
+
+    // Initialize the qword values (note that static objects
+    // are initialized with zero bits).
+    
+    mov( 1234, (type dword op1 ));
+    mov( 5678, (type dword op2 ));
+    MUL64( op1, op2, rslt );
+    
+    // The following only prints the L.O. qword, but
+    // we know the H.O. qword is zero so this is okay.
+    
+    stdout.put( "rslt=" );
+    stdout.putu64( (type qword rslt));
+    
+end testMUL64;
+
+

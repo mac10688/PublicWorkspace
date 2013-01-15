@@ -1,0 +1,37 @@
+program missingRET;
+#include( "stdlib.hhf" );
+
+    // This first procedure has the NOFRAME
+    // option but does not have a RET instruction.
+    
+    procedure firstProc; @noframe; @nodisplay;
+    begin firstProc;
+    
+        stdout.put( "Inside firstProc" nl );
+        
+    end firstProc;
+    
+    
+    // Because the procedure above does not have a
+    // RET instruction, it will "fall through" to
+    // the following instruction.  Note that there
+    // is no call to this procedure anywhere in
+    // this program.
+    
+    procedure secondProc; @noframe; @nodisplay;
+    begin secondProc;
+    
+        stdout.put( "Inside secondProc" nl );
+        ret();
+        
+    end secondProc;
+    
+    
+begin missingRET;
+
+    // Call the procedure that doesn't have
+    // a RET instruction.
+    
+    call firstProc;
+    
+end missingRET;

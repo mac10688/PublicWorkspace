@@ -1,0 +1,33 @@
+﻿<Window x:Class="PrintPreview.Search"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Search" Height="400" Width="400" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+ 
+    <Grid Name="dgvSearch">
+        <RadioButton Name="rbiInServizio" Content="In servizio" Margin="10,10,0,0"/>
+        <RadioButton Name="rbtSostenitore" Content="Sostenitore" Margin="140,10,0,0"/>
+        <RadioButton Name="rbtInSospeso" Content="In sospeso" Margin="260,10,0,0"/>
+        
+        <CheckBox Name="chkMensa" Content="Mensa" Margin="10,80,0,0"/>
+        <CheckBox Name="chkScuolaItaliano" Content="Scuola Italiano" Margin="10,110,0,0"/>
+        <CheckBox Name="chkTesseramento" Content="Tesseramento" Margin="10,140,0,0"/>
+        <CheckBox Name="chkSportelloLegale" Content="Sportello legale" Margin="10,170,0,0" />
+        <CheckBox Name="chkDocce" Content="Docce" Margin="10,200,0,0"/>
+        <CheckBox Name="chkCentroDiAiuti" Content="Centro di aiuti" Margin="10,230,0,0"/>
+        <CheckBox Name="chkSegreteriaVolontari" Content="Segreteria volontari" Margin="10,260,0,0"/>
+        <CheckBox Name="chkGuardaRoba" Content="Guardaroba" Margin="10,290,0,0"/>
+        
+        
+        <CheckBox Name="chkCentroAscolto" Content="Centro ascolto" Margin="240,80,0,0"/>
+        <CheckBox Name="chkPonySolidarieta" Content="Pony solidarietà" Margin="240,110,0,0"/>
+        <CheckBox Name="chkSportelloLavoro" Content="Sportello lavoro" Margin="240,140,0,0"/>
+        <CheckBox Name="chkDormitorio" Content="Dormitorio" Margin="240,170,0,0"/>
+        <CheckBox Name="chkUnitaMobile" Content="Unità mobile" Margin="240,200,0,0"/>
+        <CheckBox Name="chkComunitaMinori" Content="Comunità minori" Margin="240,230,0,0"/>
+        <CheckBox Name="chkFormazione" Content="Formazione" Margin="240,260,0,0"/>
+        <CheckBox Name="chkRedazione" Content="Redazione" Margin="240,290,0,0"/>
+        
+        <Button Name="btnFind" Content="Trova" Margin="200,310,0,0" Height="20" Width="100" Click="btnFind_Click"/>
+        <Button Name="btnClose" Content="Chiudi" Margin="12,326,266,14" Height="20" Width="100" Click="btnClose_Click"/>
+    </Grid>
+</Window>

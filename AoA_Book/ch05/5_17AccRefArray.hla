@@ -1,0 +1,78 @@
+program accessingRefArrayParameters;
+#include( "stdlib.hhf" )
+
+const
+    NumElements := 64;
+    
+type
+    Pt: record
+    
+            x:uns8;
+            y:uns8;
+            
+        endrecord;
+        
+    Pts: Pt[NumElements];
+        
+        
+    procedure RefArrayParm( var ptArray: Pts ); @nodisplay;
+    begin RefArrayParm;
+
+        push( eax );
+        push( ecx );
+        push( edx );
+        
+        mov( ptArray, edx );    // Get address of parameter into EDX.
+        
+        for( mov( 0, ecx ); ecx < NumElements; inc( ecx )) do
+        
+            // For each element of the array, set the "x" field
+            // to (ecx div 8) and set the "y" field to (ecx mod 8).
+            
+            mov( cl, al );
+            shr( 3, al );   // ECX div 8.
+            mov( al, (type Pt [edx+ecx*2]).x );
+            
+            mov( cl, al );
+            and( %111, al );  // ECX mod 8.
+            mov( al, (type Pt [edx+ecx*2]).y );
+            
+        endfor;
+        pop( edx );
+        pop( ecx );
+        pop( eax );     
+            
+    end RefArrayParm;
+
+
+static
+    MyPts: Pts;
+    
+begin accessingRefArrayParameters;
+
+    // Initialize the elements of the array.
+    
+    RefArrayParm( MyPts );
+    
+    
+    // Display the elements of the array.
+    
+    for( mov( 0, ebx ); ebx < NumElements; inc( ebx )) do
+    
+        stdout.put
+        ( 
+            "RefArrayParm[", 
+            (type uns32 ebx):2, 
+            "].x=",
+            MyPts.x[ ebx*2 ],
+            
+            "   RefArrayParm[", 
+            (type uns32 ebx):2, 
+            "].y=",
+            MyPts.y[ ebx*2 ],
+            nl
+        );
+            
+    endfor;
+        
+end accessingRefArrayParameters;

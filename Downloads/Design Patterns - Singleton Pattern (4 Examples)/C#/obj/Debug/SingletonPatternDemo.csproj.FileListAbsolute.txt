@@ -1,0 +1,5 @@
+C:\TempEducation\SingletonPatternDemo\SingletonPatternDemo\bin\Debug\SingletonPatternDemo.exe
+C:\TempEducation\SingletonPatternDemo\SingletonPatternDemo\bin\Debug\SingletonPatternDemo.pdb
+C:\TempEducation\SingletonPatternDemo\SingletonPatternDemo\obj\Debug\ResolveAssemblyReference.cache
+C:\TempEducation\SingletonPatternDemo\SingletonPatternDemo\obj\Debug\SingletonPatternDemo.exe
+C:\TempEducation\SingletonPatternDemo\SingletonPatternDemo\obj\Debug\SingletonPatternDemo.pdb

@@ -1,0 +1,80 @@
+program testDiv128;
+#include( "stdlib.hhf" )
+
+type
+    t128:dword[4];
+    
+procedure div128
+( 
+        Dividend:   t128; 
+        Divisor:    dword; 
+    var QuotAdrs:   t128; 
+    var Remainder:  dword 
+);  @nodisplay;
+
+const
+    Quotient: text := "(type dword [edi])";
+
+begin div128;
+
+    push( eax );
+    push( edx );
+    push( edi );
+    
+    mov( QuotAdrs, edi );       // Pointer to quotient storage.
+    
+    mov( Dividend[12], eax );   // Begin division with the H.O. dword.
+    xor( edx, edx );            // Zero extend into EDX.
+    div( Divisor, edx:eax );    // Divide H.O. dword.
+    mov( eax, Quotient[12] );   // Store away H.O. dword of quotient.
+    
+    mov( Dividend[8], eax );    // Get dword #2 from the dividend
+    div( Divisor, edx:eax );    // Continue the division.
+    mov( eax, Quotient[8] );    // Store away dword #2 of the quotient.
+    
+    mov( Dividend[4], eax );    // Get dword #1 from the dividend.
+    div( Divisor, edx:eax );    // Continue the division.
+    mov( eax, Quotient[4] );    // Store away dword #1 of the quotient.
+    
+    mov( Dividend[0], eax );    // Get the L.O. dword of the dividend.
+    div( Divisor, edx:eax );    // Finish the division.
+    mov( eax, Quotient[0] );    // Store away the L.O. dword of the quotient.
+    
+    mov( Remainder, edi );      // Get the pointer to the remainder's value.
+    mov( edx, [edi] );          // Store away the remainder value.
+    
+    pop( edi );
+    pop( edx );
+    pop( eax );
+            
+end div128;
+
+static
+    op1:    t128    := [$2222_2221, $4444_4444, $6666_6666, $8888_8888];
+    op2:    dword   := 2;
+    quo:    t128;
+    rmndr:  dword;
+
+
+begin testDiv128;
+
+    div128( op1, op2, quo, rmndr );
+    
+    stdout.put
+    ( 
+        nl
+        nl
+        "After the division: " nl
+        nl
+        "Quotient = $",
+        quo[12], "_",
+        quo[8], "_",
+        quo[4], "_",
+        quo[0], nl
+        
+        "Remainder = ", (type uns32 rmndr )
+    );
+        
+end testDiv128;
+
+

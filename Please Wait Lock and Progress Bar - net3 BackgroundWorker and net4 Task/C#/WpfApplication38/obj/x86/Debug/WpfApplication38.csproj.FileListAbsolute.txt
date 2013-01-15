@@ -1,0 +1,13 @@
+C:\Users\Pedro\Documents\Development\WpfApplication38\WpfApplication38\bin\Debug\WpfApplication38.exe
+C:\Users\Pedro\Documents\Development\WpfApplication38\WpfApplication38\bin\Debug\WpfApplication38.pdb
+C:\Users\Pedro\Documents\Development\WpfApplication38\WpfApplication38\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Pedro\Documents\Development\WpfApplication38\WpfApplication38\obj\x86\Debug\MainWindow.baml
+C:\Users\Pedro\Documents\Development\WpfApplication38\WpfApplication38\obj\x86\Debug\MainWindow.g.cs
+C:\Users\Pedro\Documents\Development\WpfApplication38\WpfApplication38\obj\x86\Debug\App.g.cs
+C:\Users\Pedro\Documents\Development\WpfApplication38\WpfApplication38\obj\x86\Debug\WpfApplication38_MarkupCompile.cache
+C:\Users\Pedro\Documents\Development\WpfApplication38\WpfApplication38\obj\x86\Debug\WpfApplication38.g.resources
+C:\Users\Pedro\Documents\Development\WpfApplication38\WpfApplication38\obj\x86\Debug\WpfApplication38.Properties.Resources.resources
+C:\Users\Pedro\Documents\Development\WpfApplication38\WpfApplication38\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Pedro\Documents\Development\WpfApplication38\WpfApplication38\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Pedro\Documents\Development\WpfApplication38\WpfApplication38\obj\x86\Debug\WpfApplication38.exe
+C:\Users\Pedro\Documents\Development\WpfApplication38\WpfApplication38\obj\x86\Debug\WpfApplication38.pdb

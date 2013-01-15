@@ -1,0 +1,75 @@
+// puti32.hla
+//
+// This program demonstrates procedure overloading via macros.
+//
+// It defines a "puti32" macro that calls stdout.puti32 or stdout.puti32size
+// depending on the number of parameters present.
+
+
+program puti32Demo;
+#include( "stdlib.hhf" )
+
+
+// puti32-
+//
+// Automatically decides whether we have an int32, uns32, or dword
+// operand and calls the appropriate stdout.putX routine to
+// output this value.
+
+#macro puti32( operand[] );
+
+    // If we have a single operand, call stdout.puti32:
+    
+    #if( @elements( operand ) = 1 )
+    
+        stdout.puti32( @text(operand[0]) );
+        
+        
+    // If we have two operands, call stdout.puti32size and
+    // supply a default value of ' ' for the padding character:
+    
+    #elseif( @elements( operand ) = 2 )
+    
+        stdout.puti32Size( @text(operand[0]), @text(operand[1]), ' ' );
+    
+    
+    // If we have three parameters, then pass all three of them
+    // along to puti32size:
+        
+    #elseif( @elements( operand ) = 3 )
+    
+        stdout.puti32Size
+        ( 
+            @text(operand[0]), 
+            @text(operand[1]), 
+            @text(operand[2]) 
+        );
+        
+    
+    // If we don't have one, two, or three operands, report an error:
+        
+    #else
+    
+        #error( "Expected one, two, or three operands" )
+        
+    #endif
+    
+#endmacro;
+
+
+// A sample variable declaration so we can test the macro above.
+
+static
+    i32:    int32   := -32;
+    
+
+begin puti32Demo;
+
+    
+    // Demo the put32 macro:
+    
+    puti32( i32 );  stdout.newln();
+    puti32( i32, 5 );  stdout.newln();
+    puti32( i32, 5, '*' );  stdout.newln();
+                
+end puti32Demo;

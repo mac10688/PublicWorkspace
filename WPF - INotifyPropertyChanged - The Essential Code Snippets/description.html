@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>WPF - INotifyPropertyChanged - The Essential Code Snippets</title>
+        <link href="description/Galleries.css" type="text/css" rel="Stylesheet" /><link href="description/Layout.css" type="text/css" rel="Stylesheet" /><link href="description/Brand.css" type="text/css" rel="Stylesheet" />
+        <link href="description/iframedescription.css" rel="Stylesheet" type="text/css" />
+        <script src="description/offline.js" type="text/javascript"></script>
+        <style type="text/css">
+            #projectInfo {
+                overflow: auto;
+            }
+            #longDesc {
+                clear:both;
+                margin: 25px 0 10px 0;
+            }
+
+            #SampleIndexList{
+                margin-left: 15px;
+            }
+        </style>
+    </head>
+<body>
+    <div id="offlineDescription">
+        <h1>WPF - INotifyPropertyChanged - The Essential Code Snippets</h1>
+        <br/>
+        <div id="projectInfo">
+            <div class="section">
+                    <div class="itemBarLong tagsContainer">
+                        <label for="Technologies">Technologies</label>
+                        <div id="Technologies">
+                            WPF
+                        </div>
+                    </div>
+                    <div class="itemBarLong tagsContainer">
+                        <label for="Topics">Topics</label>
+                        <div id="Topics">
+                            INotifyProperty<wbr />Changed, PropertyChanged<wbr />, code snippets, Visual Studio essentials, WPF essentials
+                        </div>
+                    </div>
+                <div class="itemBarLong">
+                    <label for="Platforms">Platforms</label>
+                    <div id="Platforms">
+                        Desktop, Phone
+                    </div>
+                </div>
+                <div class="itemBarLong">
+                    <label for="Requirements">Requirements</label>
+                    <div id="Requirements">
+                        
+                    </div>
+                </div>
+                <div class="itemBar">
+                    <label for="LastUpdated">Primary Language</label>
+                    <div id="LastUpdated">en-US</div>
+                </div>
+                <div class="itemBar">
+                    <label for="LastUpdated">Last Updated</label>
+                    <div id="LastUpdated">9/19/2012</div>
+                </div>
+                <div class="itemBarLong">
+                    <label for="License">License</label>
+                    <div id="License">
+                        <a href="license.rtf">Apache License, Version 2.0</a></div>
+                </div>
+                <div class="itemBar">
+                    <div class="viewonlinecont">
+                        <a data-link="online" href="http://code.msdn.microsoft.com/WPF-INotifyPropertyChanged-8b63ad72">View this sample online</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+                   
+<script type="text/javascript">
+    function initializePage() {
+        var otherTabClass = 'otherTab';
+        var hiddenPreClass = 'hidden';
+
+        var htmlDecode = function(encodedData) {
+            var decodedData = "";
+            if (encodedData) {
+                var div = document.createElement('div');
+                div.innerHTML = encodedData;
+                decodedData = div.firstChild.nodeValue.replace( /\\r\\n/ig , '\r\n');
+            }
+            return decodedData;
+        };
+                
+        Galleries.iterateElem(Galleries.findElem(null, 'div', 'scriptcode'), function (index, scriptBlock) {
+            var titleElem = Galleries.findElem(scriptBlock, 'div', 'title')[0];
+            var labelElems = Galleries.findElem(titleElem, 'span');
+            if (labelElems.length == 0) {
+                labelElems = titleElem;
+            }
+            var languageSpans = Galleries.findElem(scriptBlock, 'span', 'hidden');
+            var pres = Galleries.findElem(scriptBlock, 'pre');
+            if (languageSpans.length > 0 && pres.length > 1) {
+                Galleries.iterateElem(labelElems, function(index, elem) {
+                    var codePre = pres[index];
+                    var labelSpan = elem;
+                    var languageSpan = languageSpans[index];
+                            
+                    elem.code = codePre.innerHTML.replace( /(\r(\n)?)|((\r)?\n)/ig , '\\r\\n');
+                            
+                    codePre.className = codePre.className.replace(hiddenPreClass, '');
+                            
+                    languageSpan.parentNode.removeChild(languageSpan);
+                });
+
+                pres = Galleries.findElem(scriptBlock, 'pre');
+                Galleries.iterateElem(labelElems, function(index, elem) {
+                    var codePre = pres[index];
+                    var labelSpan = elem;
+                    if (index == 0) {
+                        scriptBlock.activeTab = 0;
+                    }
+                    else {
+                        labelSpan.className += otherTabClass;
+                        codePre.className += hiddenPreClass;
+                    }
+                    Galleries.attachEventHandler(labelSpan, 'click', function(e) {
+                        var activeTab = scriptBlock.activeTab;
+                        labelElems[activeTab].className += otherTabClass;
+                        pres[activeTab].className += hiddenPreClass;
+
+                        codePre.className = codePre.className.replace(hiddenPreClass, '');
+                        labelSpan.className = labelSpan.className.replace(otherTabClass, '');
+                        scriptBlock.activeTab = index;
+                    });
+                });
+
+                var preview = Galleries.findElem(scriptBlock, 'div', 'preview');
+                if (preview.length == 0) {
+                    preview.push(pres[pres.length - 1]);
+                }
+                Galleries.iterateElem(preview, function(index, elem) {
+                    elem.parentNode.removeChild(elem);
+                });
+
+                if (window.clipboardData && clipboardData.setData) {
+                    var copyLink = document.createElement('a');
+                    copyLink.href = 'javascript:void(0);';
+                    copyLink.className = 'copyCode';
+                    copyLink.innerHTML = 'Copy Code';
+                    Galleries.attachEventHandler(copyLink, 'click', function (e) {
+                        clipboardData.setData("Text", htmlDecode(labelElems[scriptBlock.activeTab].code));
+                        return false;
+                    });
+                    scriptBlock.insertBefore(copyLink, scriptBlock.childNodes[0]);
+                }
+            }
+        });
+    }
+
+    Galleries.onWindowLoad(function(){
+        initializePage();
+    });
+
+</script>
+<div id="longDesc">
+    
+<h1>Introduction</h1>
+<p><strong>MUST HAVE time savers</strong>&nbsp;to generate a class that implemants INotifyPropertyChanges, to implement the Interface on the class, and the supporting event-calling method. These are
+<strong>essential tools </strong>are for anyone writing WPF.&nbsp;Vital shortcuts&nbsp;for doing more and more MVVM style data separation,&nbsp;and generating large classes for binding.</p>
+<p>&nbsp;</p>
+<p>If you are doing true MVVM, then this would be handled in one place, your ViewModelBase class.
+<br>
+But if you are just adding it to classes, or knocking up an example for a forum, this saves a lot of time.</p>
+<p>&nbsp;</p>
+<p>This is also for the many who learn Visual Studio themselves, and some have no idea of the power of snippets.</p>
+<p>&nbsp;</p>
+<h1><span style="font-size:20px; font-weight:bold">Description</span></h1>
+<p>For a property to bind and show on a View (user interface), the property must have a public getter.</p>
+<p>For a property to be updated FROM the View, it must have a public getter.</p>
+<p>The first time you bind a property to a View element (like a form box) the value will show.</p>
+<p>However, for <strong>subsequent </strong>changes to the property to show in the View, you must implement INotifyPropertyChanged.</p>
+<p>The process of creating the public properties, with their private variable and public getters and setters, and adding the InotifyProperty changed interface and supporting methods becomes a bit of a chore after a while. Creating the long winded version of
+ a property with the call to the PropertyChanged event is a lot of manual typing:</p>
+<p>&nbsp;</p>
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>C#</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">csharp</span>
+<pre class="hidden">string _Option;
+public string Option
+{
+    get
+    {
+        return _Option;
+    }
+    set
+    {
+        if (_Option != value)
+        {
+            _Option = value;
+            RaisePropertyChanged(&quot;Option&quot;);
+        }
+    }
+}</pre>
+<div class="preview">
+<pre class="js">string&nbsp;_Option;&nbsp;
+public&nbsp;string&nbsp;Option&nbsp;
+<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;get&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">{</span><span class="js__statement">return</span>&nbsp;_Option;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">}</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;set&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">{</span><span class="js__statement">if</span>&nbsp;(_Option&nbsp;!=&nbsp;value)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_Option&nbsp;=&nbsp;value;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RaisePropertyChanged(<span class="js__string">&quot;Option&quot;</span>);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">}</span><span class="js__brace">}</span><span class="js__brace">}</span></pre>
+</div>
+</div>
+</div>
+<div class="endscriptcode">When you have many of these, it often becomes a cut and paste job, which can of course lead to mistakes.</div>
+<div class="endscriptcode">Also, when you add the INotifyPropertyChanged interface, you have to implement it and add the method to call the event yourself.</div>
+<div class="endscriptcode">
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>C#</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">csharp</span>
+<pre class="hidden">void RaisePropertyChanged(string prop)
+{
+    if (PropertyChanged != null) { PropertyChanged(this, new PropertyChangedEventArgs(prop)); }
+}
+public event PropertyChangedEventHandler PropertyChanged;</pre>
+<div class="preview">
+<pre class="csharp"><span class="cs__keyword">void</span>&nbsp;RaisePropertyChanged(<span class="cs__keyword">string</span>&nbsp;prop)&nbsp;
+{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">if</span>&nbsp;(PropertyChanged&nbsp;!=&nbsp;<span class="cs__keyword">null</span>)&nbsp;{&nbsp;PropertyChanged(<span class="cs__keyword">this</span>,&nbsp;<span class="cs__keyword">new</span>&nbsp;PropertyChangedEventArgs(prop));&nbsp;}&nbsp;
+}&nbsp;
+<span class="cs__keyword">public</span>&nbsp;<span class="cs__keyword">event</span>&nbsp;PropertyChangedEventHandler&nbsp;PropertyChanged;</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="endscriptcode">Included in this zip are two snippets that I have used for&nbsp;several years now.</div>
+<div class="endscriptcode">If you don't have these, then this really is an essential&nbsp;must-have.</div>
+<div class="endscriptcode">Simply download the zip, and unzip the contents (two .snippet files) into your Visual Studio snippets folder.</div>
+<div class="endscriptcode">
+<div class="endscriptcode"></div>
+<div class="endscriptcode">For me, that is:</div>
+<div class="endscriptcode">&nbsp;</div>
+<div class="endscriptcode"><strong>C:\Users\plaker\Documents\Visual Studio 2010\Code Snippets\Visual C#\My Code Snippets</strong></div>
+</div>
+<p>&nbsp;</p>
+<h1><em>&nbsp;</em></h1>
+<h1><em>Download -&gt; <span id="63193">My Code Snippets.zip</span></em></h1>
+<p>&nbsp;</p>
+<div class="endscriptcode"></div>
+<div class="endscriptcode">Then restart Visual Studio.</div>
+<div class="endscriptcode">Whenever you need the snippets, simply type &quot;propn&quot; or &quot;raisepc&quot;&nbsp;(without the quotes) and press the Tab key twice. Visual Studio will then either enter the code, or walk you through entering the&nbsp;values it needs to complete
+ the code.</div>
+<p>&nbsp;</p>
+<h1><span>Source Code Files</span></h1>
+<ul>
+<li>propn.snippet - Generates the code shown in the&nbsp;class example above </li><li>raisepc.snippet - Generates the code shown in the second &quot;RaisePropertyChanged&quot; example above.
+</li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><img src="description/aniThanks1.gif" alt="" style="margin-right:auto; margin-left:auto; display:block"></p>
+
+</div>
+
+
+    </div>
+</body>
+</html>

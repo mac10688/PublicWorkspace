@@ -1,0 +1,145 @@
+program out128;
+
+#include( "stdlib.hhf" );
+
+// 128-bit unsigned integer data type:
+
+type
+    _uns128: dword[4];
+
+
+
+// DivideBy10-
+//
+//  Divides "divisor" by 10 using fast
+//  extended precision division algorithm
+//  that employs the DIV instruction.
+//
+//  Returns quotient in "quotient"
+//  Returns remainder in eax.
+//  Trashes EBX, EDX, and EDI.
+
+procedure DivideBy10( dividend:_uns128; var quotient:_uns128 ); @nodisplay;
+begin DivideBy10;
+
+    mov( quotient, edi );
+    xor( edx, edx );
+    mov( dividend[12], eax );
+    mov( 10, ebx );
+    div( ebx, edx:eax );
+    mov( eax, [edi+12] );
+    
+    mov( dividend[8], eax );
+    div( ebx, edx:eax );
+    mov( eax, [edi+8] );
+    
+    mov( dividend[4], eax );
+    div( ebx, edx:eax );
+    mov( eax, [edi+4] );
+    
+    mov( dividend[0], eax );
+    div( ebx, edx:eax );
+    mov( eax, [edi+0] );
+    mov( edx, eax );
+    
+end DivideBy10;
+
+
+
+// Recursive version of putu128.
+// A separate "shell" procedure calls this so that
+// this code does not have to preserve all the registers
+// it uses (and DivideBy10 uses) on each recursive call.
+
+procedure recursivePutu128( b128:_uns128 ); @nodisplay;
+var
+    remainder: byte;
+
+begin recursivePutu128;
+
+    // Divide by ten and get the remainder (the char to print).
+    
+    DivideBy10( b128, b128 );
+    mov( al, remainder );       // Save away the remainder (0..9).
+    
+    // If the quotient (left in b128) is not zero, recursively
+    // call this routine to print the H.O. digits.
+    
+    mov( b128[0], eax );    // If we logically OR all the dwords
+    or( b128[4], eax );     // together, the result is zero if and
+    or( b128[8], eax );     // only if the entire number is zero.
+    or( b128[12], eax );
+    if( @nz ) then
+    
+        recursivePutu128( b128 );
+        
+    endif;
+    
+    // Okay, now print the current digit.
+    
+    mov( remainder, al );
+    or( '0', al );          // Converts 0..9 -> '0..'9'.
+    stdout.putc( al );
+
+end recursivePutu128;
+
+
+// Non-recursive shell to the above routine so we don't bother
+// saving all the registers on each recursive call.
+
+procedure putu128( b128:_uns128 ); @nodisplay;
+begin putu128;
+
+    push( eax );
+    push( ebx );
+    push( edx );
+    push( edi );
+    
+    recursivePutu128( b128 );
+    
+    pop( edi );
+    pop( edx );
+    pop( ebx );
+    pop( eax );
+    
+end putu128;
+
+
+
+// Code to test the routines above:
+
+static
+    b0: _uns128 := [0, 0, 0, 0];             // decimal = 0
+    b1: _uns128 := [1234567890, 0, 0, 0];    // decimal = 1234567890
+    b2: _uns128 := [$8000_0000, 0, 0, 0];    // decimal = 2147483648
+    b3: _uns128 := [0, 1, 0, 0 ];            // decimal = 4294967296
+    
+    // Largest uns128 value
+    // (decimal=340,282,366,920,938,463,463,374,607,431,768,211,455):
+    
+    b4: _uns128 := [$FFFF_FFFF, $FFFF_FFFF, $FFFF_FFFF, $FFFF_FFFF ];
+    
+begin out128;
+
+    stdout.put( "b0 = " );
+    putu128( b0 );
+    stdout.newln();
+    
+    stdout.put( "b1 = " );
+    putu128( b1 );
+    stdout.newln();
+    
+    stdout.put( "b2 = " );
+    putu128( b2 );
+    stdout.newln();
+    
+    stdout.put( "b3 = " );
+    putu128( b3 );
+    stdout.newln();
+    
+    stdout.put( "b4 = " );
+    putu128( b4 );
+    stdout.newln();
+    
+end out128;
+    

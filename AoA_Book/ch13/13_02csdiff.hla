@@ -1,0 +1,22 @@
+procedure cs.difference( src:cset; var dest:cset ); nodisplay;
+begin difference;
+
+    push( eax );
+    push( ebx );
+    mov( dest, ebx );
+    mov( (type dword src), eax );
+    not( eax );
+    and( eax, [ebx] );
+    mov( (type dword src[4]), eax );
+    not( eax );
+    and( eax, [ebx+4] );
+    mov( (type dword src[8]), eax );
+    not( eax );
+    and( eax, [ebx+8] );
+    mov( (type dword src[12]), eax );
+    not( eax );
+    and( eax, [ebx+12] );
+    pop( ebx );
+    pop( eax );
+        
+end difference;

@@ -1,0 +1,229 @@
+
+program UpperCase;
+#include( "stdlib.hhf" )
+
+
+// The following code was stolen from the
+// HLA Standard Library’s str.upper function.
+// It is not optimized, but then none of this
+// code is optimized other than to use the MMX
+// instruction set (later).
+
+procedure strupper( dest: string ); @nodisplay;
+begin strupper;
+
+    push( edi );
+    push( eax );
+    
+    mov( dest, edi );
+    if( edi = 0 ) then
+    
+        raise( ex.AttemptToDerefNULL );
+        
+    endif;
+    
+    // Until we encounter a zero byte, convert any lower
+    // case characters to upper case.
+    
+    forever
+    
+        mov( [edi], al );
+        breakif( al = 0 );      // Quit when we find a zero byte.
+        
+        // If a lower case character, convert it to upper case
+        // and store the result back into the destination string.
+        
+        if
+        (#{
+            cmp( al, 'a' );
+            jb false;
+            cmp( al, 'z' );
+            ja false;
+        }#) then
+        
+            and( $5f, al );     // Magic lc->UC translation.
+            mov( al, [edi] );   // Save result.
+            
+        endif;
+        
+        // Move on to the next character.
+        
+        inc( edi );
+        
+    endfor;
+    
+    pop( edi );
+    pop( eax );
+    
+end strupper;
+
+
+
+
+procedure mmxupper( dest: string ); @nodisplay;
+const
+    zCh:char := char( uns8( 'z') + 1 );
+    aCh:char := char( uns8( 'a') - 1 );
+    
+static
+
+    // Create eight copies of the A-1 and Z+1 characters
+    // so we can compare eight characters at once:
+    
+    A:qword; @nostorage;
+        byte aCh, aCh, aCh, aCh, aCh, aCh, aCh, aCh;
+        
+    Z:qword; @nostorage;
+        byte zCh, zCh, zCh, zCh, zCh, zCh, zCh, zCh;
+    
+    // Conversion factor: UC := LC - $20.
+        
+    ConvFactor: qword; @nostorage;
+        byte $20, $20, $20, $20, $20, $20, $20, $20;
+         
+begin mmxupper;
+
+    push( edi );
+    push( eax );
+    
+    mov( dest, edi );
+    if( edi = 0 ) then
+    
+        raise( ex.AttemptToDerefNULL );
+        
+    endif;
+    
+    // Some invariant operations (things that don’t
+    // change on each iteration of the loop):
+    
+    movq( A, mm2 );
+    movq( ConvFactor, mm4 );
+    
+    // Get the string length from the length field:
+    
+    mov( (type str.strRec [edi]).length, eax );
+    
+    // Process the string in blocks of eight characters:
+    
+    while( (type int32 eax) >= 8 ) do
+        
+        movq( [edi], mm0 );   // Get next eight characters of our string.
+        movq( mm0, mm1 );     // We need two copies.
+        movq( Z, mm3 );       // Need to refresh on each loop.
+        pcmpgtb( mm2, mm1 );  // Generate 1’s in MM1 everywhere chars >= ‘a’
+        pcmpgtb( mm0, mm3 );  // Generate 1’s in MM3 everywhere chars <= ‘z’
+        pand( mm3, mm1 );     // Generate 1’s in MM1 when ‘a’<=chars<=’z’
+        pand( mm4, mm1 );     // Generates $20 in each spot we have a l.c. char
+        psubb( mm1, mm0 );    // Convert l.c. chars to U.C. by adding $20.
+        movq( mm0, (type qword [edi]));
+            
+        // Move on to the next eight characters in the string.
+        
+        sub( 8, eax );
+        add( 8, edi );
+        
+    endwhile;
+    
+    // If we’re processing less than eight characters, do it the old-fashioned
+    // way (one character at a time).  This also handles the last 1..7 chars
+    // if the number of characters is not an even multiple of eight.  This
+    // code was swiped directly from the HLA str.upper function (above).
+    
+    if( eax != 0 ) then
+    
+        forever
+        
+            mov( [edi], al );
+            breakif( al = 0 );      // Quit when we find a zero byte.
+            
+            // If a lower case character, convert it to upper case
+            // and store the result back into the destination string.
+            
+            if
+            (#{
+                cmp( al, 'a' );
+                jb false;
+                cmp( al, 'z' );
+                ja false;
+            }#) then
+            
+                and( $5f, al );     // Magic lc->UC translation.
+                mov( al, [edi] );   // Save result.
+                
+            endif;
+            
+            // Move on to the next character.
+            
+            inc( edi );
+            
+        endfor;
+        
+    endif;
+    emms(); // Clean up MMX state.
+    
+    
+    pop( edi );
+    pop( eax );
+    
+end mmxupper;
+
+
+
+static
+    MyStr: string := "Hello There, MMX Uppercase Routine!";
+    destStr:string;
+    mmxCycles:qword;
+    strCycles:qword;
+        
+begin UpperCase;
+
+    // Charge up the cache (prefetch the code and data
+    // to avoid cache misses later).
+    
+    mov( str.a_cpy( MyStr ), destStr );
+    mmxupper( destStr );
+    strupper( destStr );
+    
+    
+    // Okay, time the execution of the MMX version:
+    
+    mov( str.a_cpy( MyStr ), destStr );
+
+    rdtsc();
+    mov( eax, (type dword mmxCycles));
+    mov( edx, (type dword mmxCycles[4]));
+    mmxupper( destStr );
+    rdtsc();
+    sub( (type dword mmxCycles), eax );
+    sbb( (type dword mmxCycles[4]), edx );
+    mov( eax, (type dword mmxCycles));
+    mov( edx, (type dword mmxCycles[4]));
+
+    stdout.put( "Dest String = '", destStr, "'", nl );
+
+    
+    // Okay, time the execution of the HLA version:
+    
+    mov( str.a_cpy( MyStr ), destStr );
+
+    rdtsc();
+    mov( eax, (type dword strCycles));
+    mov( edx, (type dword strCycles[4]));
+    strupper( destStr );
+    rdtsc();
+    sub( (type dword strCycles), eax );
+    sbb( (type dword strCycles[4]), edx );
+    mov( eax, (type dword strCycles));
+    mov( edx, (type dword strCycles[4]));
+
+    stdout.put( "Dest String(2) = '", destStr, "'", nl );
+    
+    stdout.put( "MMX cycles:" );
+    stdout.puti64( mmxCycles );
+    stdout.put( nl "HLA cycles: " );
+    stdout.puti64( strCycles );
+    stdout.newln();
+        
+                            
+end UpperCase;
+            

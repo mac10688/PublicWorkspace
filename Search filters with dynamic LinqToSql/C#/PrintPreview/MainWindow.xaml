@@ -1,0 +1,98 @@
+﻿﻿<Window x:Class="PrintPreview.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Grid Sample"
+        MaxWidth="725"
+        MaxHeight="525"
+         Width="700"
+        Loaded="Window_Loaded"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+
+
+    <Window.Resources>
+        <Style x:Key="Button" TargetType="{x:Type Button}">
+            <Setter Property="Canvas.Right" Value="10" />
+            <Setter Property="Background" Value="LightBlue" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+    </Window.Resources>
+
+
+    <Grid Name="dgvMain">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="132*" />
+            <ColumnDefinition Width="371*" />
+        </Grid.ColumnDefinitions>
+
+        <DataGrid Name="dgvDati" Grid.ColumnSpan="2" Margin="0,0,300,258" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding NAME}" Header="NOME" />
+                <DataGridTextColumn Binding="{Binding SURNAME}" Header="COGNOME" />
+                <DataGridTextColumn Binding="{Binding ADDRESS}" Header="INDIRIZZO" />
+                <DataGridTextColumn Binding="{Binding ZIPCODE}" Header="TELEFONO" />
+                <DataGridTextColumn Binding="{Binding CITY}" Header="NAZIONALITA" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Name="dgvjob" Grid.Column ="1" Margin="224,0,97,258"  AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible" Height="234">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding STATE}" Header="STATO" Width="90"/>
+                <DataGridTextColumn Binding="{Binding ACTIVITY}" Header="ATTIVITA'" Width="90"/>
+            </DataGrid.Columns>            
+        </DataGrid>
+        
+        <Button Name="btnLoad" Canvas.Top="48" Margin="12,238,20,223" Click="btnLoad_Click" Content="Carica dati" Style="{StaticResource Button}"  Height="20" VerticalAlignment="Top"/>
+        <Button Name="btnInsert" Canvas.Top="78" Margin="35,268,43,0" Click="btnInsert_Click" Content="Inserisci" Style="{StaticResource Button}" Height="20" VerticalAlignment="Top" />
+        <Button Name="btnDelete" Canvas.Top="108" Margin="35,296,43,0" Click="btnDelete_Click" Content="Cancella" Style="{StaticResource Button}" Height="20" VerticalAlignment="Top" />
+        <Button Name="btnUpdate" Canvas.Top="108" Margin="35,326,43,0" Click="btnUpdate_Click" Content="Aggiorna" Style="{StaticResource Button}" Height="20" VerticalAlignment="Top" />
+        <Button Name="btnCreateDataBase" Canvas.Top="108" Margin="35,354,43,108" Click="btnCreateDataBase_Click" Content="Crea database" Style="{StaticResource Button}" Height="20" VerticalAlignment="Top"/>        
+        <Button Name="btnConnectDataBase" Canvas.Top="108" Margin="35,384,43,78" Click="btnConnectDataBase_Click" Content="Connetti database" Style="{StaticResource Button}" Height="20" VerticalAlignment="Top"/>
+        <Label Name="lblName" Grid.Column="1" Width="100" Height="30" Margin="16,238,255,213" HorizontalContentAlignment="Left" Content="Nome" />
+        <TextBox Name="txtName" Grid.Column="1" Width="100" Height="20" Margin="14,240,137,221" />
+
+        <Label Name="lblSurname" Grid.Column="1" Width="100" Height="30" Margin="16,267,255,184" HorizontalContentAlignment="Left" Content="Cognome" />
+        <TextBox Name="txtSurname" Grid.Column="1" Width="100" Height="20" Margin="14,269,137,192" />
+
+        <Label Name="lblAddress" Grid.Column="1" Width="100" Height="30" Margin="16,296,255,155" HorizontalContentAlignment="Left" Content="Indirizzo" />
+        <TextBox Name="txtAddress" Grid.Column="1" Width="100" Height="20" Margin="14,298,137,163" />
+
+        <Label Name="lblZipCode" Grid.Column="1" Width="100" Height="30" Margin="16,325,255,126" HorizontalContentAlignment="Left" Content="Cap" />
+        <TextBox Name="txtZipCode" Grid.Column="1" Width="100" Height="20" Margin="14,327,137,134" />
+
+        <Label Name="lblCity" Grid.Column="1" Width="100" Height="30" Margin="16,354,255,97" HorizontalContentAlignment="Left" Content="Città" />
+        <TextBox Name="txtCity" Grid.Column="1" Width="100" Height="20" Margin="14,356,137,105" />
+        <Label Name="lblState" Grid.Column="1" Width="100" Height="30" Margin="303,238,97,214" HorizontalContentAlignment="Left" Content="Stato" />
+        <Label Name="lblActivity" Grid.Column="1" Width="100" Height="30" Margin="303,268,97,184" HorizontalContentAlignment="Left" Content="Attività" />
+        <Button Name="btnExit" Grid.Column="1" Width="100" Height="20" Margin="388,444,12,18" HorizontalContentAlignment="Center" Click="btnExit_Click" Content="Esci" />
+        <Button Name="btnSearch" Grid.Column="1" Width="100" Height="20" Margin="138,443,262,19" HorizontalContentAlignment="Center" Click="btnSearch_Click" Content="Trova" />
+        
+        <ComboBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="368,239,0,0" Name="cbxState" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="IN SERVIZIO" />
+            <ComboBoxItem Content="IN SOSPESO" />
+            <ComboBoxItem Content="SOSTENITORE" />
+        </ComboBox>
+        
+        <ComboBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="368,270,0,0" Name="cbxActivity" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="MENSA" />
+            <ComboBoxItem Content="SCUOLA ITALIANO" />
+            <ComboBoxItem Content="TESSERAMENTO" />
+            <ComboBoxItem Content="SPORTELLO LEGALE" />
+            <ComboBoxItem Content="DOCCE" />
+            <ComboBoxItem Content="CENTRO DI AIUTI" />
+            <ComboBoxItem Content="SEGRETERIA VOLONTARI" />
+            <ComboBoxItem Content="GUARDAROBA" />
+            <ComboBoxItem Content="CENTRO ASCOLTO" />
+            <ComboBoxItem Content="PONY SOLIDARIETA" />
+            <ComboBoxItem Content="SPORTELLO LAVORO" />
+            <ComboBoxItem Content="DORMITORIO" />
+            <ComboBoxItem Content="UNITA MOBILE" />
+            <ComboBoxItem Content="COMUNITA MINORI" />
+            <ComboBoxItem Content="FORMAZIONE" />
+            <ComboBoxItem Content="REDAZIONE" />                       
+        </ComboBox>
+    </Grid>
+</Window>

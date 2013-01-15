@@ -1,0 +1,17 @@
+program emitDemo;
+#include( "stdlib.hhf" )
+
+    procedure myProc;
+    begin myProc;
+
+        stdout.put( "Inside MyProc" nl );
+
+    end myProc;
+
+begin emitDemo;
+
+    ?stmt:string := "call " + @StaticName( myProc );
+    #emit( stmt );
+
+end emitDemo;
+            

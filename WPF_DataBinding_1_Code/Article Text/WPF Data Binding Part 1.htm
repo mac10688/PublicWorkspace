@@ -1,0 +1,1688 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 12 (filtered)">
+<title>WPF Data Binding</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:24.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Cambria","serif";
+	color:#365F91;}
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText
+	{mso-style-link:"Comment Text Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{mso-style-link:"Title Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:15.0pt;
+	margin-left:0in;
+	border:none;
+	padding:0in;
+	font-size:26.0pt;
+	font-family:"Cambria","serif";
+	color:#17365D;
+	letter-spacing:.25pt;}
+p.MsoTitleCxSpFirst, li.MsoTitleCxSpFirst, div.MsoTitleCxSpFirst
+	{mso-style-link:"Title Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	border:none;
+	padding:0in;
+	font-size:26.0pt;
+	font-family:"Cambria","serif";
+	color:#17365D;
+	letter-spacing:.25pt;}
+p.MsoTitleCxSpMiddle, li.MsoTitleCxSpMiddle, div.MsoTitleCxSpMiddle
+	{mso-style-link:"Title Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	border:none;
+	padding:0in;
+	font-size:26.0pt;
+	font-family:"Cambria","serif";
+	color:#17365D;
+	letter-spacing:.25pt;}
+p.MsoTitleCxSpLast, li.MsoTitleCxSpLast, div.MsoTitleCxSpLast
+	{mso-style-link:"Title Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:15.0pt;
+	margin-left:0in;
+	border:none;
+	padding:0in;
+	font-size:26.0pt;
+	font-family:"Cambria","serif";
+	color:#17365D;
+	letter-spacing:.25pt;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:.5in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:.5in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+span.TitleChar
+	{mso-style-name:"Title Char";
+	mso-style-link:Title;
+	font-family:"Cambria","serif";
+	color:#17365D;
+	letter-spacing:.25pt;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Cambria","serif";
+	color:#365F91;
+	font-weight:bold;}
+span.CommentTextChar
+	{mso-style-name:"Comment Text Char";
+	mso-style-link:"Comment Text";}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+.MsoPapDefault
+	{margin-bottom:10.0pt;
+	line-height:115%;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=Section1>
+
+<div style='border:none;border-bottom:solid #4F81BD 1.0pt;padding:0in 0in 4.0pt 0in'>
+
+<p class=MsoTitle>WPF Data Binding Part 1</p>
+
+</div>
+
+<p class=MsoNormal>An Introduction to Data Binding concepts in WPF</p>
+
+<h1>Introduction</h1>
+
+<p class=MsoNormal>Conventionally in Windows Forms and ASP.Net applications
+data binding was primarily used for populating elements on the screen with
+information; there was simple data binding for displaying single values and
+complex data binding for displaying and formatting a collection of data.   The
+beauty of data binding is that you can populate the interface while writing
+little to no code.  With data binding in WPF you can take data from almost any
+property of any object and bind it to almost any other dependency property of
+another object. </p>
+
+<p class=MsoNormal>In the first part of this two part post I am going to cover
+the basics of data binding in WPF.  In the second post more advanced data
+binding concepts will be covered such as templates and varying the way
+information is displayed based on characteristics of the data.   For both of
+these posts you will need to have a basic understanding of WPF.</p>
+
+<h1>Prerequisites</h1>
+
+<p class=MsoNormal>This article is written with the assumption that the reader
+has already achieved a basic understanding of the following WPF concepts</p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Understanding of the Basics of WPF</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Dependency Properties</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Dependency Property Inheritance</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Resources</p>
+
+<p class=MsoListParagraphCxSpLast style='text-indent:-.25in'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Markup Extensions</p>
+
+<h1>Basics</h1>
+
+<p class=MsoNormal>In its most basic form data binding copies a value from a <i>source</i>
+object to a property on a destination object.   The source property can be
+anything.  The destination will be a dependency property.  A key difference in
+binding to a WPF element property as the source and binding to another object
+type is that the WPF object has <i>change notification</i>; once binding has
+occurred with a WPF element property as a source if the source changes then the
+destination property will automatically be updated.   Let’s look at a couple of
+very simple WPF data binding expressions. </p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td valign=top style='border:solid black 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Window</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> x</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>:</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'>Class</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=&quot;Example00.Window1&quot;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>  
+  <span style='color:red'> xmlns</span><span style='color:blue'>=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;</span></span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>  
+  <span style='color:red'> xmlns</span><span style='color:blue'>:</span><span
+  style='color:red'>x</span><span style='color:blue'>=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;</span></span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&nbsp;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>  
+  <span style='color:red'> Title</span><span style='color:blue'>=&quot;Window1&quot;</span><span
+  style='color:red'> Height</span><span style='color:blue'>=&quot;300&quot;</span><span
+  style='color:red'> Width</span><span style='color:blue'>=&quot;300&quot;&gt;</span></span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&nbsp;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>    </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Grid</span><span style='font-size:10.0pt;font-family:"Courier New"'>
+  <span style='color:blue'> &gt;</span><span style='color:#A31515'>   </span></span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>        </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Grid.RowDefinitions</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:blue'> &gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>            </span><span style='font-size:10.0pt;font-family:
+  "Courier New";color:blue'>&lt;</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:#A31515'>RowDefinition</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red'> Height</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>=&quot;*&quot;
+  /&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>            </span><span style='font-size:10.0pt;font-family:
+  "Courier New";color:blue'>&lt;</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:#A31515'>RowDefinition</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red'> Height</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>=&quot;*&quot;
+  /&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>            </span><span style='font-size:10.0pt;font-family:
+  "Courier New";color:blue'>&lt;</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:#A31515'>RowDefinition</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red'> Height</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>=&quot;*&quot;
+  /&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>        </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;/</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Grid.RowDefinitions</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:blue'>&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>        </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue;background:aqua'>&lt;</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:#A31515;background:aqua'>TextBox</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red;background:aqua'>
+  Name</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue;background:aqua'>=&quot;mySourceElement&quot;</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red;background:aqua'>
+  Grid.Row</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue;background:aqua'>=&quot;0&quot; &gt;</span><span style='font-size:
+  10.0pt;font-family:"Courier New";color:#A31515;background:aqua'>Hello World</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue;background:aqua'>&lt;/</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:#A31515;background:
+  aqua'>TextBox</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue;background:aqua'>&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>        </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>TextBlock</span><span style='font-size:10.0pt;font-family:
+  "Courier New";color:red'> Grid.Row</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:blue'>=&quot;1&quot;&gt;</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:#A31515'>            </span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>            </span><span style='font-size:10.0pt;font-family:
+  "Courier New";color:blue;background:yellow'>&lt;</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:#A31515;background:
+  yellow'>TextBlock.Text</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue;background:yellow'>&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515;background:yellow'>                </span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue;background:yellow'>&lt;</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:#A31515;background:
+  yellow'>Binding</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red;background:yellow'> ElementName</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:blue;background:yellow'>=&quot;mySourceElement&quot;</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red;background:yellow'>
+  Path</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue;background:yellow'>=&quot;Text&quot;</span><span style='font-size:
+  10.0pt;font-family:"Courier New";background:yellow'> <span style='color:blue'> /&gt;</span></span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515;background:yellow'>            </span><span style='font-size:
+  10.0pt;font-family:"Courier New";color:blue;background:yellow'>&lt;/</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:#A31515;background:
+  yellow'>TextBlock.Text</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue;background:yellow'>&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>        </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;/</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>TextBlock</span><span style='font-size:10.0pt;font-family:
+  "Courier New";color:blue'>&gt;</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:#A31515'> </span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>        </span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>        </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>TextBlock</span><span style='font-size:10.0pt;font-family:
+  "Courier New";color:red'> <span style='background:yellow'>Text</span></span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue;background:yellow'>=&quot;{</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:#A31515;background:
+  yellow'>Binding</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red;background:yellow'> ElementName</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:blue;background:yellow'>=mySourceElement,</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red;background:yellow'>Path</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue;background:yellow'>=Text
+  }&quot;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> Grid.Row</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=&quot;2&quot; /&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>    </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;/</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Grid</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;/</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Window</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:solid black 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>Example 00</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>As you might guess when you run this example it will display
+“Hello Word.”  The text is displayed three times.  The first instance of the
+text is displayed because it is the literal value assigned to the text box. 
+The next two instances are in textboxes and are the result of data binding.  Both
+of the text boxes create a binding with the textbox named “mySourceElement” as
+the source and their Text attribute as the destination. While the two text
+blocks bind to the same source and yield the same results the syntax used is
+different.  The first textblock uses an expanded syntax while the second uses a
+markup extension to express the same binding.  Within this document I will use
+the extension markup, but keep in mind that in most cases either syntax can be
+used.  Here is a more interesting data binding example. </p>
+
+<table class=MsoTableMediumShading1Accent1 border=1 cellspacing=0
+ cellpadding=0 style='border-collapse:collapse;border:none'>
+ <tr>
+  <td valign=top style='border:solid #7BA0CD 1.0pt;border-right:none;
+  background:#4F81BD;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b><span style='color:white'>Property</span></b></p>
+  </td>
+  <td valign=top style='border:solid #7BA0CD 1.0pt;border-left:none;background:
+  #4F81BD;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b><span style='color:white'>Description</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border-top:none;border-left:solid #7BA0CD 1.0pt;
+  border-bottom:solid #7BA0CD 1.0pt;border-right:none;background:#D3DFEE;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>Converter</b></p>
+  </td>
+  <td valign=top style='border-top:none;border-left:none;border-bottom:solid #7BA0CD 1.0pt;
+  border-right:solid #7BA0CD 1.0pt;background:#D3DFEE;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>Sets the converter to be used.</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border-top:none;border-left:solid #7BA0CD 1.0pt;
+  border-bottom:solid #7BA0CD 1.0pt;border-right:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>ElementName</b></p>
+  </td>
+  <td valign=top style='border-top:none;border-left:none;border-bottom:solid #7BA0CD 1.0pt;
+  border-right:solid #7BA0CD 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>The name of the element to which the binding is to be made</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border-top:none;border-left:solid #7BA0CD 1.0pt;
+  border-bottom:solid #7BA0CD 1.0pt;border-right:none;background:#D3DFEE;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>FallbackValue</b></p>
+  </td>
+  <td valign=top style='border-top:none;border-left:none;border-bottom:solid #7BA0CD 1.0pt;
+  border-right:solid #7BA0CD 1.0pt;background:#D3DFEE;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>Sets the value to use when binding cannot return a value</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border-top:none;border-left:solid #7BA0CD 1.0pt;
+  border-bottom:solid #7BA0CD 1.0pt;border-right:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>Mode</b></p>
+  </td>
+  <td valign=top style='border-top:none;border-left:none;border-bottom:solid #7BA0CD 1.0pt;
+  border-right:solid #7BA0CD 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>Sets the direction of the binding</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border-top:none;border-left:solid #7BA0CD 1.0pt;
+  border-bottom:solid #7BA0CD 1.0pt;border-right:none;background:#D3DFEE;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>Path</b></p>
+  </td>
+  <td valign=top style='border-top:none;border-left:none;border-bottom:solid #7BA0CD 1.0pt;
+  border-right:solid #7BA0CD 1.0pt;background:#D3DFEE;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>The path to the element property being used as the data source</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border-top:none;border-left:solid #7BA0CD 1.0pt;
+  border-bottom:solid #7BA0CD 1.0pt;border-right:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>RelativeSource</b></p>
+  </td>
+  <td valign=top style='border-top:none;border-left:none;border-bottom:solid #7BA0CD 1.0pt;
+  border-right:solid #7BA0CD 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>Sets the binding source by specifying an element relative to the
+  current element</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border-top:none;border-left:solid #7BA0CD 1.0pt;
+  border-bottom:solid #7BA0CD 1.0pt;border-right:none;background:#D3DFEE;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>Source</b></p>
+  </td>
+  <td valign=top style='border-top:none;border-left:none;border-bottom:solid #7BA0CD 1.0pt;
+  border-right:solid #7BA0CD 1.0pt;background:#D3DFEE;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>The source object to use for binding</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border-top:none;border-left:solid #7BA0CD 1.0pt;
+  border-bottom:solid #7BA0CD 1.0pt;border-right:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>StringFormat</b></p>
+  </td>
+  <td valign=top style='border-top:none;border-left:none;border-bottom:solid #7BA0CD 1.0pt;
+  border-right:solid #7BA0CD 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>Specifies the format of the string representation of a value if the
+  element is bound to a string property</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border-top:none;border-left:solid #7BA0CD 1.0pt;
+  border-bottom:solid #7BA0CD 1.0pt;border-right:none;background:#D3DFEE;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>UpdateSourceTrigger</b></p>
+  </td>
+  <td valign=top style='border-top:none;border-left:none;border-bottom:solid #7BA0CD 1.0pt;
+  border-right:solid #7BA0CD 1.0pt;background:#D3DFEE;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>Sets the events on which binding will occur. </p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border-top:none;border-left:solid #7BA0CD 1.0pt;
+  border-bottom:solid #7BA0CD 1.0pt;border-right:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>ValidationRules</b></p>
+  </td>
+  <td valign=top style='border-top:none;border-left:none;border-bottom:solid #7BA0CD 1.0pt;
+  border-right:solid #7BA0CD 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>A collection of the validation rules applied against a binding</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td valign=top style='border:solid black 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Window</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> x</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>:</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'>Class</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=&quot;Example01.Window1&quot;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>  
+  <span style='color:red'> xmlns</span><span style='color:blue'>=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;</span></span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>  
+  <span style='color:red'> xmlns</span><span style='color:blue'>:</span><span
+  style='color:red'>x</span><span style='color:blue'>=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;</span></span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>  
+  <span style='color:red'> Title</span><span style='color:blue'>=&quot;Example
+  01&quot;</span><span style='color:red'> Height</span><span style='color:blue'>=&quot;300&quot;</span><span
+  style='color:red'> Width</span><span style='color:blue'>=&quot;300&quot;&gt;</span></span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>    </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Grid</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>        </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Grid.RowDefinitions</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:blue'> &gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>            </span><span style='font-size:10.0pt;font-family:
+  "Courier New";color:blue'>&lt;</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:#A31515'>RowDefinition</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red'> Height</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>=&quot;40px&quot;
+  /&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>            </span><span style='font-size:10.0pt;font-family:
+  "Courier New";color:blue'>&lt;</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:#A31515'>RowDefinition</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red'> Height</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>=&quot;40px&quot;
+  /&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>            </span><span style='font-size:10.0pt;font-family:
+  "Courier New";color:blue'>&lt;</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:#A31515'>RowDefinition</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red'> Height</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>=&quot;*&quot;
+  /&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>        </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;/</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Grid.RowDefinitions</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:blue'>&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>        </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Slider</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> Name</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=&quot;fontSizeSlider&quot;</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:red'> Minimum</span><span style='font-size:
+  10.0pt;font-family:"Courier New";color:blue'>=&quot;5&quot;</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red'> Maximum</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>=&quot;100&quot;</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red'> Value</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>=&quot;10&quot;</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red'> Grid.Row</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>=&quot;0&quot;
+  /&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>        </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>TextBox</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> Name</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=&quot;SizeTextBox&quot;</span><span style='font-size:10.0pt;
+  font-family:"Courier New"'> <span style='color:red'>Text</span><span
+  style='color:blue'>=&quot;{</span><span style='color:#A31515;background:yellow'>Binding</span><span
+  style='color:red;background:yellow'> ElementName</span><span
+  style='color:blue;background:yellow'>=fontSizeSlider,</span><span
+  style='color:red;background:yellow'> Path</span><span style='color:blue;
+  background:yellow'>=Value}</span><span style='color:blue'>&quot;</span><span
+  style='color:red'> Grid.Row</span><span style='color:blue'>=&quot;1&quot;/&gt;</span></span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>        </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>TextBlock</span><span style='font-size:10.0pt;font-family:
+  "Courier New";color:red'> Text</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:blue'>=&quot;Example 01&quot;</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red'> FontSize</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>=&quot;<span
+  style='background:yellow'>{</span></span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:#A31515;background:yellow'>Binding</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red;background:yellow'>
+  ElementName</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue;background:yellow'>=SizeTextBox,</span><span style='font-size:
+  10.0pt;font-family:"Courier New";background:yellow'> <span style='color:red'> Path</span><span
+  style='color:blue'>=Text}</span></span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:blue'>&quot;</span><span style='font-size:
+  10.0pt;font-family:"Courier New"'> <span style='color:red'> Grid.Row</span><span
+  style='color:blue'>=&quot;2&quot;/&gt;</span></span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>    </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;/</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Grid</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;/</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Window</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:solid black 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>Example 01</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>In this example there are three elements bound together.  A
+textbox’s text property is bound to a slider’s value property, and a text
+blocks FontSize property is bound to the textbox’s text property.  If you run
+the program you will see the affects of this chained relationship.  Changing
+the slider results in the number displayed in the textbox and the size of the
+font being adusted appropriately. WPF is able to apply changes as the slider is
+changed because the element properties implement the INotifyPropertyChanged
+interface.  As its name suggest when the property value changes WPF is made
+aware and knows to reapply the values to the destination properties. </p>
+
+<p class=MsoNormal><img width=624 height=321 id="Picture 1"
+src="WPF%20Data%20Binding%20Part%201_files/image001.jpg"></p>
+
+<p class=MsoNormal>Also note that if you click in the text box and manually
+change its value the slider and the text block will both update as soon as you
+tab out of the text box. The data appears to flow in both directions in this
+example (from the slider to the textbox and from the textbox to the slider).
+This behavior of data binding is controlled through the binding mode. </p>
+
+<h1>Binding Modes</h1>
+
+<p class=MsoNormal>The binding mode sets in which direction that data will
+flow.  Data usually flows from the source to the destination.  Properties those
+are directly changeable by user interaction (such as the text value in a text
+box, the value of the slider, or the selected item in a combo box.  There are
+five data binding modes. </p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<table class=MediumShading1-Accent11 border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td valign=top style='border:solid #7BA0CD 1.0pt;border-right:none;
+  background:#4F81BD;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b><span style='color:white'>Mode</span></b></p>
+  </td>
+  <td width=496 valign=top style='width:371.65pt;border:solid #7BA0CD 1.0pt;
+  border-left:none;background:#4F81BD;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b><span style='color:white'>Description</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border-top:none;border-left:solid #7BA0CD 1.0pt;
+  border-bottom:solid #7BA0CD 1.0pt;border-right:none;background:#D3DFEE;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>Default</b></p>
+  </td>
+  <td width=496 valign=top style='width:371.65pt;border-top:none;border-left:
+  none;border-bottom:solid #7BA0CD 1.0pt;border-right:solid #7BA0CD 1.0pt;
+  background:#D3DFEE;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>Translates to TwoWay if the target value is a user-settable property
+  and OneWay otherwise</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border-top:none;border-left:solid #7BA0CD 1.0pt;
+  border-bottom:solid #7BA0CD 1.0pt;border-right:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>OneWayToSource</b></p>
+  </td>
+  <td width=496 valign=top style='width:371.65pt;border-top:none;border-left:
+  none;border-bottom:solid #7BA0CD 1.0pt;border-right:solid #7BA0CD 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>A reverse version of OneWay</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border-top:none;border-left:solid #7BA0CD 1.0pt;
+  border-bottom:solid #7BA0CD 1.0pt;border-right:none;background:#D3DFEE;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>OneWay</b></p>
+  </td>
+  <td width=496 valign=top style='width:371.65pt;border-top:none;border-left:
+  none;border-bottom:solid #7BA0CD 1.0pt;border-right:solid #7BA0CD 1.0pt;
+  background:#D3DFEE;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>From source to Destination</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border-top:none;border-left:solid #7BA0CD 1.0pt;
+  border-bottom:solid #7BA0CD 1.0pt;border-right:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>OneTime</b></p>
+  </td>
+  <td width=496 valign=top style='width:371.65pt;border-top:none;border-left:
+  none;border-bottom:solid #7BA0CD 1.0pt;border-right:solid #7BA0CD 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>The property is initially set but updates to the source  are not
+  copied to the destination.</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border-top:none;border-left:solid #7BA0CD 1.0pt;
+  border-bottom:solid #7BA0CD 1.0pt;border-right:none;background:#D3DFEE;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>TwoWay</b></p>
+  </td>
+  <td width=496 valign=top style='width:371.65pt;border-top:none;border-left:
+  none;border-bottom:solid #7BA0CD 1.0pt;border-right:solid #7BA0CD 1.0pt;
+  background:#D3DFEE;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>Changes to source and destination are copied to each other.</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>
+
+<table cellpadding=0 cellspacing=0 align=left>
+ <tr>
+  <td width=10 height=2></td>
+  <td width=204></td>
+ </tr>
+ <tr>
+  <td height=38></td>
+  <td align=left valign=top><img width=204 height=38
+  src="WPF%20Data%20Binding%20Part%201_files/image002.gif"></td>
+ </tr>
+ <tr>
+  <td height=10></td>
+ </tr>
+ <tr>
+  <td height=38></td>
+  <td align=left valign=top><img width=204 height=38
+  src="WPF%20Data%20Binding%20Part%201_files/image003.gif"></td>
+ </tr>
+ <tr>
+  <td height=5></td>
+ </tr>
+ <tr>
+  <td height=38></td>
+  <td align=left valign=top><img width=204 height=38
+  src="WPF%20Data%20Binding%20Part%201_files/image004.gif"></td>
+ </tr>
+</table>
+
+ &nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<br clear=ALL>
+
+<p class=MsoNormal>The OneWayToSource mode appears redundant at first.  Since
+it reverses the direction in which data is copied at first glance one might
+think that the same functionality can be achieved by reversing which element to
+which the binding expression is attached.  Since the destination element must
+be a dependency property that’s not always an option.  When we need to set a
+non-dependency property with the value of a dependency property you will need
+to use the OneWayToSource mode.  </p>
+
+<h1>Controlling when Binding Occurs</h1>
+
+<p class=MsoNormal>Binding that occurs in a forward direction (from source to
+destination) occurs immediately. When you change the slider, the numeric value
+in the text box, or the combo box value the changes occur to the text block
+immediately.  But you may have noticed that when you enter a numeric value into
+the text box the slider does not update until the text box looses focus. 
+Binding that occurs in the reverse direction don’t occur immediately by
+default.  The UpdateSourceTrigger property can be used to set this behavior. </p>
+
+<table class=MediumShading1-Accent11 border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td width=169 valign=top style='width:126.9pt;border:solid #7BA0CD 1.0pt;
+  border-right:none;background:#4F81BD;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b><span style='color:white'>Name</span></b></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border:solid #7BA0CD 1.0pt;
+  border-left:none;background:#4F81BD;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b><span style='color:white'>Description</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=169 valign=top style='width:126.9pt;border-top:none;border-left:
+  solid #7BA0CD 1.0pt;border-bottom:solid #7BA0CD 1.0pt;border-right:none;
+  background:#D3DFEE;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>Default</b></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid #7BA0CD 1.0pt;border-right:solid #7BA0CD 1.0pt;
+  background:#D3DFEE;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>For most properties the behavior is the same as PropertyChanged. For
+  TextBox.Text this is the same as LostFocus. The default behavior is
+  controlled by metadata on the property.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=169 valign=top style='width:126.9pt;border-top:none;border-left:
+  solid #7BA0CD 1.0pt;border-bottom:solid #7BA0CD 1.0pt;border-right:none;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>Explicit</b></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid #7BA0CD 1.0pt;border-right:solid #7BA0CD 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>Binding does not occur until UpdateSource() is called</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=169 valign=top style='width:126.9pt;border-top:none;border-left:
+  solid #7BA0CD 1.0pt;border-bottom:solid #7BA0CD 1.0pt;border-right:none;
+  background:#D3DFEE;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>LostFocus</b></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid #7BA0CD 1.0pt;border-right:solid #7BA0CD 1.0pt;
+  background:#D3DFEE;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>Source is updated when the target looses focus</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=169 valign=top style='width:126.9pt;border-top:none;border-left:
+  solid #7BA0CD 1.0pt;border-bottom:solid #7BA0CD 1.0pt;border-right:none;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>PropertyChanged</b></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid #7BA0CD 1.0pt;border-right:solid #7BA0CD 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>Binding occurs immediately</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal> </p>
+
+<h1>Binding to Public Properties on objects that are not Elements</h1>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>So far we have looked at binding to WPF elements.  When
+binding to a property that isn’t an element the ElementName property of the
+binding expression must be set to one of the following values instead. </p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<table class=MediumShading1-Accent11 border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td valign=top style='border:solid #7BA0CD 1.0pt;border-right:none;
+  background:#4F81BD;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b><span style='color:white'>Name</span></b></p>
+  </td>
+  <td valign=top style='border:solid #7BA0CD 1.0pt;border-left:none;background:
+  #4F81BD;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b><span style='color:white'>Description</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border-top:none;border-left:solid #7BA0CD 1.0pt;
+  border-bottom:solid #7BA0CD 1.0pt;border-right:none;background:#D3DFEE;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>DataContext</b></p>
+  </td>
+  <td valign=top style='border-top:none;border-left:none;border-bottom:solid #7BA0CD 1.0pt;
+  border-right:solid #7BA0CD 1.0pt;background:#D3DFEE;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>*WPF will search up the element tree until it encounters a
+  DataContext object if a Source or RelativeSource is not used. Once it finds a
+  non-null DataContext that object is used for binding. Useful for binding
+  several properties to the same object</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border-top:none;border-left:solid #7BA0CD 1.0pt;
+  border-bottom:solid #7BA0CD 1.0pt;border-right:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>RelativeSource</b></p>
+  </td>
+  <td valign=top style='border-top:none;border-left:none;border-bottom:solid #7BA0CD 1.0pt;
+  border-right:solid #7BA0CD 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>Used to identify the source object relative to the current element.
+  Useful for control templates and Data Templates. (Data templates will be
+  covered in part 2 of this article)</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border-top:none;border-left:solid #7BA0CD 1.0pt;
+  border-bottom:solid #7BA0CD 1.0pt;border-right:none;background:#D3DFEE;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>Source</b></p>
+  </td>
+  <td valign=top style='border-top:none;border-left:none;border-bottom:solid #7BA0CD 1.0pt;
+  border-right:solid #7BA0CD 1.0pt;background:#D3DFEE;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>The reference in the binding expression is to the object supplying
+  the data</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal>* - Actually no runtime searching occurs.  The DataContext
+property inherits its value. </p>
+
+<p class=MsoNormal>If no source is defined in a binding expression then the
+source is assumed to be the data context.  When several elements are being
+bound to the same source object the implicit use of the data context saves a
+lot of typing.   Instead of specifying the data sources on all of the elements
+that bind to the same source we can assign the source object to the data
+context of some parent object. </p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td valign=top style='border:solid black 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>    </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Window.Resources</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:blue'>&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>        </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>local</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>:</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Employee</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> x</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>:</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'>Key</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=&quot;MyEmployee&quot;</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:red'> EmployeeNumber</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>=&quot;123&quot;</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red'> FirstName</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>=&quot;John&quot;</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red'> LastName</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>=&quot;Doe&quot;</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red'> Department</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>=&quot;Product
+  Development&quot;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> Title</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=&quot;QA Manager&quot; /&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>    </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;/</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Window.Resources</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:blue'>&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>    </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Grid</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> DataContext</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=&quot;{</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>StaticResource</span><span style='font-size:10.0pt;font-family:
+  "Courier New";color:red'> MyEmployee</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:blue'>}&quot;&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>        </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>TextBox</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> Text</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=&quot;{</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Binding</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> Path</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=EmployeeNumber}&quot;&gt;&lt;/</span><span style='font-size:
+  10.0pt;font-family:"Courier New";color:#A31515'>TextBox</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>        </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>TextBox</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> Text</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=&quot;{</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Binding</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> Path</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=FirstName}&quot;&gt;&lt;/</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:#A31515'>TextBox</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>        </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>TextBox</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> Text</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=&quot;{</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Binding</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> Path</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=LastName}&quot; /&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>        </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>TextBox</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> Text</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=&quot;{</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Binding</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> Path</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=Title}&quot;&gt;&lt;/</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:#A31515'>TextBox</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>        </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>TextBox</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> Text</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=&quot;{</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Binding</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> Path</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=Department}&quot; /&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><span style='font-size:10.0pt;font-family:"Courier New";color:#A31515'>   
+  </span><span style='font-size:10.0pt;font-family:"Courier New";color:blue'>&lt;/</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:#A31515'>Grid</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>&gt;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:solid black 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>Example 03 Code Clip</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><img width=345 height=188 id="Picture 4"
+src="WPF%20Data%20Binding%20Part%201_files/image005.jpg"></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h1>Binding to Collections</h1>
+
+<p class=MsoNormal>Dependency properties support single-value binding.  For
+binding to a collection of objects your destination object must derive from
+ItemsControl.   There are three properties in the ItemsControl  class that are
+important for data binding. </p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<table class=MediumShading1-Accent11 border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td valign=top style='border:solid #7BA0CD 1.0pt;border-right:none;
+  background:#4F81BD;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b><span style='color:white'>Name</span></b></p>
+  </td>
+  <td valign=top style='border:solid #7BA0CD 1.0pt;border-left:none;background:
+  #4F81BD;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b><span style='color:white'>Description</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border-top:none;border-left:solid #7BA0CD 1.0pt;
+  border-bottom:solid #7BA0CD 1.0pt;border-right:none;background:#D3DFEE;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>DisplayMemberPath</b></p>
+  </td>
+  <td valign=top style='border-top:none;border-left:none;border-bottom:solid #7BA0CD 1.0pt;
+  border-right:solid #7BA0CD 1.0pt;background:#D3DFEE;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>Identifies the property on source objects to be displayed. If not
+  specified then WPF will call the ToString method on the class.  Unless
+  ToString has been overridden then it will only display the class of the
+  object.</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border-top:none;border-left:solid #7BA0CD 1.0pt;
+  border-bottom:solid #7BA0CD 1.0pt;border-right:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>ItemsSource</b></p>
+  </td>
+  <td valign=top style='border-top:none;border-left:none;border-bottom:solid #7BA0CD 1.0pt;
+  border-right:solid #7BA0CD 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>Identifies the collection that has the objects to be displayed</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border-top:none;border-left:solid #7BA0CD 1.0pt;
+  border-bottom:solid #7BA0CD 1.0pt;border-right:none;background:#D3DFEE;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>ItemsTemplate</b></p>
+  </td>
+  <td valign=top style='border-top:none;border-left:none;border-bottom:solid #7BA0CD 1.0pt;
+  border-right:solid #7BA0CD 1.0pt;background:#D3DFEE;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>Accepts a template that can be used to customize how the objects are
+  displayed.  Templates are covered in part 2 of this article. </p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>You can bind to any collection that implements the
+IEnumerable interface.  The .Net Collection classes and Array classes implement
+this interface. With IEnumerable you will be able to perform read-only
+binding.   To be able to edit data other requirements must be met. </p>
+
+<p class=MsoNormal>For this example the code is binding to a collection of
+Employee objects.  A List control (which inherits from ItemsControl) displays a
+list of the employees’ names.  Selecting one of the employees will caused their
+information to be displayed in the details area beside the list.  To handle the
+display of detail information we will take advantage of the DataContext object
+that was mentioned in the previous section. All of the fields in the details
+area will be bound to the same object (but different property).  All of the
+details fields are within the same Grid control. The data context on the grid
+control is bound to the selected item in the employee list. </p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td valign=top style='border:solid black 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>TextBox</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> Text</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=&quot;{</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Binding</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> Path</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=FirstName}&quot; /&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>TextBox</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> Text</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=&quot;{</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Binding</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> Path</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=LastName}&quot; /&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>TextBox</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> Text</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=&quot;{</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Binding</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> Path</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=Title}&quot; /&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><span style='font-size:10.0pt;font-family:"Courier New";color:blue'>&lt;</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:#A31515'>TextBox</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red'> Text</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>=&quot;{</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:#A31515'>Binding</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red'> Path</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>=Department}&quot;
+  /&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:solid black 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>Example 04</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>When the selected item in the list is changed then the data
+context is automatically updated.  When the DataContext is updated the fields
+in the details area that are bound to the DataContext are also updated.   </p>
+
+<p class=MsoNormal>If an element were programmatically inserted or removed from
+the collection after it is bound the interface won’t update. To make the list
+automatically respond to insertions and deletions the interface would need to
+be bound to a list that implements the INotifyCollectionChanged interface.  The
+WPF ObservableCollection class implements INotifyCollectionChanged.  For our
+example changing the data collection from a List&lt;Employee&gt; to an ObservableCollection&lt;Employee&gt;
+is the only change needed to make sure the interface updates when employees are
+inserted are removed from the list.  Example 5 uses an ObservableCollection
+instead of a generic List and has a form for entering information for a new
+employee.  When a new employee is added to the list the ListBox automatically
+updates to show the new employee. </p>
+
+<h1>Binding to DataTables</h1>
+
+<p class=MsoNormal>Binding to tables is similar to binding to list.  In WPF you
+cannot bind directly to a DataTable but instead must bind to a DataView (this
+should not be a big deal since all tables have a view in the DefaultView
+property).  This restriction was also present in Windows Forms but invisible to
+the developer.  Since DataTables implement the IBindingList interface WPF is
+able to detect when a new row is added. When deleting an item be sure not to
+implement the delete functionality by removing a row from the dataset.  Instead
+mark a row as deleted by calling Row.Delete() (which will cause it not to be
+returned by the view). </p>
+
+<h1>Value Conversion</h1>
+
+<p class=MsoNormal>Sometimes you will need to make a change to data that is
+being bound so that it is more appropriate for being displayed on the screen. 
+For example, if your source data had a property that contained a path to an
+image you would probably want to display the image instead of the image’s
+path.  Value converters are responsible for performing this task. </p>
+
+<p class=MsoNormal>To create a value converter declare a class that inherits
+from IValueConverter .  The class will need to have the ValueConversion
+attribute applied to it.  The attribute takes two arguments, the type for the
+source data and the type to which it is being converted.  Implement the Convert
+and ConvertBack methods to perform the conversion. For the case of the Image
+converter we would not need to be able to convert an image back to the path
+from which it was loaded so instead of implementing ConvertBack we can throw
+the NotImplemented exception.  WPF will suppress the exception (more on WPF
+exception suppression later).</p>
+
+<p class=MsoNormal>The IValueConverters can be used in some rather creative
+ways.  Let’s say you are displaying a list of sales figures and you wanted to
+highlight figures that are above or below certain levels by changing the color
+of the text. A value converter could be used here to <i>convert</i> the value
+to the appropriate color. For the following code example value converters are
+used to convert Fahrenheit temp and to change the color of the temperature text
+to indicate whether the temperature is hot or cold. The same converter is used
+on both the Celsius and Fahrenheit temperatures.  To make the converters
+suitable for both numeric ranges the converters expose properties that allow
+the limits of hot and cold to be set. </p>
+
+<p class=MsoNormal><img width=577 height=194 id="Picture 10"
+src="WPF%20Data%20Binding%20Part%201_files/image006.jpg"></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td valign=top style='border:solid black 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Window.Resources</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:blue'>&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>    </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>local</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>:</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>FarenheitToCelciusConverter</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:red'> x</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:blue'>:</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:red'>Key</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:blue'>=&quot;myTemperatureConverter&quot;
+  /&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>    </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>local</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>:</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>TemperatureToColorConverter</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:red'> x</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:blue'>:</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:red'>Key</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:blue'>=&quot;myFRangeIndicator&quot;</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red'> HotTemperature</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>=&quot;80&quot;</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red'> ColdTemperature</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>=&quot;65&quot;
+  /&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>  &lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>local</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>:</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>TemperatureToColorConverter</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:red'> x</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:blue'>:</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:red'>Key</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:blue'>=&quot;myCRangeIndicator&quot;</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red'> HotTemperature</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>=&quot;26.6&quot;</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:red'> ColdTemperature</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>=&quot;18.8&quot;
+  /&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><span style='font-size:10.0pt;font-family:"Courier New";color:blue'>&lt;/</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:#A31515'>Window.Resources</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>TextBox</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> Name</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=&quot;txtFarenheit&quot;</span><span style='font-size:10.0pt;
+  font-family:"Courier New"'> </span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>               
+  <span style='color:red'> Foreground</span><span style='color:blue'>=&quot;{</span><span
+  style='color:#A31515'>Binding</span><span style='color:red'> Path</span><span
+  style='color:blue'>=Text,</span><span style='color:red'> ElementName</span><span
+  style='color:blue'>=txtFarenheit,</span><span style='color:red'> Converter</span><span
+  style='color:blue'>={</span><span style='color:#A31515'>StaticResource</span><span
+  style='color:red'> myFRangeIndicator</span><span style='color:blue'>}}&quot;</span></span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>               
+  <span style='color:blue'> /&gt;</span></span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>TextBox</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> Name</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=&quot;txtCelcius&quot;</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:red'> Text</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:blue'>=&quot;{</span><span style='font-size:
+  10.0pt;font-family:"Courier New";color:#A31515'>Binding</span><span
+  style='font-size:10.0pt;font-family:"Courier New"'> <span style='color:red'> UpdateSourceTrigger</span><span
+  style='color:blue'>=PropertyChanged,</span><span style='color:red'> Path</span><span
+  style='color:blue'>=Text,</span><span style='color:red'>ElementName</span><span
+  style='color:blue'>=txtFarenheit,</span><span style='color:red'> Converter</span><span
+  style='color:blue'>={</span><span style='color:#A31515'>StaticResource</span><span
+  style='color:red'> myTemperatureConverter</span><span style='color:blue'>}}&quot;</span>
+  </span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>               
+  <span style='color:red'> Foreground</span><span style='color:blue'>=&quot;{</span><span
+  style='color:#A31515'>Binding</span><span style='color:red'> Path</span><span
+  style='color:blue'>=Text,</span><span style='color:red'> ElementName</span><span
+  style='color:blue'>=txtCelcius,</span><span style='color:red'> Converter</span><span
+  style='color:blue'>={</span><span style='color:#A31515'>StaticResource</span><span
+  style='color:red'> myCRangeIndicator</span><span style='color:blue'>}}&quot; /&gt;</span></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:solid black 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>Example 06</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td valign=top style='border:solid black 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>[<span
+  style='color:#2B91AF'>ValueConversion</span>(<span style='color:blue'>typeof</span>(<span
+  style='color:blue'>double</span>), <span style='color:blue'>typeof</span>(<span
+  style='color:blue'>double</span>))]</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>public</span><span style='font-size:10.0pt;font-family:"Courier New"'>
+  <span style='color:blue'>class</span> <span style='color:#2B91AF'>FarenheitToCelciusConverter</span>
+  : <span style='color:#2B91AF'>IValueConverter</span></span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>{</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>    #region</span><span style='font-size:10.0pt;font-family:"Courier New"'>
+  IValueConverter Members</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>   
+  <span style='color:blue'>public</span> <span style='color:blue'>object</span>
+  Convert(<span style='color:blue'>object</span> value, <span style='color:
+  #2B91AF'>Type</span> targetType, <span style='color:blue'>object</span>
+  parameter, System.Globalization.<span style='color:#2B91AF'>CultureInfo</span>
+  culture)</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>   
+  {</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>       
+  <span style='color:blue'>string</span> sourceValue = value.ToString();</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>       
+  <span style='color:blue'>double</span> decimalValue = 0;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>       
+  <span style='color:blue'>if</span> (<span style='color:#2B91AF'>Double</span>.TryParse(sourceValue,
+  <span style='color:blue'>out</span> decimalValue))</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>       
+  {</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>           
+  <span style='color:blue'>return</span> (decimalValue - 32.0) * (5.0 / 9.0);</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>       
+  }</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>       
+  <span style='color:blue'>return</span> value;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>   
+  }</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>   
+  <span style='color:blue'>public</span> <span style='color:blue'>object</span>
+  ConvertBack(<span style='color:blue'>object</span> value, <span
+  style='color:#2B91AF'>Type</span> targetType, <span style='color:blue'>object</span>
+  parameter, System.Globalization.<span style='color:#2B91AF'>CultureInfo</span>
+  culture)</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>   
+  {</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>       
+  <span style='color:blue'>string</span> sourceValue = value.ToString();</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>       
+  <span style='color:blue'>double</span> decimalValue = 0;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>       
+  <span style='color:blue'>if</span> (<span style='color:#2B91AF'>Double</span>.TryParse(sourceValue,
+  <span style='color:blue'>out</span> decimalValue))</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>       
+  {</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>           
+  <span style='color:blue'>return</span> (decimalValue * (9.0 / 5.0)) + 32.0;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>       
+  }</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>       
+  <span style='color:blue'>return</span> value;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'>   
+  }</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>    #endregion</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><span style='font-size:10.0pt;font-family:"Courier New"'>}</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:solid black 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>Example 06 Value Converter code </p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal>  </p>
+
+<h1>Validation</h1>
+
+<p class=MsoNormal>To prevent a user from entering invalid data your classes
+may contain logic to prevent invalid values from being set.  But if an
+exception is thrown when an invalid value is set the user will not received
+feedback explaining that a value is invalid.  WPF will automatically suppress
+exceptions that occur during binding.  To provide user feedback for validation
+problems WPF has a facility named Validation Rules.  One of the built-in
+validation rules is the ExceptionValidationRule.  The markup for applying this
+rule is below. When applied the user will be notified of exceptions that
+occurred during binding.  </p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td valign=top style='border:solid black 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Binding</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:red'> Path</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>=&quot;EventDate&quot;</span><span style='font-size:10.0pt;
+  font-family:"Courier New"'> <span style='color:red'> UpdateSourceTrigger</span><span
+  style='color:blue'>=&quot;PropertyChanged&quot;&gt;</span></span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>   &lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Binding.ValidationRules</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:blue'>&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>      </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>ExceptionValidationRule</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:blue'> /&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>   </span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:blue'>&lt;/</span><span style='font-size:10.0pt;font-family:"Courier New";
+  color:#A31515'>Binding.ValidationRules</span><span style='font-size:10.0pt;
+  font-family:"Courier New";color:blue'>&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><span style='font-size:10.0pt;font-family:"Courier New";color:blue'>&lt;/</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:#A31515'>Binding</span><span
+  style='font-size:10.0pt;font-family:"Courier New";color:blue'>&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:solid black 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>Example 07</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>You can create your own validation rules be inheriting from
+the ValidationRule class and overriding the Validate method.  If a value is
+valid then a ValidationResult object should be returned with its IsValid
+property set to true.  Otherwise this value should be set to false and it’s
+error content property should contain details of the failure. Validation occurs
+before conversion, so your validation logic must be written against the
+unconverted value. </p>
+
+<p class=MsoNormal>If you wanted a list of all of the elements that have
+encountered validation errors during binding walk through the form hierarchy
+testing each element’s HasError property.  If an element has an error then you
+can get a collection of the errors it encountered by calling it’s GetErrors()
+method. </p>
+
+<p class=MsoNormal><img width=293 height=109 id="Picture 13"
+src="WPF%20Data%20Binding%20Part%201_files/image007.jpg"></p>
+
+<h1>In the Next Section…</h1>
+
+<p class=MsoNormal>For the next part in this two part article on data binding I’ll
+cover more details of validation and rules and will introduce data templates
+(for customizing how information is displayed in ItemsControls), data sources
+(which allow data to be pulled in from other sources and data views (for
+sorting, filtering,  and grouping data).  Before moving on to the forthcoming second
+part of this article I would suggest getting more practice with WPF data
+binding. </p>
+
+</div>
+
+</body>
+
+</html>

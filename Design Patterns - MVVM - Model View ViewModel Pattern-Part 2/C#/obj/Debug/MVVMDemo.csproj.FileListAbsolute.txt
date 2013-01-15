@@ -1,0 +1,53 @@
+C:\Users\SrigopalChitrapu\Desktop\New folder\MVVMDemo\bin\Debug\MVVMDemo.exe.config
+C:\Users\SrigopalChitrapu\Desktop\New folder\MVVMDemo\bin\Debug\MVVMDemo.exe
+C:\Users\SrigopalChitrapu\Desktop\New folder\MVVMDemo\bin\Debug\MVVMDemo.pdb
+C:\Users\SrigopalChitrapu\Desktop\New folder\MVVMDemo\obj\Debug\Views\CustomerView.baml
+C:\Users\SrigopalChitrapu\Desktop\New folder\MVVMDemo\obj\Debug\Views\CustomerView.g.cs
+C:\Users\SrigopalChitrapu\Desktop\New folder\MVVMDemo\obj\Debug\MainWindow.g.cs
+C:\Users\SrigopalChitrapu\Desktop\New folder\MVVMDemo\obj\Debug\App.g.cs
+C:\Users\SrigopalChitrapu\Desktop\New folder\MVVMDemo\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\SrigopalChitrapu\Desktop\New folder\MVVMDemo\obj\Debug\MVVMDemo_MarkupCompile.cache
+C:\Users\SrigopalChitrapu\Desktop\New folder\MVVMDemo\obj\Debug\MVVMDemo_MarkupCompile.lref
+C:\Users\SrigopalChitrapu\Desktop\New folder\MVVMDemo\obj\Debug\MainWindow.baml
+C:\Users\SrigopalChitrapu\Desktop\New folder\MVVMDemo\obj\Debug\MVVMDemo.g.resources
+C:\Users\SrigopalChitrapu\Desktop\New folder\MVVMDemo\obj\Debug\MVVMDemo.Properties.Resources.resources
+C:\Users\SrigopalChitrapu\Desktop\New folder\MVVMDemo\obj\Debug\MVVMDemo.csproj.GenerateResource.Cache
+C:\Users\SrigopalChitrapu\Desktop\New folder\MVVMDemo\obj\Debug\MVVMDemo.exe
+C:\Users\SrigopalChitrapu\Desktop\New folder\MVVMDemo\obj\Debug\MVVMDemo.pdb
+C:\Users\SrigopalChitrapu\Desktop\MVVMCommadDemo\bin\Debug\MVVMDemo.exe.config
+C:\Users\SrigopalChitrapu\Desktop\MVVMCommadDemo\obj\Debug\MVVMDemo.exe
+C:\Users\SrigopalChitrapu\Desktop\MVVMCommadDemo\obj\Debug\MVVMDemo.pdb
+C:\Users\SrigopalChitrapu\Desktop\MVVMCommadDemo\bin\Debug\MVVMDemo.exe
+C:\Users\SrigopalChitrapu\Desktop\MVVMCommadDemo\bin\Debug\MVVMDemo.pdb
+C:\Users\SrigopalChitrapu\Desktop\MVVMCommadDemo\obj\Debug\Views\CustomerView.baml
+C:\Users\SrigopalChitrapu\Desktop\MVVMCommadDemo\obj\Debug\Views\CustomerView.g.cs
+C:\Users\SrigopalChitrapu\Desktop\MVVMCommadDemo\obj\Debug\MainWindow.g.cs
+C:\Users\SrigopalChitrapu\Desktop\MVVMCommadDemo\obj\Debug\App.g.cs
+C:\Users\SrigopalChitrapu\Desktop\MVVMCommadDemo\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\SrigopalChitrapu\Desktop\MVVMCommadDemo\obj\Debug\MVVMDemo_MarkupCompile.cache
+C:\Users\SrigopalChitrapu\Desktop\MVVMCommadDemo\obj\Debug\MVVMDemo_MarkupCompile.lref
+C:\Users\SrigopalChitrapu\Desktop\MVVMCommadDemo\obj\Debug\MainWindow.baml
+C:\Users\SrigopalChitrapu\Desktop\MVVMCommadDemo\obj\Debug\MVVMDemo.g.resources
+C:\Users\SrigopalChitrapu\Desktop\MVVMCommadDemo\obj\Debug\MVVMDemo.Properties.Resources.resources
+C:\Users\SrigopalChitrapu\Desktop\MVVMCommadDemo\obj\Debug\MVVMDemo.csproj.GenerateResource.Cache
+C:\WPF Filtered Samples\MVVM\MVVMCommadDemo\bin\Debug\MVVMDemo.exe.config
+C:\WPF Filtered Samples\MVVM\MVVMCommadDemo\obj\Debug\MVVMDemo.exe
+C:\WPF Filtered Samples\MVVM\MVVMCommadDemo\obj\Debug\MVVMDemo.pdb
+C:\WPF Filtered Samples\MVVM\MVVMCommadDemo\bin\Debug\MVVMDemo.exe
+C:\WPF Filtered Samples\MVVM\MVVMCommadDemo\bin\Debug\MVVMDemo.pdb
+C:\WPF Filtered Samples\MVVM\MVVMCommadDemo\obj\Debug\ResolveAssemblyReference.cache
+C:\WPF Filtered Samples\MVVM\MVVMCommadDemo\obj\Debug\Views\CustomerView.g.cs
+C:\WPF Filtered Samples\MVVM\MVVMCommadDemo\obj\Debug\MainWindow.g.cs
+C:\WPF Filtered Samples\MVVM\MVVMCommadDemo\obj\Debug\App.g.cs
+C:\WPF Filtered Samples\MVVM\MVVMCommadDemo\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\WPF Filtered Samples\MVVM\MVVMCommadDemo\obj\Debug\MVVMDemo_MarkupCompile.cache
+C:\WPF Filtered Samples\MVVM\MVVMCommadDemo\obj\Debug\MVVMDemo_MarkupCompile.lref
+C:\WPF Filtered Samples\MVVM\MVVMCommadDemo\obj\Debug\Views\CustomerView.baml
+C:\WPF Filtered Samples\MVVM\MVVMCommadDemo\obj\Debug\MainWindow.baml
+C:\WPF Filtered Samples\MVVM\MVVMCommadDemo\obj\Debug\MVVMDemo.g.resources
+C:\WPF Filtered Samples\MVVM\MVVMCommadDemo\obj\Debug\MVVMDemo.Properties.Resources.resources
+C:\WPF Filtered Samples\MVVM\MVVMCommadDemo\obj\Debug\GenerateResource.read.1.tlog
+C:\WPF Filtered Samples\MVVM\MVVMCommadDemo\obj\Debug\GenerateResource.write.1.tlog
+C:\WPF Filtered Samples\MVVM\MVVMCommandDemo\bin\Debug\MVVMDemo.exe.config
+C:\WPF Filtered Samples\MVVM\MVVMCommandDemo\obj\Debug\MVVMDemo.exe
+C:\WPF Filtered Samples\MVVM\MVVMCommandDemo\obj\Debug\MVVMDemo.pdb

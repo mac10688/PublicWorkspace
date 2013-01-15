@@ -1,0 +1,499 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MyEvents.Model</name>
+    </assembly>
+    <members>
+        <member name="T:MyEvents.Model.Comment">
+            <summary>
+            Comments that users add to events
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Comment.CommentId">
+            <summary>
+            UniqueId
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Comment.Text">
+            <summary>
+            Comment`s content 
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Comment.RegisteredUserId">
+            <summary>
+            RegisteredUserId that add the comment
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Comment.AddedDateTime">
+            <summary>
+            Set the  datetime when the user has done the comment
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Comment.RegisteredUser">
+            <summary>
+            RegisteredUser that add the comment
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Comment.SessionId">
+            <summary>
+            SessionId that has the comments
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Comment.Session">
+            <summary>
+            Session that has the comments
+            </summary>
+        </member>
+        <member name="T:MyEvents.Model.EventDefinition">
+            <summary>
+            Event definition information
+            </summary>
+        </member>
+        <member name="M:MyEvents.Model.EventDefinition.#ctor">
+            <summary>
+            Event definition constructor.
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.EventDefinitionId">
+            <summary>
+            UniqueId
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.Name">
+            <summary>
+            Event Name
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.Description">
+            <summary>
+            Event Description
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.Tags">
+            <summary>
+            Tags; Windows Phone;Windows Azure...
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.RoomNumber">
+            <summary>
+            Number of rooms
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.TwitterAccount">
+            <summary>
+            Twitter Account
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.Date">
+            <summary>
+            Event Date
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.TimeZoneOffset">
+            <summary>
+            TimeZoneOffset
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.StartTime">
+            <summary>
+            Start time.
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.EndTime">
+            <summary>
+            End time.
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.City">
+            <summary>
+            City 
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.Address">
+            <summary>
+            Address
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.ZipCode">
+            <summary>
+            ZipCode
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.Latitude">
+            <summary>
+            GPS Latitute for GPS localization
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.Longitude">
+            <summary>
+            GPS Longitude for GPS localization
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.Logo">
+            <summary>
+            Logo
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.Likes">
+            <summary>
+            Number of likes (facebook) of the event
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.MapImage">
+            <summary>
+            MapImage
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.AttendeesCount">
+            <summary>
+            the number of attendees registered in this event definition
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.OrganizerId">
+            <summary>
+            OrganizerId of the event
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.Organizer">
+            <summary>
+            Organizer of the event
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.Sessions">
+            <summary>
+            Sessions
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.RegisteredUsers">
+            <summary>
+            List of RegisteredUsers
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.Registered">
+            <summary>
+            true the user will be attend to see the event
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.EventDefinition.RoomPoints">
+            <summary>
+            Room Points
+            </summary>
+        </member>
+        <member name="T:MyEvents.Model.Material">
+            <summary>
+            Material
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Material.MaterialId">
+            <summary>
+            UniqueId
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Material.Name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Material.Content">
+            <summary>
+            Content
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Material.ContentType">
+            <summary>
+            Content type
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Material.SessionId">
+            <summary>
+            SessionId associated with the material
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Material.Session">
+            <summary>
+            Session associated with the material
+            </summary>
+        </member>
+        <member name="T:MyEvents.Model.RegisteredUser">
+            <summary>
+            Event RegisteredUser
+            </summary>
+        </member>
+        <member name="M:MyEvents.Model.RegisteredUser.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.RegisteredUser.RegisteredUserId">
+            <summary>
+            UniqueId
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.RegisteredUser.Name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.RegisteredUser.FacebookId">
+            <summary>
+            FacebookId
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.RegisteredUser.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.RegisteredUser.Bio">
+            <summary>
+            Biography
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.RegisteredUser.City">
+            <summary>
+            City location
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.RegisteredUser.OrganizerEventDefinitions">
+            <summary>
+            Events that are organized by this users
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.RegisteredUser.AttendeeEventDefinitions">
+            <summary>
+            Events associated with the RegisteredUser 
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.RegisteredUser.SessionRegisteredUsers">
+            <summary>
+            Session RegisteredUsers
+            </summary>
+        </member>
+        <member name="T:MyEvents.Model.RoomPoint">
+            <summary>
+            Store information about the area of the room
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.RoomPoint.RoomPointId">
+            <summary>
+            UniqueId
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.RoomPoint.RoomNumber">
+            <summary>
+            RoomNumber
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.RoomPoint.PointX">
+            <summary>
+            PointX
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.RoomPoint.PointY">
+            <summary>
+            PointY
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.RoomPoint.EventDefinitionId">
+            <summary>
+            EventDefinitionId
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.RoomPoint.EventDefinition">
+            <summary>
+            EventDefinition
+            </summary>
+        </member>
+        <member name="T:MyEvents.Model.Session">
+            <summary>
+            Session information
+            </summary>
+        </member>
+        <member name="M:MyEvents.Model.Session.#ctor">
+            <summary>
+            Session constructor.
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Session.SessionId">
+            <summary>
+            UniqueId
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Session.Title">
+            <summary>
+            Session Title
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Session.Description">
+            <summary>
+            Session Description
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Session.Speaker">
+            <summary>
+            Session Speaker
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Session.TwitterAccount">
+            <summary>
+            Twitter Account
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Session.Biography">
+            <summary>
+            Biography
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Session.StartTime">
+            <summary>
+            Session Startime. 
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Session.TimeZoneOffset">
+            <summary>
+            TimeZoneOffset
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Session.Duration">
+            <summary>
+            Duration in minutes
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Session.RoomNumber">
+            <summary>
+            Room where event happens
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Session.AttendeesCount">
+            <summary>
+            the number of attendees registered in this session
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Session.Score">
+            <summary>
+            The score of the session. This value is a calculated property
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Session.EventDefinitionId">
+            <summary>
+            EventDefinitionId associated with the session
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Session.EventDefinition">
+            <summary>
+            Event associated with the session
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Session.SessionRegisteredUsers">
+            <summary>
+            Session RegisteredUsers
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Session.Comments">
+            <summary>
+            Comments
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Session.Materials">
+            <summary>
+            Materials
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Session.IsFavorite">
+            <summary>
+            true the user will be attend to see the session
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Session.UserScore">
+            <summary>
+            the score of the user that call this method
+            </summary>
+        </member>
+        <member name="T:MyEvents.Model.SessionRegisteredUser">
+            <summary>
+            registeredUsers that will go to the session
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.SessionRegisteredUser.SessionRegisteredUserId">
+            <summary>
+            UniqueId
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.SessionRegisteredUser.SessionId">
+            <summary>
+            SessionId
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.SessionRegisteredUser.RegisteredUserId">
+            <summary>
+            RegisteredUserId
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.SessionRegisteredUser.FacebookId">
+            <summary>
+            FacebookId
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.SessionRegisteredUser.Score">
+            <summary>
+            Session Score
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.SessionRegisteredUser.Rated">
+            <summary>
+            true is the user has rate the session
+            </summary>
+        </member>
+        <member name="T:MyEvents.Model.Speaker">
+            <summary>
+            Class to return information about the top speakers
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Speaker.Name">
+            <summary>
+            Speaker name
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Speaker.Score">
+            <summary>
+            Score
+            </summary>
+        </member>
+        <member name="T:MyEvents.Model.Tag">
+            <summary>
+            Class to return information about the top tags used in the sessión
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Tag.Name">
+            <summary>
+            Tag 
+            </summary>
+        </member>
+        <member name="P:MyEvents.Model.Tag.Value">
+            <summary>
+            Percentage of usage
+            </summary>
+        </member>
+        <member name="T:MyEvents.Model.Validators.DateGreaterThanAttribute">
+            <summary>
+            Greater than validation attribute.
+            </summary>
+        </member>
+        <member name="M:MyEvents.Model.Validators.DateGreaterThanAttribute.#ctor(System.String)">
+            <summary>
+            Greater than attribute constructor.
+            </summary>
+            <param name="propertyName"></param>
+        </member>
+        <member name="M:MyEvents.Model.Validators.DateGreaterThanAttribute.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)">
+            <summary>
+            Validates the specified value with respect to the current validation attribute.
+            </summary>
+            
+            <returns>
+            An instance of the <see cref="T:System.ComponentModel.DataAnnotations.ValidationResult"/> class.
+            </returns>
+            <param name="value">The value to validate.</param><param name="validationContext">The context information about the validation operation.</param>
+        </member>
+    </members>
+</doc>

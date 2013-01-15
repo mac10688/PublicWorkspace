@@ -1,0 +1,28 @@
+// ReturnBooleanUnit-
+//
+//  Provides the ReturnBoolean function for the DelphiEx2 program.
+
+
+unit  ReturnBooleanUnit;
+
+// Tell HLA that ReturnBoolean is a public symbol:
+
+procedure ReturnBoolean; external;
+
+// Demonstration of a function that returns a byte value in AL.
+// This function simply returns a boolean result that alterates
+// between true and false on each call.
+
+procedure ReturnBoolean;  nodisplay; noalignstk; noframe;
+static b:boolean:=false;
+begin ReturnBoolean;
+
+    xor( 1, b );    // Invert boolean status
+    and( 1, b );    // Force to zero (false) or one (true).
+    mov( b, al );   // Function return result comes back in AL.
+    ret();
+
+end ReturnBoolean;
+
+
+end ReturnBooleanUnit;

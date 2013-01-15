@@ -1,0 +1,22 @@
+﻿<Window x:Class="Example00.Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+
+    Title="Window1" Height="300" Width="300">
+
+    <Grid  >   
+        <Grid.RowDefinitions >
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBox Name="mySourceElement" Grid.Row="0" >Hello World</TextBox>
+        <TextBlock Grid.Row="1">            
+            <TextBlock.Text>
+                <Binding ElementName="mySourceElement" Path="Text"  />
+            </TextBlock.Text>
+        </TextBlock> 
+        
+        <TextBlock Text="{Binding ElementName=mySourceElement,Path=Text }" Grid.Row="2" />
+    </Grid>
+</Window>

@@ -1,0 +1,116 @@
+// demoCase.hla
+//
+// This program demonstrates how to create a lookup table
+// of alphabetic case conversion values using the HLA 
+// compile-time language.
+
+program demoCase;
+#include( "stdlib.hhf" )
+
+const
+    pi :real80 := 3.1415926535897;
+    
+    
+// emitCharRange-
+//
+//  This macro emits a set of character entries
+// for an array of characters.  It emits a list
+// of values (with a comma suffix on each value)
+// from the starting value up to, but not including,
+// the ending value.
+
+#macro emitCharRange( start, last ): index;
+
+    ?index:uns8 := start;
+    #while( index < last )
+    
+        char( index ),
+        ?index := index + 1;
+        
+    #endwhile
+    
+#endmacro;
+    
+readonly
+
+    // toUC:
+    // The entries in this table contain the value of the index
+    // into the table except for indicies #$61..#$7A (those entries
+    // whose indicies are the ASCII codes for the lower case
+    // characters).  Those particular table entries contain the
+    // codes for the corresponding upper case alphabetic characters.
+    // If you use an ASCII character as an index into this table and
+    // fetch the specified byte at that location, you will effectively
+    // translate lower case characters to upper case characters and
+    // leave all other characters unaffected.
+    
+    toUC:   char[ 256 ] :=
+            [
+                // The following compile-time program generates
+                // 255 entries (out of 256).  For each entry
+                // it computes toupper( index ) where index is
+                // the character whose ASCII code is an index
+                // into the table.
+                
+                emitCharRange( 0, uns8('a') )
+                
+                // Okay, we've generated all the entries up to
+                // the start of the lower case characters.  Output
+                // Upper Case characters in place of the lower
+                // case characters here.
+                
+                emitCharRange( uns8('A'), uns8('Z') + 1 )
+                 
+                
+                // Okay, emit the non-alphabetic characters
+                // through to byte code #$FE:
+                
+                emitCharRange( uns8('z') + 1, $FF ) 
+                
+                // Here's the last entry in the table.  This code
+                // handles the last entry specially because a comma
+                // does not follow this entry in the table.
+                
+                #$FF
+            ];  
+
+
+    // The following table is very similar to the one above.
+    // You would use this one, however, to translate upper case
+    // characters to lower case while leaving everything else alone.
+    // See the comments in the previous table for more details.
+    
+    TOlc:   char[ 256 ] :=
+            [               
+                emitCharRange( 0, uns8('A') )
+                emitCharRange( uns8('a'), uns8('z') + 1 )
+                emitCharRange( uns8('Z') + 1, $FF ) 
+                
+                #$FF
+            ];  
+
+
+begin demoCase;
+
+    for( mov( uns32( ' ' ), eax ); eax <= $FF; inc( eax )) do
+    
+        mov( toUC[ eax ], bl );
+        mov( TOlc[ eax ], bh );
+        stdout.put
+        ( 
+            "toupper( '", 
+            (type char al), 
+            "' ) = '", 
+            (type char bl),
+            "'        tolower( '", 
+            (type char al), 
+            "' ) = '", 
+            (type char bh),
+            "'", 
+            nl 
+        );
+        
+    endfor;
+
+                
+end demoCase;

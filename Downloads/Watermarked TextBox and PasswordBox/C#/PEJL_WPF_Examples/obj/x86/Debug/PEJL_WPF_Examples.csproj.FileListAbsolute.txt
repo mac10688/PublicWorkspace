@@ -1,0 +1,16 @@
+c:\users\plaker\documents\visual studio 2010\Projects\PEJL_WPF_Examples\PEJL_WPF_Examples\bin\Debug\PEJL_WPF_Examples.exe
+c:\users\plaker\documents\visual studio 2010\Projects\PEJL_WPF_Examples\PEJL_WPF_Examples\bin\Debug\PEJL_WPF_Examples.pdb
+c:\users\plaker\documents\visual studio 2010\Projects\PEJL_WPF_Examples\PEJL_WPF_Examples\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\plaker\documents\visual studio 2010\Projects\PEJL_WPF_Examples\PEJL_WPF_Examples\obj\x86\Debug\MainWindow.baml
+c:\users\plaker\documents\visual studio 2010\Projects\PEJL_WPF_Examples\PEJL_WPF_Examples\obj\x86\Debug\MainWindow.g.cs
+c:\users\plaker\documents\visual studio 2010\Projects\PEJL_WPF_Examples\PEJL_WPF_Examples\obj\x86\Debug\App.g.cs
+c:\users\plaker\documents\visual studio 2010\Projects\PEJL_WPF_Examples\PEJL_WPF_Examples\obj\x86\Debug\PEJL_WPF_Examples_MarkupCompile.cache
+c:\users\plaker\documents\visual studio 2010\Projects\PEJL_WPF_Examples\PEJL_WPF_Examples\obj\x86\Debug\PEJL_WPF_Examples.g.resources
+c:\users\plaker\documents\visual studio 2010\Projects\PEJL_WPF_Examples\PEJL_WPF_Examples\obj\x86\Debug\PEJL_WPF_Examples.Properties.Resources.resources
+c:\users\plaker\documents\visual studio 2010\Projects\PEJL_WPF_Examples\PEJL_WPF_Examples\obj\x86\Debug\GenerateResource.read.1.tlog
+c:\users\plaker\documents\visual studio 2010\Projects\PEJL_WPF_Examples\PEJL_WPF_Examples\obj\x86\Debug\GenerateResource.write.1.tlog
+c:\users\plaker\documents\visual studio 2010\Projects\PEJL_WPF_Examples\PEJL_WPF_Examples\obj\x86\Debug\PEJL_WPF_Examples.exe
+c:\users\plaker\documents\visual studio 2010\Projects\PEJL_WPF_Examples\PEJL_WPF_Examples\obj\x86\Debug\PEJL_WPF_Examples.pdb
+c:\users\plaker\documents\visual studio 2010\Projects\PEJL_WPF_Examples\PEJL_WPF_Examples\obj\x86\Debug\PEJL_WPF_Examples_MarkupCompile.lref
+C:\Users\plaker\Documents\Visual Studio 2010\Projects\PEJL_WPF_Examples\PEJL_WPF_Examples\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\plaker\Documents\Visual Studio 2010\Projects\PEJL_WPF_Examples\PEJL_WPF_Examples\obj\x86\Debug\App.baml

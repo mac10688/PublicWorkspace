@@ -1,0 +1,62 @@
+// demoSines.hla
+//
+// This program demonstrates how to create a lookup table
+// of sine values using the HLA compile-time language.
+
+program demoSines;
+#include( "stdlib.hhf" )
+
+const
+    pi :real80 := 3.1415926535897;
+    
+readonly
+    sines:  int32[ 360 ] :=
+            [
+                // The following compile-time program generates
+                // 359 entries (out of 360).  For each entry
+                // it computes the sine of the index into the
+                // table and multiplies this result by 1000
+                // in order to get a reasonable integer value.
+                
+                ?angle := 0;
+                #while( angle < 359 )
+                
+                    // Note: HLA's @sin function expects angles
+                    // in radians.  radians = degrees*pi/180.
+                    // the "int32" function truncates its result,
+                    // so this function adds 1/2 as a weak attempt
+                    // to round the value up.
+                    
+                    int32( @sin( angle * pi / 180.0 ) * 1000 + 0.5 ),
+                    ?angle := angle + 1;
+                    
+                #endwhile
+                
+                // Here's the 360th entry in the table.  This code
+                // handles the last entry specially because a comma
+                // does not follow this entry in the table.
+                
+                int32( @sin( 359 * pi / 180.0 ) * 1000 + 0.5 )
+            ];  
+
+
+begin demoSines;
+
+    // Simple demo program that displays all the values in the table.
+    
+    for( mov( 0, ebx); ebx<360; inc( ebx )) do
+    
+        mov( sines[ ebx*4 ], eax );
+        stdout.put
+        ( 
+            "sin( ", 
+            (type uns32 ebx ), 
+            " )*1000 = ", 
+            (type int32 eax ), 
+            nl 
+        );
+        
+    endfor;
+
+                
+end demoSines;

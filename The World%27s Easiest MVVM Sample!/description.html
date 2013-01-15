@@ -1,0 +1,409 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>The World&#39;s Easiest MVVM Sample!</title>
+        <link href="description/Galleries.css" type="text/css" rel="Stylesheet" /><link href="description/Layout.css" type="text/css" rel="Stylesheet" /><link href="description/Brand.css" type="text/css" rel="Stylesheet" />
+        <link href="description/iframedescription.css" rel="Stylesheet" type="text/css" />
+        <script src="description/offline.js" type="text/javascript"></script>
+        <style type="text/css">
+            #projectInfo {
+                overflow: auto;
+            }
+            #longDesc {
+                clear:both;
+                margin: 25px 0 10px 0;
+            }
+
+            #SampleIndexList{
+                margin-left: 15px;
+            }
+        </style>
+    </head>
+<body>
+    <div id="offlineDescription">
+        <h1>The World&#39;s Easiest MVVM Sample!</h1>
+        <br/>
+        <div id="projectInfo">
+            <div class="section">
+                    <div class="itemBarLong tagsContainer">
+                        <label for="Technologies">Technologies</label>
+                        <div id="Technologies">
+                            WPF, MVVM, ICommand, ObservableColle<wbr />ction
+                        </div>
+                    </div>
+                    <div class="itemBarLong tagsContainer">
+                        <label for="Topics">Topics</label>
+                        <div id="Topics">
+                            MVVM
+                        </div>
+                    </div>
+                <div class="itemBarLong">
+                    <label for="Platforms">Platforms</label>
+                    <div id="Platforms">
+                        Desktop
+                    </div>
+                </div>
+                <div class="itemBarLong">
+                    <label for="Requirements">Requirements</label>
+                    <div id="Requirements">
+                        
+                    </div>
+                </div>
+                <div class="itemBar">
+                    <label for="LastUpdated">Primary Language</label>
+                    <div id="LastUpdated">en-US</div>
+                </div>
+                <div class="itemBar">
+                    <label for="LastUpdated">Last Updated</label>
+                    <div id="LastUpdated">6/8/2012</div>
+                </div>
+                <div class="itemBarLong">
+                    <label for="License">License</label>
+                    <div id="License">
+                        <a href="license.rtf">Apache License, Version 2.0</a></div>
+                </div>
+                <div class="itemBar">
+                    <div class="viewonlinecont">
+                        <a data-link="online" href="http://code.msdn.microsoft.com/The-Worlds-Easiest-MVVM-800eb637">View this sample online</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+                   
+<script type="text/javascript">
+    function initializePage() {
+        var otherTabClass = 'otherTab';
+        var hiddenPreClass = 'hidden';
+
+        var htmlDecode = function(encodedData) {
+            var decodedData = "";
+            if (encodedData) {
+                var div = document.createElement('div');
+                div.innerHTML = encodedData;
+                decodedData = div.firstChild.nodeValue.replace( /\\r\\n/ig , '\r\n');
+            }
+            return decodedData;
+        };
+                
+        Galleries.iterateElem(Galleries.findElem(null, 'div', 'scriptcode'), function (index, scriptBlock) {
+            var titleElem = Galleries.findElem(scriptBlock, 'div', 'title')[0];
+            var labelElems = Galleries.findElem(titleElem, 'span');
+            if (labelElems.length == 0) {
+                labelElems = titleElem;
+            }
+            var languageSpans = Galleries.findElem(scriptBlock, 'span', 'hidden');
+            var pres = Galleries.findElem(scriptBlock, 'pre');
+            if (languageSpans.length > 0 && pres.length > 1) {
+                Galleries.iterateElem(labelElems, function(index, elem) {
+                    var codePre = pres[index];
+                    var labelSpan = elem;
+                    var languageSpan = languageSpans[index];
+                            
+                    elem.code = codePre.innerHTML.replace( /(\r(\n)?)|((\r)?\n)/ig , '\\r\\n');
+                            
+                    codePre.className = codePre.className.replace(hiddenPreClass, '');
+                            
+                    languageSpan.parentNode.removeChild(languageSpan);
+                });
+
+                pres = Galleries.findElem(scriptBlock, 'pre');
+                Galleries.iterateElem(labelElems, function(index, elem) {
+                    var codePre = pres[index];
+                    var labelSpan = elem;
+                    if (index == 0) {
+                        scriptBlock.activeTab = 0;
+                    }
+                    else {
+                        labelSpan.className += otherTabClass;
+                        codePre.className += hiddenPreClass;
+                    }
+                    Galleries.attachEventHandler(labelSpan, 'click', function(e) {
+                        var activeTab = scriptBlock.activeTab;
+                        labelElems[activeTab].className += otherTabClass;
+                        pres[activeTab].className += hiddenPreClass;
+
+                        codePre.className = codePre.className.replace(hiddenPreClass, '');
+                        labelSpan.className = labelSpan.className.replace(otherTabClass, '');
+                        scriptBlock.activeTab = index;
+                    });
+                });
+
+                var preview = Galleries.findElem(scriptBlock, 'div', 'preview');
+                if (preview.length == 0) {
+                    preview.push(pres[pres.length - 1]);
+                }
+                Galleries.iterateElem(preview, function(index, elem) {
+                    elem.parentNode.removeChild(elem);
+                });
+
+                if (window.clipboardData && clipboardData.setData) {
+                    var copyLink = document.createElement('a');
+                    copyLink.href = 'javascript:void(0);';
+                    copyLink.className = 'copyCode';
+                    copyLink.innerHTML = 'Copy Code';
+                    Galleries.attachEventHandler(copyLink, 'click', function (e) {
+                        clipboardData.setData("Text", htmlDecode(labelElems[scriptBlock.activeTab].code));
+                        return false;
+                    });
+                    scriptBlock.insertBefore(copyLink, scriptBlock.childNodes[0]);
+                }
+            }
+        });
+    }
+
+    Galleries.onWindowLoad(function(){
+        initializePage();
+    });
+
+</script>
+<div id="longDesc">
+    
+<h1>Introduction</h1>
+<p><em>Learning MVVM can be tough, especially when you dig into all the atricles out there. &nbsp;Why not just download a well commentd project that shows everything you need in one single file? &nbsp;</em></p>
+<h1><span>Building the Sample</span></h1>
+<p><em>Using VS2010 just download extract build and run! &nbsp;There is a flowdocument that discusses the project and how it was designed built right in to the MainWindow! &nbsp;</em></p>
+<p><span style="font-size:20px; font-weight:bold">Description</span></p>
+<p><em>The MVVM pattern is tough unless you download and take a look at this, the World's Easiest MVVM Sample. &nbsp;It creates all the classes you need in just one physical file so you can see everything on one page. &nbsp;It has just one XAML window and shows
+ the View first methodology. &nbsp;In addition there is an example of Commanding in the project as well.&nbsp;</em></p>
+<p><em>There are just 110 lines of code as shown below!</em></p>
+<p><em>This is what the Mainwindow shows. &nbsp;Lean about Binding, Dynamic content, Commands, View Models, Models, and the View in 15 minutes.</em></p>
+<p><em><img id="59514" src="description/WorldsEasiestMVVM.png" alt="" width="430" height="283"><br>
+</em></p>
+<p>&nbsp;</p>
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>C#</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">csharp</span>
+<pre class="hidden">namespace TheWorldsEasiestMVVM
+{
+    /// &lt;summary&gt;
+    /// Notice the MainWindow has almost nothing in it.
+    /// &lt;/summary&gt;
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        //NOTE: IT IS OK to change GUI state in the View in code behind of the view!
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            XTBEndOfStory.Visibility = Visibility.Visible;
+        }
+    }
+
+    /// &lt;summary&gt;
+    /// The ViewModel is instantiated in the XAML from a static resource declaration.
+    /// Some developers say don't inherit from Dependency Object, it's done here to get addressability to SetValue!
+    /// &lt;/summary&gt;
+    public class MainWindowViewModel : DependencyObject
+    {
+        /// &lt;summary&gt;
+        /// The dependency property system is superior to INotifyPropertyChanged interface and is just about as simple to write.
+        /// &lt;/summary&gt;
+        public static DependencyProperty OCProperty = DependencyProperty.Register(&quot;OC&quot;, typeof(ObservableCollection&lt;Person&gt;), typeof(MainWindowViewModel));
+
+        /// &lt;summary&gt;
+        /// The ViewModel creates a model and sets the content to be displayed as a collection of type person!
+        /// &lt;/summary&gt;
+        public MainWindowViewModel()
+        {
+            //The view model knows the model.
+            MainWindowModel mwm = new MainWindowModel();
+            //Simulates a get data request
+            OC = mwm;
+        }
+
+        //This is the PATH within this DATACONTEXT.  DATACONTEXT = MainWindowViewModel, PATH = OC
+        //Many of you new to MVVM stumble on DATACONTEXT and PATHs...
+        public ObservableCollection&lt;Person&gt; OC
+        {
+            get { return (ObservableCollection&lt;Person&gt;)GetValue(OCProperty); }
+            set { SetValue(OCProperty, value); }
+        }
+    }
+
+    /// &lt;summary&gt;
+    /// This Model is an ObservableCollection of person, but it could have easily just updated it from a Database somewhere
+    /// &lt;/summary&gt;
+    public class MainWindowModel : ObservableCollection&lt;Person&gt;
+    {
+        public MainWindowModel()
+        {
+            this.Add(new Person { LastName = &quot;FirstLastName&quot;, FirstName = &quot;FirstFirstName&quot; });
+            this.Add(new Person { LastName = &quot;SecondLastName&quot;, FirstName = &quot;SecondFirstName&quot; });
+            this.Add(new Person { LastName = &quot;ThirdLastName&quot;, FirstName = &quot;ThirdFirstName&quot; });
+            AddNewPerson.OnNewPerson &#43;= new Notify(AddNewPerson_OnNewPerson);
+        }
+
+        //Show a way to get a new person notification from a button click command
+        private void AddNewPerson_OnNewPerson(Person p)
+        {
+            this.Add(p);
+        }
+    }
+
+    /// &lt;summary&gt;
+    /// Classes that have public getter and setters like this allow the DataGrid's auto generated columns to Name them.
+    /// &lt;/summary&gt;
+    public class Person
+    {
+        public String LastName { get; set; }
+
+        public string FirstName { get; set; }
+    }
+
+    public delegate void Notify(Person p);
+
+    //Shows how to create a simple command
+    public class AddNewPerson : ICommand
+    {
+        public static event Notify OnNewPerson;
+
+        private bool _CanExecute = true;
+
+        public bool CanExecute(object parameter)
+        {
+            return _CanExecute;
+        }
+
+        public event EventHandler CanExecuteChanged;
+
+        public void Execute(object parameter)
+        {
+            Person p = new Person { LastName = DateTime.Now.ToLongTimeString(), FirstName = DateTime.Now.ToLongTimeString() };
+            if (OnNewPerson != null)
+            {
+                OnNewPerson(p);
+            }
+        }
+    }
+}</pre>
+<div class="preview">
+<pre class="csharp"><span class="cs__keyword">namespace</span>&nbsp;TheWorldsEasiestMVVM&nbsp;
+{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">///&nbsp;&lt;summary&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">///&nbsp;Notice&nbsp;the&nbsp;MainWindow&nbsp;has&nbsp;almost&nbsp;nothing&nbsp;in&nbsp;it.</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">///&nbsp;&lt;/summary&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;partial&nbsp;<span class="cs__keyword">class</span>&nbsp;MainWindow&nbsp;:&nbsp;Window&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;MainWindow()&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;InitializeComponent();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">//NOTE:&nbsp;IT&nbsp;IS&nbsp;OK&nbsp;to&nbsp;change&nbsp;GUI&nbsp;state&nbsp;in&nbsp;the&nbsp;View&nbsp;in&nbsp;code&nbsp;behind&nbsp;of&nbsp;the&nbsp;view!</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">private</span>&nbsp;<span class="cs__keyword">void</span>&nbsp;Button_Click(<span class="cs__keyword">object</span>&nbsp;sender,&nbsp;RoutedEventArgs&nbsp;e)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;XTBEndOfStory.Visibility&nbsp;=&nbsp;Visibility.Visible;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">///&nbsp;&lt;summary&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">///&nbsp;The&nbsp;ViewModel&nbsp;is&nbsp;instantiated&nbsp;in&nbsp;the&nbsp;XAML&nbsp;from&nbsp;a&nbsp;static&nbsp;resource&nbsp;declaration.</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">///&nbsp;Some&nbsp;developers&nbsp;say&nbsp;don't&nbsp;inherit&nbsp;from&nbsp;Dependency&nbsp;Object,&nbsp;it's&nbsp;done&nbsp;here&nbsp;to&nbsp;get&nbsp;addressability&nbsp;to&nbsp;SetValue!</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">///&nbsp;&lt;/summary&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;<span class="cs__keyword">class</span>&nbsp;MainWindowViewModel&nbsp;:&nbsp;DependencyObject&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">///&nbsp;&lt;summary&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">///&nbsp;The&nbsp;dependency&nbsp;property&nbsp;system&nbsp;is&nbsp;superior&nbsp;to&nbsp;INotifyPropertyChanged&nbsp;interface&nbsp;and&nbsp;is&nbsp;just&nbsp;about&nbsp;as&nbsp;simple&nbsp;to&nbsp;write.</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">///&nbsp;&lt;/summary&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;<span class="cs__keyword">static</span>&nbsp;DependencyProperty&nbsp;OCProperty&nbsp;=&nbsp;DependencyProperty.Register(<span class="cs__string">&quot;OC&quot;</span>,&nbsp;<span class="cs__keyword">typeof</span>(ObservableCollection&lt;Person&gt;),&nbsp;<span class="cs__keyword">typeof</span>(MainWindowViewModel));&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">///&nbsp;&lt;summary&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">///&nbsp;The&nbsp;ViewModel&nbsp;creates&nbsp;a&nbsp;model&nbsp;and&nbsp;sets&nbsp;the&nbsp;content&nbsp;to&nbsp;be&nbsp;displayed&nbsp;as&nbsp;a&nbsp;collection&nbsp;of&nbsp;type&nbsp;person!</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">///&nbsp;&lt;/summary&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;MainWindowViewModel()&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">//The&nbsp;view&nbsp;model&nbsp;knows&nbsp;the&nbsp;model.</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MainWindowModel&nbsp;mwm&nbsp;=&nbsp;<span class="cs__keyword">new</span>&nbsp;MainWindowModel();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">//Simulates&nbsp;a&nbsp;get&nbsp;data&nbsp;request</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OC&nbsp;=&nbsp;mwm;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">//This&nbsp;is&nbsp;the&nbsp;PATH&nbsp;within&nbsp;this&nbsp;DATACONTEXT.&nbsp;&nbsp;DATACONTEXT&nbsp;=&nbsp;MainWindowViewModel,&nbsp;PATH&nbsp;=&nbsp;OC</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">//Many&nbsp;of&nbsp;you&nbsp;new&nbsp;to&nbsp;MVVM&nbsp;stumble&nbsp;on&nbsp;DATACONTEXT&nbsp;and&nbsp;PATHs...</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;ObservableCollection&lt;Person&gt;&nbsp;OC&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">get</span>&nbsp;{&nbsp;<span class="cs__keyword">return</span>&nbsp;(ObservableCollection&lt;Person&gt;)GetValue(OCProperty);&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">set</span>&nbsp;{&nbsp;SetValue(OCProperty,&nbsp;<span class="cs__keyword">value</span>);&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">///&nbsp;&lt;summary&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">///&nbsp;This&nbsp;Model&nbsp;is&nbsp;an&nbsp;ObservableCollection&nbsp;of&nbsp;person,&nbsp;but&nbsp;it&nbsp;could&nbsp;have&nbsp;easily&nbsp;just&nbsp;updated&nbsp;it&nbsp;from&nbsp;a&nbsp;Database&nbsp;somewhere</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">///&nbsp;&lt;/summary&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;<span class="cs__keyword">class</span>&nbsp;MainWindowModel&nbsp;:&nbsp;ObservableCollection&lt;Person&gt;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;MainWindowModel()&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">this</span>.Add(<span class="cs__keyword">new</span>&nbsp;Person&nbsp;{&nbsp;LastName&nbsp;=&nbsp;<span class="cs__string">&quot;FirstLastName&quot;</span>,&nbsp;FirstName&nbsp;=&nbsp;<span class="cs__string">&quot;FirstFirstName&quot;</span>&nbsp;});&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">this</span>.Add(<span class="cs__keyword">new</span>&nbsp;Person&nbsp;{&nbsp;LastName&nbsp;=&nbsp;<span class="cs__string">&quot;SecondLastName&quot;</span>,&nbsp;FirstName&nbsp;=&nbsp;<span class="cs__string">&quot;SecondFirstName&quot;</span>&nbsp;});&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">this</span>.Add(<span class="cs__keyword">new</span>&nbsp;Person&nbsp;{&nbsp;LastName&nbsp;=&nbsp;<span class="cs__string">&quot;ThirdLastName&quot;</span>,&nbsp;FirstName&nbsp;=&nbsp;<span class="cs__string">&quot;ThirdFirstName&quot;</span>&nbsp;});&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AddNewPerson.OnNewPerson&nbsp;&#43;=&nbsp;<span class="cs__keyword">new</span>&nbsp;Notify(AddNewPerson_OnNewPerson);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">//Show&nbsp;a&nbsp;way&nbsp;to&nbsp;get&nbsp;a&nbsp;new&nbsp;person&nbsp;notification&nbsp;from&nbsp;a&nbsp;button&nbsp;click&nbsp;command</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">private</span>&nbsp;<span class="cs__keyword">void</span>&nbsp;AddNewPerson_OnNewPerson(Person&nbsp;p)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">this</span>.Add(p);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">///&nbsp;&lt;summary&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">///&nbsp;Classes&nbsp;that&nbsp;have&nbsp;public&nbsp;getter&nbsp;and&nbsp;setters&nbsp;like&nbsp;this&nbsp;allow&nbsp;the&nbsp;DataGrid's&nbsp;auto&nbsp;generated&nbsp;columns&nbsp;to&nbsp;Name&nbsp;them.</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">///&nbsp;&lt;/summary&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;<span class="cs__keyword">class</span>&nbsp;Person&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;String&nbsp;LastName&nbsp;{&nbsp;<span class="cs__keyword">get</span>;&nbsp;<span class="cs__keyword">set</span>;&nbsp;}&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;<span class="cs__keyword">string</span>&nbsp;FirstName&nbsp;{&nbsp;<span class="cs__keyword">get</span>;&nbsp;<span class="cs__keyword">set</span>;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;<span class="cs__keyword">delegate</span>&nbsp;<span class="cs__keyword">void</span>&nbsp;Notify(Person&nbsp;p);&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">//Shows&nbsp;how&nbsp;to&nbsp;create&nbsp;a&nbsp;simple&nbsp;command</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;<span class="cs__keyword">class</span>&nbsp;AddNewPerson&nbsp;:&nbsp;ICommand&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;<span class="cs__keyword">static</span>&nbsp;<span class="cs__keyword">event</span>&nbsp;Notify&nbsp;OnNewPerson;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">private</span>&nbsp;<span class="cs__keyword">bool</span>&nbsp;_CanExecute&nbsp;=&nbsp;<span class="cs__keyword">true</span>;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;<span class="cs__keyword">bool</span>&nbsp;CanExecute(<span class="cs__keyword">object</span>&nbsp;parameter)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">return</span>&nbsp;_CanExecute;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;<span class="cs__keyword">event</span>&nbsp;EventHandler&nbsp;CanExecuteChanged;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;<span class="cs__keyword">void</span>&nbsp;Execute(<span class="cs__keyword">object</span>&nbsp;parameter)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Person&nbsp;p&nbsp;=&nbsp;<span class="cs__keyword">new</span>&nbsp;Person&nbsp;{&nbsp;LastName&nbsp;=&nbsp;DateTime.Now.ToLongTimeString(),&nbsp;FirstName&nbsp;=&nbsp;DateTime.Now.ToLongTimeString()&nbsp;};&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">if</span>&nbsp;(OnNewPerson&nbsp;!=&nbsp;<span class="cs__keyword">null</span>)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OnNewPerson(p);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+}</pre>
+</div>
+</div>
+</div>
+<h1><span>Source Code Files</span></h1>
+<ul>
+<li><em>MainWindow.cs - Code behind for the view</em> </li><li><em><em>MainWindowViewModel - The Data context for the View</em></em> </li><li><em><em>MainWindowModel.cs - A class of type ObservableCollection&lt;Person&gt;</em></em>
+</li><li><em><em>Person.cs - The Person Class</em></em> </li><li><em><em>AddNewPerson.cs - A ICommand class to inject a new person into the collection!</em></em>
+</li></ul>
+<h1>More Information</h1>
+<p><em>I suggest that as you grow in this MVVM learning experince you take a look at Rob Eisneberg's excellent Caliburn Micro porject. &nbsp;It uses a ViewModel first technology but is pretty slick!</em></p>
+
+</div>
+
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Search filters with dynamic LinqToSql</title>
+        <link href="description/Galleries.css" type="text/css" rel="Stylesheet" /><link href="description/Layout.css" type="text/css" rel="Stylesheet" /><link href="description/Brand.css" type="text/css" rel="Stylesheet" />
+        <link href="description/iframedescription.css" rel="Stylesheet" type="text/css" />
+        <script src="description/offline.js" type="text/javascript"></script>
+        <style type="text/css">
+            #projectInfo {
+                overflow: auto;
+            }
+            #longDesc {
+                clear:both;
+                margin: 25px 0 10px 0;
+            }
+
+            #SampleIndexList{
+                margin-left: 15px;
+            }
+        </style>
+    </head>
+<body>
+    <div id="offlineDescription">
+        <h1>Search filters with dynamic LinqToSql</h1>
+        <br/>
+        <div id="projectInfo">
+            <div class="section">
+                    <div class="itemBarLong tagsContainer">
+                        <label for="Technologies">Technologies</label>
+                        <div id="Technologies">
+                            C#, LINQ to SQL, LINQ, WPF
+                        </div>
+                    </div>
+                    <div class="itemBarLong tagsContainer">
+                        <label for="Topics">Topics</label>
+                        <div id="Topics">
+                            C#, LINQ to SQL, LINQ, WPF, POWERPACKS
+                        </div>
+                    </div>
+                <div class="itemBarLong">
+                    <label for="Platforms">Platforms</label>
+                    <div id="Platforms">
+                        Desktop, Data
+                    </div>
+                </div>
+                <div class="itemBarLong">
+                    <label for="Requirements">Requirements</label>
+                    <div id="Requirements">
+                        
+                    </div>
+                </div>
+                <div class="itemBar">
+                    <label for="LastUpdated">Primary Language</label>
+                    <div id="LastUpdated">it-IT</div>
+                </div>
+                <div class="itemBar">
+                    <label for="LastUpdated">Last Updated</label>
+                    <div id="LastUpdated">8/12/2012</div>
+                </div>
+                <div class="itemBarLong">
+                    <label for="License">License</label>
+                    <div id="License">
+                        <a href="license.rtf">Apache License, Version 2.0</a></div>
+                </div>
+                <div class="itemBar">
+                    <div class="viewonlinecont">
+                        <a data-link="online" href="http://code.msdn.microsoft.com/Filtri-di-ricerca-dinamica-3ce7ad22">View this sample online</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+                   
+<script type="text/javascript">
+    function initializePage() {
+        var otherTabClass = 'otherTab';
+        var hiddenPreClass = 'hidden';
+
+        var htmlDecode = function(encodedData) {
+            var decodedData = "";
+            if (encodedData) {
+                var div = document.createElement('div');
+                div.innerHTML = encodedData;
+                decodedData = div.firstChild.nodeValue.replace( /\\r\\n/ig , '\r\n');
+            }
+            return decodedData;
+        };
+                
+        Galleries.iterateElem(Galleries.findElem(null, 'div', 'scriptcode'), function (index, scriptBlock) {
+            var titleElem = Galleries.findElem(scriptBlock, 'div', 'title')[0];
+            var labelElems = Galleries.findElem(titleElem, 'span');
+            if (labelElems.length == 0) {
+                labelElems = titleElem;
+            }
+            var languageSpans = Galleries.findElem(scriptBlock, 'span', 'hidden');
+            var pres = Galleries.findElem(scriptBlock, 'pre');
+            if (languageSpans.length > 0 && pres.length > 1) {
+                Galleries.iterateElem(labelElems, function(index, elem) {
+                    var codePre = pres[index];
+                    var labelSpan = elem;
+                    var languageSpan = languageSpans[index];
+                            
+                    elem.code = codePre.innerHTML.replace( /(\r(\n)?)|((\r)?\n)/ig , '\\r\\n');
+                            
+                    codePre.className = codePre.className.replace(hiddenPreClass, '');
+                            
+                    languageSpan.parentNode.removeChild(languageSpan);
+                });
+
+                pres = Galleries.findElem(scriptBlock, 'pre');
+                Galleries.iterateElem(labelElems, function(index, elem) {
+                    var codePre = pres[index];
+                    var labelSpan = elem;
+                    if (index == 0) {
+                        scriptBlock.activeTab = 0;
+                    }
+                    else {
+                        labelSpan.className += otherTabClass;
+                        codePre.className += hiddenPreClass;
+                    }
+                    Galleries.attachEventHandler(labelSpan, 'click', function(e) {
+                        var activeTab = scriptBlock.activeTab;
+                        labelElems[activeTab].className += otherTabClass;
+                        pres[activeTab].className += hiddenPreClass;
+
+                        codePre.className = codePre.className.replace(hiddenPreClass, '');
+                        labelSpan.className = labelSpan.className.replace(otherTabClass, '');
+                        scriptBlock.activeTab = index;
+                    });
+                });
+
+                var preview = Galleries.findElem(scriptBlock, 'div', 'preview');
+                if (preview.length == 0) {
+                    preview.push(pres[pres.length - 1]);
+                }
+                Galleries.iterateElem(preview, function(index, elem) {
+                    elem.parentNode.removeChild(elem);
+                });
+
+                if (window.clipboardData && clipboardData.setData) {
+                    var copyLink = document.createElement('a');
+                    copyLink.href = 'javascript:void(0);';
+                    copyLink.className = 'copyCode';
+                    copyLink.innerHTML = 'Copy Code';
+                    Galleries.attachEventHandler(copyLink, 'click', function (e) {
+                        clipboardData.setData("Text", htmlDecode(labelElems[scriptBlock.activeTab].code));
+                        return false;
+                    });
+                    scriptBlock.insertBefore(copyLink, scriptBlock.childNodes[0]);
+                }
+            }
+        });
+    }
+
+    Galleries.onWindowLoad(function(){
+        initializePage();
+    });
+
+</script>
+<div id="longDesc">
+    
+<h1>Introduction</h1>
+<p><strong>This example explains how to perform dynamic search filter with one or more conditions through the use of LinqToSql.</strong></p>
+<h1><span>Building the Sample</span></h1>
+<p>To try this example and nacessario have on the pc and sdk net.framework4.0 PowerPacks available&nbsp;<a href="http://msdn.microsoft.com/it-it/vbasic/bb735936.aspx"><span style="color:#00749e"><em>here</em></span></a><em> .</em>&nbsp;</p>
+<p><span style="font-size:20px; font-weight:bold">Description</span></p>
+<p>&nbsp;Linq known as Language-Integrated Query and was introduced with the advent of VisualStudio 2008 and is an integral part in the NETFramework from version 3.5 to oggi.Linq and a technology with which it is possible to query in-memory objects, fields
+ within the tables in a database, XML file, and much more simply and concisely, is divided into different DataProvider among which we LinqToObjects, LinqToXml, LinqToDataSet, ending with LinqToSql LinqToEntities EntityFramework.In used with this article we
+ will see some of these operators also estensionMethod with which it can perform search queries on the tables named Person and Job Data Base within a type SqlCompact.Il project has a Class LinqToSql, with a file.dbml in the mapping of two tables as said precedenza.Vedremo
+ Where the operator also called operator of restriction, which filters the data of a sequence on the basis of a predicate, which can be for example, select only the people living in a city or province, the operator Join , this operator combines the results
+ according to a key value, for example, we can combine the data from one or more tables based on based on the name by the method Equals and retrieve information from one or more tables, the operator Distinct, this operator does is delete all the duplicate values
+ ​​from a sequence, returns useful if we want a result of unique values ​​OrderBy operator, this operator reorders in increasing the query result according to a predicate, for example a list of people ordinara based on their surname, then the operator ToList,
+ this operator converts the query result in a list type System.Collection.Generics.List &lt;t&gt;. The example also has a main form where you can create a Database , connect and do the insert, modify and delete data from tables, a form of selection based on
+ the state and sixteen different tasks, this form contains the Linq query with which you executed the search filter, and finally the Dynamic Forms the preview of the search result and then with which can print the contents of research performed in the following
+ part of the code precedenza.Di more interesting, namely that of the Class search containing the search filter dynamically.</p>
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>C#</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Modifica script</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">csharp</span>
+<pre class="hidden">        //Click event of btnFind
+        private void btnFind_Click(object sender, RoutedEventArgs e)
+        {
+            /*This Linq query performs a search based on what the user selects the Search form, 
+             * the form includes three RadioButton and CheckBox controls sixteen, 
+             * first of all check if the user has selected at least one RadioButton and one or more checkboxes, 
+             * otherwise it will be perceived from a messagebox.
+             * Next check out what has been selected, this is by LinqToObjects query, 
+             * first retrieves the name of the selected RadioButton control and the second the name or names of the selected checkboxes, 
+             * which is becoming the operator and Where the predicate inside.
+
+             *This query and the search for or interested in the tasks assigned to each person.
+
+&nbsp;                        var result = ctx.GetTable &lt;Job&gt; ()
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; . Where (w =&gt; w.ACTIVITY.Equals (_activity.Content.ToString (). ToUpper ()) &amp;&amp; w.STATE.Equals (_state.ToUpper ()))
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; . Join (ctx.PERSON, job =&gt; job.ID, cust =&gt; cust.ID, (job, name) =&gt; new {name.NAME, name.SURNAME, name.ADDRESS, name.ZIPCODE, name.CITY} )
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; . OrderBy (a =&gt; a.SURNAME)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; . Distinct ()
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; . ToList ();
+
+             *A check is performed on the Job table if there are people who work a year and a corresponding duty, 
+             *will join the two tables placed in the Job and person using the ID field will be extracted and all the information 
+             *of the person or persons who fulfill the conditions specified in Where previous predicate operator, 
+             *then using the OrderBy operator will be sorted in ascending according to the specified predicate, 
+             *in this case by name, will be eliminated any double occurrences, and this task Distinct operator, 
+             *he will remove all occurrences double and the method ToList convert the result of the query 
+             *that will anominustype type in a list and we'll look at why
+             */
+            if (Validations.ChechBoxAndRadioButtonChecked(dgvSearch) &lt; 2)
+            {
+                return;
+            }
+
+            var print = new PreviewDialog();
+            var _state = string.Empty;
+
+            using (var ctx = new ContactDataContext(Properties.Settings.Default.path))
+            {              
+                foreach (var myRadioButton in dgvSearch.Children.OfType&lt;RadioButton&gt;().Where(myRadioButton =&gt; myRadioButton.IsChecked.Equals(true)))
+                {
+                   _state = myRadioButton.Content.ToString();
+                }
+
+                foreach (var myCheckBox in dgvSearch.Children.OfType&lt;CheckBox&gt;().Where(myCheckBox =&gt; myCheckBox.IsChecked.Equals(true)))
+                {
+                    var _activity = myCheckBox;
+                    var result =  ctx.GetTable&lt;JOB&gt;()
+                        .Where(w =&gt;w.ACTIVITY.Equals(_activity.Content.ToString().ToUpper()) &amp;&amp; w.STATE.Equals(_state.ToUpper()))
+                        .Join( ctx.PERSON, job =&gt; job.ID, cust =&gt; cust.ID,(job, name) =&gt; new  {name.NAME, name.SURNAME, name.ADDRESS, name.ZIPCODE, name.CITY })
+                        .OrderBy(a =&gt; a.SURNAME)
+                        .Distinct()
+                        .ToList();
+
+                    foreach (var item in result)
+                    {
+                        /*The method of the class LoadData PreviewDialog populates a list of such Persons passing all the data found by the search query, 
+                         * which is why we converted the result of the query in a list, in the class PreviewDialog will find the list of 
+                         * such person and the method LoadData
+                         */
+                        print.LoadData(item.NAME, item.SURNAME, item.ADDRESS, item.ZIPCODE, item.CITY);
+                    }
+                }
+                print.ShowDialog();
+            }
+        }</pre>
+<div class="preview">
+<pre class="csharp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__com">//Click&nbsp;event&nbsp;of&nbsp;btnFind</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">private</span>&nbsp;<span class="cs__keyword">void</span>&nbsp;btnFind_Click(<span class="cs__keyword">object</span>&nbsp;sender,&nbsp;RoutedEventArgs&nbsp;e)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__mlcom">/*This&nbsp;Linq&nbsp;query&nbsp;performs&nbsp;a&nbsp;search&nbsp;based&nbsp;on&nbsp;what&nbsp;the&nbsp;user&nbsp;selects&nbsp;the&nbsp;Search&nbsp;form,&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;the&nbsp;form&nbsp;includes&nbsp;three&nbsp;RadioButton&nbsp;and&nbsp;CheckBox&nbsp;controls&nbsp;sixteen,&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;first&nbsp;of&nbsp;all&nbsp;check&nbsp;if&nbsp;the&nbsp;user&nbsp;has&nbsp;selected&nbsp;at&nbsp;least&nbsp;one&nbsp;RadioButton&nbsp;and&nbsp;one&nbsp;or&nbsp;more&nbsp;checkboxes,&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;otherwise&nbsp;it&nbsp;will&nbsp;be&nbsp;perceived&nbsp;from&nbsp;a&nbsp;messagebox.&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Next&nbsp;check&nbsp;out&nbsp;what&nbsp;has&nbsp;been&nbsp;selected,&nbsp;this&nbsp;is&nbsp;by&nbsp;LinqToObjects&nbsp;query,&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;first&nbsp;retrieves&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;selected&nbsp;RadioButton&nbsp;control&nbsp;and&nbsp;the&nbsp;second&nbsp;the&nbsp;name&nbsp;or&nbsp;names&nbsp;of&nbsp;the&nbsp;selected&nbsp;checkboxes,&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;which&nbsp;is&nbsp;becoming&nbsp;the&nbsp;operator&nbsp;and&nbsp;Where&nbsp;the&nbsp;predicate&nbsp;inside.&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*This&nbsp;query&nbsp;and&nbsp;the&nbsp;search&nbsp;for&nbsp;or&nbsp;interested&nbsp;in&nbsp;the&nbsp;tasks&nbsp;assigned&nbsp;to&nbsp;each&nbsp;person.&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;result&nbsp;=&nbsp;ctx.GetTable&nbsp;&lt;Job&gt;&nbsp;()&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.&nbsp;Where&nbsp;(w&nbsp;=&gt;&nbsp;w.ACTIVITY.Equals&nbsp;(_activity.Content.ToString&nbsp;().&nbsp;ToUpper&nbsp;())&nbsp;&amp;&amp;&nbsp;w.STATE.Equals&nbsp;(_state.ToUpper&nbsp;()))&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.&nbsp;Join&nbsp;(ctx.PERSON,&nbsp;job&nbsp;=&gt;&nbsp;job.ID,&nbsp;cust&nbsp;=&gt;&nbsp;cust.ID,&nbsp;(job,&nbsp;name)&nbsp;=&gt;&nbsp;new&nbsp;{name.NAME,&nbsp;name.SURNAME,&nbsp;name.ADDRESS,&nbsp;name.ZIPCODE,&nbsp;name.CITY}&nbsp;)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.&nbsp;OrderBy&nbsp;(a&nbsp;=&gt;&nbsp;a.SURNAME)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.&nbsp;Distinct&nbsp;()&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.&nbsp;ToList&nbsp;();&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*A&nbsp;check&nbsp;is&nbsp;performed&nbsp;on&nbsp;the&nbsp;Job&nbsp;table&nbsp;if&nbsp;there&nbsp;are&nbsp;people&nbsp;who&nbsp;work&nbsp;a&nbsp;year&nbsp;and&nbsp;a&nbsp;corresponding&nbsp;duty,&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*will&nbsp;join&nbsp;the&nbsp;two&nbsp;tables&nbsp;placed&nbsp;in&nbsp;the&nbsp;Job&nbsp;and&nbsp;person&nbsp;using&nbsp;the&nbsp;ID&nbsp;field&nbsp;will&nbsp;be&nbsp;extracted&nbsp;and&nbsp;all&nbsp;the&nbsp;information&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*of&nbsp;the&nbsp;person&nbsp;or&nbsp;persons&nbsp;who&nbsp;fulfill&nbsp;the&nbsp;conditions&nbsp;specified&nbsp;in&nbsp;Where&nbsp;previous&nbsp;predicate&nbsp;operator,&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*then&nbsp;using&nbsp;the&nbsp;OrderBy&nbsp;operator&nbsp;will&nbsp;be&nbsp;sorted&nbsp;in&nbsp;ascending&nbsp;according&nbsp;to&nbsp;the&nbsp;specified&nbsp;predicate,&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*in&nbsp;this&nbsp;case&nbsp;by&nbsp;name,&nbsp;will&nbsp;be&nbsp;eliminated&nbsp;any&nbsp;double&nbsp;occurrences,&nbsp;and&nbsp;this&nbsp;task&nbsp;Distinct&nbsp;operator,&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*he&nbsp;will&nbsp;remove&nbsp;all&nbsp;occurrences&nbsp;double&nbsp;and&nbsp;the&nbsp;method&nbsp;ToList&nbsp;convert&nbsp;the&nbsp;result&nbsp;of&nbsp;the&nbsp;query&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*that&nbsp;will&nbsp;anominustype&nbsp;type&nbsp;in&nbsp;a&nbsp;list&nbsp;and&nbsp;we'll&nbsp;look&nbsp;at&nbsp;why&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">if</span>&nbsp;(Validations.ChechBoxAndRadioButtonChecked(dgvSearch)&nbsp;&lt;&nbsp;<span class="cs__number">2</span>)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">return</span>;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;print&nbsp;=&nbsp;<span class="cs__keyword">new</span>&nbsp;PreviewDialog();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;_state&nbsp;=&nbsp;<span class="cs__keyword">string</span>.Empty;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">using</span>&nbsp;(var&nbsp;ctx&nbsp;=&nbsp;<span class="cs__keyword">new</span>&nbsp;ContactDataContext(Properties.Settings.Default.path))&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">foreach</span>&nbsp;(var&nbsp;myRadioButton&nbsp;<span class="cs__keyword">in</span>&nbsp;dgvSearch.Children.OfType&lt;RadioButton&gt;().Where(myRadioButton&nbsp;=&gt;&nbsp;myRadioButton.IsChecked.Equals(<span class="cs__keyword">true</span>)))&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_state&nbsp;=&nbsp;myRadioButton.Content.ToString();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">foreach</span>&nbsp;(var&nbsp;myCheckBox&nbsp;<span class="cs__keyword">in</span>&nbsp;dgvSearch.Children.OfType&lt;CheckBox&gt;().Where(myCheckBox&nbsp;=&gt;&nbsp;myCheckBox.IsChecked.Equals(<span class="cs__keyword">true</span>)))&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;_activity&nbsp;=&nbsp;myCheckBox;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;result&nbsp;=&nbsp;&nbsp;ctx.GetTable&lt;JOB&gt;()&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.Where(w&nbsp;=&gt;w.ACTIVITY.Equals(_activity.Content.ToString().ToUpper())&nbsp;&amp;&amp;&nbsp;w.STATE.Equals(_state.ToUpper()))&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.Join(&nbsp;ctx.PERSON,&nbsp;job&nbsp;=&gt;&nbsp;job.ID,&nbsp;cust&nbsp;=&gt;&nbsp;cust.ID,(job,&nbsp;name)&nbsp;=&gt;&nbsp;<span class="cs__keyword">new</span>&nbsp;&nbsp;{name.NAME,&nbsp;name.SURNAME,&nbsp;name.ADDRESS,&nbsp;name.ZIPCODE,&nbsp;name.CITY&nbsp;})&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.OrderBy(a&nbsp;=&gt;&nbsp;a.SURNAME)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.Distinct()&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.ToList();&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">foreach</span>&nbsp;(var&nbsp;item&nbsp;<span class="cs__keyword">in</span>&nbsp;result)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__mlcom">/*The&nbsp;method&nbsp;of&nbsp;the&nbsp;class&nbsp;LoadData&nbsp;PreviewDialog&nbsp;populates&nbsp;a&nbsp;list&nbsp;of&nbsp;such&nbsp;Persons&nbsp;passing&nbsp;all&nbsp;the&nbsp;data&nbsp;found&nbsp;by&nbsp;the&nbsp;search&nbsp;query,&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;which&nbsp;is&nbsp;why&nbsp;we&nbsp;converted&nbsp;the&nbsp;result&nbsp;of&nbsp;the&nbsp;query&nbsp;in&nbsp;a&nbsp;list,&nbsp;in&nbsp;the&nbsp;class&nbsp;PreviewDialog&nbsp;will&nbsp;find&nbsp;the&nbsp;list&nbsp;of&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;such&nbsp;person&nbsp;and&nbsp;the&nbsp;method&nbsp;LoadData&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print.LoadData(item.NAME,&nbsp;item.SURNAME,&nbsp;item.ADDRESS,&nbsp;item.ZIPCODE,&nbsp;item.CITY);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print.ShowDialog();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</pre>
+</div>
+</div>
+</div>
+<h1><span>Source Code Files</span></h1>
+<ul>
+<li><em>source code file name #1 - summary for this source code file.</em> </li><li><em><em>source code file name #2 - summary for this source code file.</em></em>
+</li></ul>
+<h1>More Information</h1>
+<p>This article was created by Piero Sbressa the part concerning VisualBasic and Carmelo La Monica as part riguard in C #. You can contact the following references.</p>
+<p>Piero Sbressa</p>
+<div></div>
+<div><a href="http://code.msdn.microsoft.com/Filtri-di-ricerca-dinamica-3ce7ad22/mailto:pierosbressa@crystalweb.it"><span style="color:#00749e">pierosbressa@crystalweb.it</span></a></div>
+<div><span style="color:#00749e">&nbsp;</span></div>
+<div><a href="http://www.crystalweb.it/"><span style="text-decoration:underline"><span style="font-size:x-small"><span><span style="color:#00749e">www.crystalweb.it</span></span></span></span></a><br>
+<span style="font-size:x-small">&nbsp;</span></div>
+<div><span style="font-size:x-small">&nbsp;</span></div>
+<div><span style="font-size:x-small">Carmelo La Monica</span></div>
+<div><span style="font-size:x-small">&nbsp;</span></div>
+<div><span style="font-size:x-small"><a href="http://community.visual-basic.it/carmelolamonica/default.aspx"><span style="color:#00749e">http://community.visual-basic.it/carmelolamonica/default.aspx</span></a></span></div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+</div>
+
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+				.586
+				.model	flat, syscall
+				option	noscoped
+				.code
+				public	masmUpperCase
+masmUpperCase	proc
+				cmp	al, 'a'
+				jb	notLower
+				cmp	al, 'z'
+				ja	notLower
+				and	al, 5fh
+notLower:		ret
+
+masmUpperCase	endp
+				end

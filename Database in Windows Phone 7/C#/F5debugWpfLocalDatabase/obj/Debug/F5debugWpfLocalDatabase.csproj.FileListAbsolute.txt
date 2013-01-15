@@ -1,0 +1,24 @@
+c:\users\houssem\documents\visual studio 2010\Projects\F5debugWpfLocalDatabase\F5debugWpfLocalDatabase\obj\Debug\App.g.i.cs
+c:\users\houssem\documents\visual studio 2010\Projects\F5debugWpfLocalDatabase\F5debugWpfLocalDatabase\Bin\Debug\ApplicationIcon.png
+c:\users\houssem\documents\visual studio 2010\Projects\F5debugWpfLocalDatabase\F5debugWpfLocalDatabase\Bin\Debug\Background.png
+c:\users\houssem\documents\visual studio 2010\Projects\F5debugWpfLocalDatabase\F5debugWpfLocalDatabase\Bin\Debug\F5debugWpfLocalDatabase.dll
+c:\users\houssem\documents\visual studio 2010\Projects\F5debugWpfLocalDatabase\F5debugWpfLocalDatabase\Bin\Debug\F5debugWpfLocalDatabase.pdb
+c:\users\houssem\documents\visual studio 2010\Projects\F5debugWpfLocalDatabase\F5debugWpfLocalDatabase\obj\Debug\MainPage.g.i.cs
+c:\users\houssem\documents\visual studio 2010\Projects\F5debugWpfLocalDatabase\F5debugWpfLocalDatabase\obj\Debug\F5debugWpfLocalDatabase.g.resources
+c:\users\houssem\documents\visual studio 2010\Projects\F5debugWpfLocalDatabase\F5debugWpfLocalDatabase\obj\Debug\F5debugWpfLocalDatabase.dll
+c:\users\houssem\documents\visual studio 2010\Projects\F5debugWpfLocalDatabase\F5debugWpfLocalDatabase\obj\Debug\F5debugWpfLocalDatabase.pdb
+c:\users\houssem\documents\visual studio 2010\Projects\F5debugWpfLocalDatabase\F5debugWpfLocalDatabase\Bin\Debug\AppManifest.xaml
+c:\users\houssem\documents\visual studio 2010\Projects\F5debugWpfLocalDatabase\F5debugWpfLocalDatabase\Bin\Debug\F5debugWpfLocalDatabase.xap
+c:\users\houssem\documents\visual studio 2010\Projects\F5debugWpfLocalDatabase\F5debugWpfLocalDatabase\obj\Debug\XapCacheFile.xml
+C:\Users\Houssem\Downloads\Database in Windows Phone 7\C#\F5debugWpfLocalDatabase\Bin\Debug\ApplicationIcon.png
+C:\Users\Houssem\Downloads\Database in Windows Phone 7\C#\F5debugWpfLocalDatabase\Bin\Debug\Background.png
+C:\Users\Houssem\Downloads\Database in Windows Phone 7\C#\F5debugWpfLocalDatabase\Bin\Debug\F5debugWpfLocalDatabase.dll
+C:\Users\Houssem\Downloads\Database in Windows Phone 7\C#\F5debugWpfLocalDatabase\Bin\Debug\F5debugWpfLocalDatabase.pdb
+C:\Users\Houssem\Downloads\Database in Windows Phone 7\C#\F5debugWpfLocalDatabase\Bin\Debug\AppManifest.xaml
+C:\Users\Houssem\Downloads\Database in Windows Phone 7\C#\F5debugWpfLocalDatabase\Bin\Debug\F5debugWpfLocalDatabase.xap
+C:\Users\Houssem\Downloads\Database in Windows Phone 7\C#\F5debugWpfLocalDatabase\obj\Debug\App.g.i.cs
+C:\Users\Houssem\Downloads\Database in Windows Phone 7\C#\F5debugWpfLocalDatabase\obj\Debug\MainPage.g.i.cs
+C:\Users\Houssem\Downloads\Database in Windows Phone 7\C#\F5debugWpfLocalDatabase\obj\Debug\F5debugWpfLocalDatabase.g.resources
+C:\Users\Houssem\Downloads\Database in Windows Phone 7\C#\F5debugWpfLocalDatabase\obj\Debug\F5debugWpfLocalDatabase.dll
+C:\Users\Houssem\Downloads\Database in Windows Phone 7\C#\F5debugWpfLocalDatabase\obj\Debug\F5debugWpfLocalDatabase.pdb
+C:\Users\Houssem\Downloads\Database in Windows Phone 7\C#\F5debugWpfLocalDatabase\obj\Debug\XapCacheFile.xml

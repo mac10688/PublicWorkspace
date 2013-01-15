@@ -1,0 +1,24 @@
+// ReturnDWordUnit-
+//
+//  Provides the ReturnDWord function for the DelphiEx2 program.
+
+unit  ReturnDWordUnit;
+
+procedure ReturnDWord; external;
+
+// Same code as ReturnWord except this one returns a 32-bit value
+// in EAX rather than a 16-bit value in AX.
+
+procedure ReturnDWord;  nodisplay; noalignstk; noframe;
+static
+    d:int32 := -7;
+begin ReturnDWord;
+
+    inc( d );
+    mov( d, eax );
+    ret();
+
+end ReturnDWord;
+
+
+end ReturnDWordUnit;

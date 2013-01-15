@@ -1,0 +1,43 @@
+﻿<Window x:Class="Example04.Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Example04"
+    Title="Window1" Height="200" Width="300" MinHeight="200">
+    <Window.Resources>
+        <local:EmployeeList x:Key="myEmployeeList">
+            <local:Employee EmployeeNumber="1" FirstName="John" LastName="Dow" Title="Accountant" Department="Payroll" />
+            <local:Employee EmployeeNumber="2" FirstName="Jane" LastName="Austin" Title="Account Executive" Department="Customer Management" />
+            <local:Employee EmployeeNumber="3" FirstName="Ralph" LastName="Emmerson" Title="QA Manager" Department="Product Development" />
+            <local:Employee EmployeeNumber="4" FirstName="Patrick" LastName="Fitzgerald" Title="QA Manager" Department="Product Development" />
+            <local:Employee EmployeeNumber="5" FirstName="Charles" LastName="Dickens" Title="QA Manager" Department="Product Development" />
+        </local:EmployeeList>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource myEmployeeList}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <ListBox Name="employeeListBox"  ItemsSource="{Binding }" Grid.Row="0" />
+        <Grid Grid.Row="1"  DataContext="{Binding ElementName=employeeListBox, Path=SelectedItem}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0">First Name</Label>
+            <Label Grid.Row="1" Grid.Column="0">Last Name</Label>
+            <Label Grid.Row="2" Grid.Column="0">Title</Label>
+            <Label Grid.Row="3" Grid.Column="0">Department</Label>
+            
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=FirstName}" />
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=LastName}" />
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Title}" />
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=Department}" />
+        </Grid>
+    </Grid>
+</Window>

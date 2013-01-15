@@ -1,0 +1,6 @@
+﻿<Window x:Class="LinkedObjectSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="576" Width="720">
+    <Canvas x:Name="canvas1" MouseDown="canvas1_MouseDown" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" ToolTip="Click mouse button"/>
+</Window>

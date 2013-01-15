@@ -1,0 +1,25 @@
+// ReturnWordUnit-
+//
+//  Provides the ReturnWord function for the DelphiEx2 program.
+
+
+unit  ReturnWordUnit;
+
+procedure ReturnWord; external;
+
+procedure ReturnWord;  nodisplay; noalignstk; noframe;
+static w:int16 := 1234;
+begin ReturnWord;
+
+    // Increment the static value by one on each
+    // call and return the new result as the function
+    // return value.
+
+    inc( w );
+    mov( w, ax );
+    ret();
+
+end ReturnWord;
+
+
+end ReturnWordUnit;

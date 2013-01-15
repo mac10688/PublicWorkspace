@@ -1,0 +1,30 @@
+program ManuallyPassingValueParameters;
+#include( "stdlib.hhf" )
+
+    procedure ThreeValueParms( p1:uns32; p2:uns32; p3:uns32 ); @nodisplay;
+    begin ThreeValueParms;
+
+        mov( p1, eax );
+        add( p2, eax );
+        add( p3, eax );
+        stdout.put
+        ( 
+            "p1 + p2 + p3 = ", 
+            (type uns32 eax), 
+            nl 
+        );
+
+    end ThreeValueParms;
+    
+    
+static
+    SecondParmValue:uns32 := 25;
+
+begin ManuallyPassingValueParameters;
+
+    pushd( 10 );                // Value associated with p1.
+    pushd( SecondParmValue);    // Value associated with p2.
+    pushd( 15 );                // Value associated with p3.
+    call ThreeValueParms;
+
+end ManuallyPassingValueParameters;

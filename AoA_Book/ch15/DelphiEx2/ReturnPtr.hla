@@ -1,0 +1,27 @@
+// ReturnPtrUnit-
+//
+//  Provides the ReturnPtr function for the DelphiEx2 program.
+
+unit  ReturnPtrUnit;
+
+procedure ReturnPtr; external;
+
+// This function, which is lame, returns a pointer to a zero
+// byte in memory (i.e., an empty pchar string).   Although
+// not particularly useful, this code does demonstrate how
+// to return a pointer in EAX.
+
+procedure ReturnPtr;  nodisplay; noalignstk; noframe;
+static 
+    stringData: byte; nostorage;
+                byte "Pchar object", 0;
+
+begin ReturnPtr;
+
+    lea( eax, stringData );
+    ret();
+
+end ReturnPtr;
+
+
+end ReturnPtrUnit;
