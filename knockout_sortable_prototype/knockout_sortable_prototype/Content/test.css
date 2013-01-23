@@ -1,0 +1,62 @@
+﻿#main body {
+    font-family: arial;
+}
+
+#main h3 {
+    text-align: center;
+    font-weight: bold;
+}
+
+#main div {
+    padding: 5px;
+    margin: 5px;
+    border: black 1px solid;
+}
+
+#main p, #main a {
+    font-size: .8em;
+}
+
+#main ul {
+    padding-bottom: 10px;
+}
+
+#main .ko_container {
+    width: 125px;
+    min-height: 50px;
+    background-color: #AAA;
+}
+
+#main .high {
+    background-color: red;
+}
+
+#main .trash {
+    background-color: #000;
+}
+
+#main .item {
+    background-color: #DDD;
+    cursor: move;
+    text-align: center;
+}
+
+#main .item.ui-state-disabled {
+    cursor: default;
+    color: #AAA;
+}
+
+#main .item input {
+    width: 100px;
+}
+
+#main {
+    float: left;
+    width: 150px;
+    margin-top: 0px;
+}
+
+#results {
+    margin-left: 175px;
+    width: 150px;
+}
