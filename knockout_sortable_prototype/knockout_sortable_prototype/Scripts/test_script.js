@@ -8,19 +8,17 @@ Task.prototype.clone = function () {
 
 var ViewModel = function () {
     var self = this;
-    self.tasks = ko.observableArray([
-        new Task("Get dog food"),
-        new Task("Mow lawn"),
-        new Task("Fix car"),
-        new Task("Fix fence"),
-        new Task("Walk dog"),
-        new Task("Read book")
-    ]);
 
-    self.newTask = new Task("New Task");
+    self.Titles = ko.observableArray();
+    self.newTitle = new Task("Title");
+    self.allowNewTitle = ko.computed(function () {
+        return self.Titles().length < 1;
+    });
 
-    self.allowNewTask = ko.computed(function () {
-        return self.tasks().length < 10;
+    self.Headers = ko.observableArray();    
+    self.newHeader = new Task("Header");
+    self.allowNewHeader = ko.computed(function () {
+        return self.Headers().length < 5;
     });
 
     self.selectedTask = ko.observable();
@@ -31,7 +29,7 @@ var ViewModel = function () {
         }
 
         if (data.name() === "") {
-            self.tasks.remove(data);
+            self.Titles.remove(data);
         }
     };
 

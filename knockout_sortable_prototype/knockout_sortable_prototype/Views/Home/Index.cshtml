@@ -2,27 +2,39 @@
     ViewBag.Title = "Home Page";
 }
 
-<div id="main">
-    <h3>Tasks</h3>
-    <div class="container" data-bind="sortable: tasks">
-        <div class="item">
+<div id="left_side">
+        <div class="item" data-bind="draggable: { data: newTitle, isEnabled: allowNewTitle }">
+            <span data-bind="text: name"></span>
+        </div>
+
+        <div class="item" data-bind="draggable: { data: newHeader, isEnabled: allowNewHeader }">
+            <span data-bind="text: name"></span>
+        </div>
+</div>
+
+<div id="right_side">
+    
+    <div class="title_container" data-bind="sortable: Titles"> 
+        <div class="item">           
             <span data-bind="visible: !$root.isTaskSelected($data)">
                 <a href="#" data-bind="text: name, click: $root.selectedTask"></a>
             </span>
             <span data-bind="visibleAndSelect: $root.isTaskSelected($data)">
                 <input data-bind="value: name, event: { blur: $root.clearTask }" />
-            </span>  
-        </div>
-    </div>
+            </span> 
+        </div> 
+     </div>
 
-    <div class="item" data-bind="draggable: { data: newTask, isEnabled: allowNewTask }">
-        <span data-bind="text: name"></span>
-    </div>
-</div>
+    <div class="header_container" data-bind="sortable: Headers"> 
+        <div class="item">           
+            <span data-bind="visible: !$root.isTaskSelected($data)">
+                <a href="#" data-bind="text: name, click: $root.selectedTask"></a>
+            </span>
+            <span data-bind="visibleAndSelect: $root.isTaskSelected($data)">
+                <input data-bind="value: name, event: { blur: $root.clearTask }" />
+            </span> 
+        </div> 
+     </div>
 
-<div id="results">
-    <h3>Tasks</h3>
-    <ul data-bind="foreach: tasks">
-        <li data-bind="text: name"></li>
-    </ul>
+
 </div>
