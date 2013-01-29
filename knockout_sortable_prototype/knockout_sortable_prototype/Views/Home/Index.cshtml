@@ -14,27 +14,14 @@
 
 <div id="right_side">
     
-    <div class="title_container" data-bind="sortable: Titles"> 
-        <div class="item">           
-            <span data-bind="visible: !$root.isTaskSelected($data)">
-                <a href="#" data-bind="text: name, click: $root.selectedTask"></a>
-            </span>
-            <span data-bind="visibleAndSelect: $root.isTaskSelected($data)">
-                <input data-bind="value: name, event: { blur: $root.clearTask }" />
-            </span> 
-        </div> 
-     </div>
+    <table style="border:groove">
+        <tbody data-bind="foreach: rows">
+            <tr style="border:dotted" data-bind="foreach: $data">
+                <td style="border:inset" data-bind="text: $data.name()"></td>
+            </tr>
+        </tbody>
+    </table>
 
-    <div class="header_container" data-bind="sortable: Headers"> 
-        <div class="item">           
-            <span data-bind="visible: !$root.isTaskSelected($data)">
-                <a href="#" data-bind="text: name, click: $root.selectedTask"></a>
-            </span>
-            <span data-bind="visibleAndSelect: $root.isTaskSelected($data)">
-                <input data-bind="value: name, event: { blur: $root.clearTask }" />
-            </span> 
-        </div> 
-     </div>
-
+    <button data-bind="click: addNewItem, text: 'Click me'"></button>
 
 </div>

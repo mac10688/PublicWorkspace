@@ -6,6 +6,18 @@ Task.prototype.clone = function () {
     return new Task(this.name());
 };
 
+var RubricItem = function (name, type) {
+    this.name = ko.observable(name);
+
+    /*Three types:
+    0: Rubric Item
+    1: Filled Item
+    2: Blank Item
+    */
+    this.type = ko.observable(type);
+    this.span = ko.observable(1);
+}
+
 var ViewModel = function () {
     var self = this;
 
@@ -20,34 +32,15 @@ var ViewModel = function () {
     self.allowNewHeader = ko.computed(function () {
         return self.Headers().length < 5;
     });
+    self.rows = ko.observableArray([
+        ko.observableArray([new RubricItem('One', 0), new RubricItem('Two', 0), new RubricItem('Three', 0), new RubricItem('Blank', 2)]),
+        ko.observableArray([new RubricItem('Four', 0), new RubricItem('Five', 0), new RubricItem('Blank', 2), new RubricItem('Filler', 1)]),
+        ko.observableArray([new RubricItem('Blank', 2), new RubricItem('Blank', 2), new RubricItem('Filler', 1), new RubricItem('Filler', 1)])
+    ]);
 
-    self.selectedTask = ko.observable();
-
-    self.clearTask = function (data, event) {
-        if (data === self.selectedTask()) {
-            self.selectedTask(null);
-        }
-
-        if (data.name() === "") {
-            self.Titles.remove(data);
-        }
+    self.addNewItem = function () {
+        self.rows()[1].push('seven');
     };
-
-    self.isTaskSelected = function (task) {
-        return task === self.selectedTask();
-    };
-};
-
-//control visibility, give element focus, and select the contents (in order)
-ko.bindingHandlers.visibleAndSelect = {
-    update: function (element, valueAccessor) {
-        ko.bindingHandlers.visible.update(element, valueAccessor);
-        if (valueAccessor()) {
-            setTimeout(function () {
-                $(element).find("input").focus().select();
-            }, 0); //new tasks are not in DOM yet
-        }
-    }
 };
 
 ko.applyBindings(new ViewModel());
